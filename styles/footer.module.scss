@@ -1,0 +1,225 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.footer {
+  width: 100%;
+  padding: 80px 0px;
+  background-color: $black_1;
+
+  &_container {
+    max-width: 480px;
+    width: 100%;
+    margin: 0px auto;
+
+    @include mq(small_pc) {
+      padding: 0px 24px;
+    }
+  }
+
+  // @include mq(small_pc) {
+  //   height: 56px;
+  //   padding: 0px 16px;
+  // }
+
+  .service_name {
+
+
+    &_text {
+      font-size: 24px;
+      font-family: 'Martel', serif;
+      color: $white_1;
+
+      @include mq() {
+        font-size: 20px;
+      }
+    }
+  }
+
+  .g_tab_nav {
+    display: block;
+    margin-left: 32px;
+    float: left;
+
+    &_list {
+      display: block;
+
+      @include mq() {
+        display: none;
+      }
+    }
+
+    &_list_item {
+      display: inline-block;
+      margin-right: 16px;
+      line-height: 80px;
+
+      a {
+        display: inline-block;
+        font-weight: 600;
+        color: $black_1;
+        line-height: 80px;
+      }
+
+      &.is_active {
+        box-shadow: 0px -4px 0px 0px $blue_1 inset;
+      }
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+  .g_nav {
+    display: block;
+    float: right;
+  
+    @include mq() {
+      display: none;
+    }
+
+    &_list {
+      display: block;
+    }
+    &_list_item {
+      display: inline-block;
+      margin-right: 16px;
+      line-height: 80px;
+    
+      &:last-child {
+        margin-right: 0px;
+      }
+
+      a {
+        font-weight: 600;
+        color: $black_1;
+        line-height: 80px;
+      }
+    }
+  }
+
+  &.landing_page {
+    box-shadow: 0 0px 0px 0 rgba(64, 64, 64, 0);
+
+    .service_logo {  
+      &_text {
+        a {
+          color: $black_1;
+        }
+      }
+    }
+
+    .g_nav {
+      &_list_item {
+        a {
+          color: $black_1;
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    display: none;
+    width: 56px;
+    height: 56px;
+    position: absolute;
+    right: 0px;
+    z-index: 100;
+
+    @include mq() {
+      display: block;
+    }
+
+    &_icon {
+      display: block;
+      width: 56px;
+      height: 56px;
+      position: relative;
+
+      span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        margin-left: -12px;
+        margin-top: -1px;
+        background-color: $black_1;
+
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transition: all 0.3s 0s ease;
+
+        &::before,
+        &::after {
+          width: 24px;
+          height: 2px;
+          content: "";
+          background-color: $black_1;
+          position: absolute;
+          transition: all 0.3s 0s ease;
+        }
+
+        &::before {
+          top: -8px;
+        }
+        &::after {
+          top: 8px;
+        }
+      }
+
+      &.is_active {
+        span {
+          background-color: $transparent;
+
+          &::before {
+            top: 0px;
+            transform: rotate(45deg);
+          }
+          &::after {
+            top: 0px;
+            transform: rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.sp_g_nav {
+  display: none;
+  width: 100%;
+  height: 100%;
+  padding: 56px 16px 0px;
+  background-color: $white_1;
+
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 99;
+
+  &_list {
+    width: 100%;
+    padding: 24px 0px;
+
+    &_item {
+      a {
+        display: block;
+        width: 100%;
+        padding: 16px 0px;
+        border-bottom: 0px solid $border_1;  
+      }
+
+      &:first-child {
+        a {
+          border-top: 0px solid $border_1;
+        }
+      }
+    }
+  }
+
+  &.is_active {
+    display: block;
+  }
+}

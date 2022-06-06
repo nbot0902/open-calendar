@@ -1,0 +1,180 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.body {
+  width: 100%;
+  background-color: $white_1;
+  position: relative;
+}
+
+.wrapper {
+  width: 100%;
+  background-color: $gray_2;
+}
+
+.container {
+  max-width: 480px;
+  min-height: 800px;
+  width: 100%;
+  margin: 0px auto;
+  padding: 80px 0px 0px 0px ;
+
+  @include mq(small_pc) {
+    padding: 80px 24px 0px 24px ;
+  }
+
+  @include mq() {
+    min-height: 640px;
+    padding: 80px 16px 0px 16px ;
+  }
+}
+
+.content {
+  padding: 32px 0px;
+
+  @include mq() {
+    padding: 16px 0px;
+  }
+
+  &_head {
+    margin-bottom: 24px;
+
+    &::after {
+      display: block;
+      width: 100%;
+      clear: both;
+      content: "";
+    }
+
+    &_action {
+      float: left;
+    }
+
+    &_title {
+      width: 100%;
+
+      &::after {
+        display: block;
+        width: 100%;
+        clear: both;
+        content: "";
+      }
+
+      &_label {
+        float: left;
+        
+        &_text {
+          font-size: 24px;
+          line-height: 32px;
+          padding-left: 4px;
+        }
+      }
+    }
+
+    &_description {
+      width: 100%;
+      margin-top: 12px;
+
+      &_text {
+        font-size: 16px;
+        line-height: 1.5em;
+
+        @include mq() {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  &_modal {
+    width: 100%;
+    height: 100%;
+    background-color: $white_1;
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1000;
+
+    &_spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -24px;
+      margin-top: -24px;
+    }
+  }
+}
+
+.botton {
+  display: block;
+  width: 240px;
+  height: 48px;
+  border-radius: 24px;
+  line-height: 48px;
+
+  font-size: 16px;
+  font-weight: 400;
+  text-align: center;
+  color: $black_1;
+
+  border: 0px solid $border_1;
+  background-color: $light_blue_1;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &_for_sub_action {
+    color: $blue_1;
+  }
+  &_for_delete_action {
+    color: $red_1;
+  }
+
+  &.small_type {
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+
+    @include mq() {
+      width: 100%;
+      font-size: 12px;
+      font-weight: 600;
+      height: 32px;
+      border-radius: 16px;
+      line-height: 32px;    
+    }
+  }
+}
+
+.icon_button {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  background-color: $blue_1;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.bg_color_white {
+    background-color: $white_1;
+    border: 1px solid $border_1;
+  }
+
+  svg {
+    width: 12px;
+    margin-top: -6px;
+    margin-left: -6px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+}
