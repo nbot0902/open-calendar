@@ -2,9 +2,9 @@ import common from '../../styles/common.module.scss'
 import Header from "./Header";
 import Footer from "./Footer";
 
-const Layout = ({ children, isSignOut }) => (
+const Layout = ({ children, page, isSignOut }) => (
     <div className={common.body}>
-        <Header isSignOut={isSignOut} />
+        <Header page={page} isSignOut={isSignOut} />
         <div className={common.container}>
             <div className={common.content}>
                 {children}

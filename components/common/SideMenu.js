@@ -10,7 +10,8 @@ import C from '../../constants'
 const SideMenu = ({
     isSignOut = false,
     onVisible = false,
-    isActive = false
+    isActive = false,
+    page = "/"
 }) => {
     const router = useRouter();
     const groupId = "kadomaru";
@@ -45,22 +46,27 @@ const SideMenu = ({
                                     </h4>
                                 </div>
                                 <ul className={s.side_menu_list}>
+                                    <li className={`${s.side_menu_list_item} ${page == "/" ? s.is_active : ""}`}>
+                                        <Link className={s.side_menu_link} href={"/"}>
+                                            トップページ
+                                        </Link>
+                                    </li>
                                     {!isSignOut ? (
-                                        <li className={s.side_menu_list_item}>
+                                        <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/profile"}>
                                                 プロフィール
                                          </Link>
                                         </li>
                                     ) : null}
                                     {!isSignOut ? (
-                                        <li className={s.side_menu_list_item}>
+                                        <li className={`${s.side_menu_list_item} ${page == "/calendar" ? s.is_active : ""}`}>
                                             <Link href={`/u/${groupId}`} className={s.side_menu_link}>
                                                 マイカレンダー
-                                        </Link>
+                                            </Link>
                                         </li>
                                     ) : null}
                                     {!isSignOut ? (
-                                        <li className={s.side_menu_list_item}>
+                                        <li className={`${s.side_menu_list_item} ${page == "/my_events" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/my_events"}>
                                                 登録したイベント
                                         </Link>
@@ -71,12 +77,12 @@ const SideMenu = ({
                                             運営について
                                         </Link>
                                     </li>
-                                    <li className={s.side_menu_list_item}>
+                                    <li className={`${s.side_menu_list_item} ${page == "/terms" ? s.is_active : ""}`}>
                                         <Link className={s.side_menu_link} href={"/terms"}>
                                             利用規約
                                         </Link>
                                     </li>
-                                    <li className={s.side_menu_list_item}>
+                                    <li className={`${s.side_menu_list_item} ${page == "/privacy_policy" ? s.is_active : ""}`}>
                                         <Link className={s.side_menu_link} href={"/privacy_policy"}>
                                             プライバシーポリシー
                                         </Link>

@@ -9,7 +9,8 @@ import header from '../../styles/header.module.scss'
 import SideMenu from "./SideMenu";
 
 const Header = ({
-    isSignOut = true
+    isSignOut = true,
+    page = "/"
 }) => {
     const router = useRouter();
 
@@ -37,7 +38,7 @@ const Header = ({
     return React.useMemo(() => {
         return (
             <div>
-                <SideMenu onVisible={_onOpenSideMenu} isActive={isVisible} isSignOut={isSignOut} />
+                <SideMenu page={page} onVisible={_onOpenSideMenu} isActive={isVisible} isSignOut={isSignOut} />
                 <div className={header.header}>
                     <div className={header.header_container}>
                         <div className={header.header_content}>
