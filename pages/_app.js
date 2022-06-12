@@ -5,6 +5,7 @@ import { useStore } from '../store'
 
 import '../styles/reset.scss'
 import '../styles/globals.scss'
+import '../styles/calendar.scss'
 import AuthProvider from "../components/auth/AuthContext"
 
 function MyApp({ Component, pageProps }) {

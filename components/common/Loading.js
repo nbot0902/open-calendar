@@ -1,30 +1,33 @@
 import React from 'react'
+import { useRouter } from "next/router"
 import { Grid } from 'react-loader-spinner'
 import s from '../../styles/common.module.scss'
 import { useAuth } from "../auth/AuthContext";
-
-const LoadingModal = () => {
-    const { isLoading = true } = useAuth()
-
-    return React.useMemo(() => {
-        if (isLoading) {
-            return (
-                <div className={s.loading_modal}>
-                    <div className={s.loading_modal_spinner}>
-                        <Grid color={"#1e41af"} height={48} width={48} />
-                    </div>
-                </div>
-            )
-        }
-        return <div></div>
-    }, [isLoading])
-}
+import LoadingModal from "./LoadingModal"
 
 const Loading = ({ children }) => {
+    const router = useRouter()
+    const [pageLoading, setPageLoading] = React.useState(false)
+
+    React.useEffect(() => {
+        const handleStart = (url) => url !== router.asPath && setPageLoading(true)
+        const handleComplete = () => setPageLoading(false)
+
+        router.events.on('routeChangeStart', handleStart)
+        router.events.on('routeChangeComplete', handleComplete)
+        router.events.on('routeChangeError', handleComplete)
+
+        return () => {
+            router.events.off('routeChangeStart', handleStart)
+            router.events.off('routeChangeComplete', handleComplete)
+            router.events.off('routeChangeError', handleComplete)
+        }
+    })
+
     return (
         <div className={s.body}>
             {children}
-            <LoadingModal />
+            <LoadingModal isLoading={pageLoading} />
         </div>
     );
 };

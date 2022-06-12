@@ -1,0 +1,38 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.profile {
+    padding: 16px 0px;
+    
+    @include mq() {
+        padding: 16px 16px;
+    }
+
+    &_detail {
+       width: 100%;
+       margin-top: 40px;
+       padding: 92px 24px 24px 24px ;
+       position: relative;
+       background-color: $white_1;
+       border-radius: 12px;
+       box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
+    }
+
+    &_thumbnail {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: -24px;
+        left: 50%;
+        margin-left: -50px;
+        border-radius: 0px;
+        border-radius: 50%;
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-color: $blue_1;
+        border: 8px solid $white_1;
+        box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
+    }
+}

@@ -1,0 +1,32 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.my_event {
+    padding: 16px 0px;
+    
+    @include mq() {
+        padding: 16px 16px;
+    }
+
+    &_row {
+        &_head {
+            margin-top: 32px;
+            margin-bottom: 20px;
+
+            &_text {
+                font-size: 20px;
+                line-height: 1em;
+            }
+        }
+    }
+
+    &_list {
+        width: 100%;
+
+        &_item {
+            width: 100%;
+        }
+    }
+
+}

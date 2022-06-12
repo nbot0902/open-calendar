@@ -1,0 +1,78 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+@import "./foundation/animation";
+
+.side {
+    &_menu {
+        width: 280px;
+        height: 100%;
+        padding: 0px 8px;
+        position: fixed;
+        top: 0px;
+        background-color: $white_1;
+        z-index: 1000;
+
+        &_scroll {
+            overflow-y: scroll;
+        }
+        &_content {
+            padding: 24px 0px;
+        }
+
+        &_row {
+            margin-bottom: 8px;
+
+            .row_title {
+                margin-bottom: 8px;
+                padding: 0px 8px;
+
+                &_text {
+                    font-size: 12px;
+                    font-weight: 600;
+                    color: $gray_1;
+                }
+            }
+        }
+
+        &_list {
+            width: 100%;
+
+            &_item {
+                width: 100%;
+
+                a {
+                    display: block;
+                    width: 100%;
+                    font-size: 16px;
+                    color: $black_1;
+                    padding: 16px 8px;
+                    border-radius: 8px;
+
+                    &:hover {
+                        background-color: $light_blue_1;
+                    }
+                }
+            }
+        }
+
+        
+    }
+}
+
+.overlay {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: $overlay_1;
+    z-index: 999;
+
+    &.is_active {
+        display: block;
+    }
+}

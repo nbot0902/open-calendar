@@ -3,15 +3,41 @@ import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit 
 import U from '../utile';
 import C from '../constants';
 
-export const postEvent = async ({
-    calendarId = "",
-    scheduleId = "",
-    data = {}
+export const getFirstUserGroup = async ({
+    userId = ""
 }) => {
-    const groupRef = await doc(collection(fireStore, "groups"));
+    const _query = query(collection(fireStore, "users", userId, "userGroups"), orderBy("createdAt", "desc"), limit(1));
+    const _querySnapshot = await getDocs(_query);
 
+    try {
+        const groups = await Promise.all(
+            _querySnapshot.docs.map((_doc) => {
+                return _doc.data()
+            })
+        )
+
+        const groupId = groups[0].groupId
+        const groupData = await getGroup({ groupId })
+
+        return groupData;
+    } catch (_err) {
+        console.log(_err)
+    }
+}
+
+export const getGroup = async ({ groupId = "" }) => {
+    const docRef = await doc(fireStore, "groups", groupId);
+    const docSnap = await getDoc(docRef);
+    const result = docSnap.data()
+
+    return result;
+}
+
+
+export const postGroup = async () => {
+    const groupsRef = await doc(collection(fireStore, "groups"));
+    const groupId = groupsRef.id;
     const userId = await U.getUserId();
-    const groupId = groupRef.id;
     const createdAt = Date.now();
 
     const baseData = {
@@ -21,24 +47,42 @@ export const postEvent = async ({
         status: C.GROUP_STATE.ACTIVE
     }
 
-    const eventData = {
-        ...data,
+    const groupData = {
+        name: groupId,
         ...baseData,
     }
-    const calendarData = {
-        ...baseData,
-    }
-    const scheduleData = {
+    const userGroupData = {
         ...baseData,
     }
 
-    const eventRef = doc(fireStore, "events", eventId);
-    const scheduleRef = doc(fireStore, "schedules", scheduleId);
-    const calendarRef = doc(fireStore, "calendars", calendarId);
+    const groupRef = doc(fireStore, "groups", groupId);
+    const userGroupRef = doc(fireStore, "users", userId, "userGroups", groupId);
 
     return Promise.all[
-        setDoc(eventRef, eventData),
-        setDoc(calendarRef, calendarData),
-        setDoc(scheduleRef, scheduleData)
+        setDoc(groupRef, groupData),
+        setDoc(userGroupRef, userGroupData)
     ];
 }
+
+export const putGroup = async ({
+    groupId = "",
+    data = {}
+}) => {
+    const userId = await U.getUserId();
+    const updateAt = Date.now();
+
+    const baseData = {
+        updateAt: updateAt,
+    }
+    const groupData = {
+        ...baseData,
+        ...data,
+    }
+
+    const groupRef = doc(fireStore, "groups", groupId);
+
+    return Promise.all[
+        setDoc(groupRef, groupData, { merge: true })
+    ];
+}
+

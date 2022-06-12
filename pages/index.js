@@ -8,20 +8,22 @@ import header from "../styles/header.module.scss";
 import lp from "../styles/landing_page.module.scss";
 import U from "../utile";
 
-const TopScreen = () => {
+export const getServerSideProps = async (ctx) => {
+  return U.verifyAuthState({ ctx });
+};
+
+const TopScreen = props => {
+
   const router = useRouter()
 
   const userId = "";
 
-  const _navSignUp = () => {
-    router.push('/signup')
-  }
   const _navSignIn = () => {
     router.push('/signin')
   }
   const _navCalendar = () => {
     const groupId = "test";
-    router.push(`/calendars/${groupId}`)
+    router.push(`/u/${groupId}`)
   }
   const _navProfile = () => {
     router.push(`/profile/${userId}`)
@@ -38,56 +40,9 @@ const TopScreen = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={lp.design}>
-        <p>
-          <a onClick={_navSignUp} className={header.header_nav_list_item_text}>
-            新規登録
-          </a>
-        </p>
-        <p>
-          <a onClick={_navSignIn} className={header.header_nav_list_item_text}>
-            ログイン
-          </a>
-        </p>
-        <p>
-          <a onClick={_navCalendar} className={header.header_nav_list_item_text}>
-            カレンダー
-          </a>
-        </p>
-        <p>
-          <a onClick={_navProfile} className={header.header_nav_list_item_text}>
-            プロフィール
-          </a>
-        </p>
-        <p>
-          <a onClick={_navSetting} className={header.header_nav_list_item_text}>
-            設定
-          </a>
-        </p>
       </div>
     </Layout>
   )
 }
-
-// export const getServerSideProps = async (ctx) => {
-//   // const cookies = nookies.get(ctx);
-//   // const session = cookies.session || "";
-//   // const user = await U.getFirebaseAdminUser({ session })
-
-//   // if (!user) {
-//   //   return {
-//   //     redirect: {
-//   //       destination: "/login",
-//   //       permanent: false,
-//   //     },
-//   //   };
-//   // }
-
-//   // return {
-//   //   props: {
-//   //     email: user.email,
-//   //   },
-//   // };
-// };
-
 
 export default TopScreen;

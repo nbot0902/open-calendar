@@ -6,7 +6,6 @@
   width: 100%;
   padding: 0px 0px;
   background-color: $white_1;
-  box-shadow: 0 4px 8px 0 rgba(64, 64, 64, .15);
   position: fixed;
   top: 0px;
   z-index: 100;
@@ -20,13 +19,92 @@
     width: 100%;
     margin: 0px auto;
 
-    @include mq(small_pc) {
-      padding: 0px 24px;
+    @include mq() {
+      padding: 0px 12px;
     }
+  }
+
+  .user {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    margin-top: -16px;
+
+    &_icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 16px;
+      background-color: $blue_1;
+      overflow: hidden;
+      float: left;
+
+      &_img {
+          display: block;
+          width: 32px;
+          height: 32px;
+      }
+    }
+
+    &_info {
+      float: left;
+      padding-right: 8px;
+
+      &_name {
+          &_text {
+              font-size: 12px;
+              font-weight: 600;
+              line-height: 32px;
+              color: $white_1;
+          }
+      }
+    } 
+  }
+
+  .action {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 0px;
+    margin-top: -16px;
+
+    &_button {
+      width: 80px;
+      height: 32px;
+      border-radius: 16px;
+      background-color: $blue_1;
+
+      &:hover {
+        background-color: $hover_blue_1;
+        cursor: pointer;
+      }
+
+      &_text {
+         font-size: 12px;
+         text-align: center;
+         color: $white_1;
+         line-height: 32px;
+      }
+    }
+
+    &_info {
+      float: left;
+      padding-right: 8px;
+
+      &_name {
+          &_text {
+              font-size: 12px;
+              font-weight: 600;
+              line-height: 32px;
+              color: $white_1;
+          }
+      }
+    } 
   }
 
   &_content {
     width: 100%;
+    position: relative;
 
     &::after {
       display: block;
@@ -35,60 +113,9 @@
       content: "";
     }
 
-    &_left {
-      float: left;
-    }
-    &_right {
-      float: right;
-      height: 80px;
-      background-color: $blue_1;
-
-      @include mq(sp) {
-        height: 56px;
-      }
-
-      &::after {
-        display: block;
-        width: 100%;
-        clear: both;
-        content: "";
-      }
-
-      .user {
-        display: block;
-        position: relative;
-        top: 50%;
-        margin-top: -20px;
-
-        &_icon {
-          width: 32px;
-          height: 32px;
-          border-radius: 16px;
-          background-color: $black_1;
-          overflow: hidden;
-          float: left;
-
-          &_img {
-              display: block;
-              width: 32px;
-              height: 32px;
-          }
-        }
-
-        &_info {
-          float: left;
-          padding-right: 8px;
-
-          &_name {
-              &_text {
-                  font-size: 12px;
-                  font-weight: 600;
-                  line-height: 32px;
-                  color: $white_1;
-              }
-          }
-        } 
-      }
+    &_title {
+      width: 100%;
+      text-align: center;
     }
   }
 
@@ -114,103 +141,13 @@
     }
   }
 
-  .service_name {
-    float: left;
+  .service_logo {
+    margin: 0px auto;
 
-    &_text {
-      display: inline;
-      font-size: 24px;
-      font-family: 'Martel', serif;
-      height: 80px;
-      line-height: 80px;
-      color: $black_1;
-
-      @include mq() {
-        font-size: 20px;
-        line-height: 56px;
-      }
-    }
-  }
-
-  .g_tab_nav {
-    display: block;
-    margin-left: 32px;
-    float: left;
-
-    &_list {
-      display: block;
-
-      @include mq() {
-        display: none;
-      }
-    }
-
-    &_list_item {
+    &_img {
       display: inline-block;
-      margin-right: 16px;
-      line-height: 80px;
-
-      a {
-        display: inline-block;
-        font-weight: 600;
-        color: $black_1;
-        line-height: 80px;
-      }
-
-      &.is_active {
-        box-shadow: 0px -4px 0px 0px $blue_1 inset;
-      }
-      &:last-child {
-        margin-right: 0px;
-      }
-    }
-  }
-
-  .g_nav {
-    display: block;
-    float: right;
-  
-    @include mq() {
-      display: none;
-    }
-
-    &_list {
-      display: block;
-    }
-    &_list_item {
-      display: inline-block;
-      margin-right: 16px;
-      line-height: 80px;
-    
-      &:last-child {
-        margin-right: 0px;
-      }
-
-      a {
-        font-weight: 600;
-        color: $black_1;
-        line-height: 80px;
-      }
-    }
-  }
-
-  &.landing_page {
-    box-shadow: 0 0px 0px 0 rgba(64, 64, 64, 0);
-
-    .service_logo {  
-      &_text {
-        a {
-          color: $black_1;
-        }
-      }
-    }
-
-    .g_nav {
-      &_list_item {
-        a {
-          color: $black_1;
-        }
-      }
+      height: 40px;
+      margin: 8px 0px;
     }
   }
 

@@ -1,0 +1,118 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.calendar {
+    &_content {
+        width: 100%;
+        height: 100%;
+        padding: 16px 2px;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: $light_blue_1;
+        }
+
+        &.is_today {
+            background-color: $blue_1;
+
+            &:hover {
+                background-color: $blue_1;
+            }
+        }
+    }
+    &_day {
+        &_text {
+            font-size: 15px;
+            font-weight: 600;
+            color: $black_1;
+
+            &.is_today {
+                color: $white_1;
+            }
+
+            &.is_other_month {
+                color: $gray_1;
+            }
+        }
+    }
+
+    &_badge {
+        width: 8px;
+        height: 8px;
+        border-radius: 4px;
+        background-color: $transparent;
+        margin: 8px auto 0px;
+
+        &.has_events {
+            background-color: $blue_1;
+        }
+
+        &.is_today {
+            background-color: $white_1;
+        }
+    }
+}
+
+.auther {
+    &_profile {
+        width: 100%;
+        margin-bottom: 8px;
+        padding: 16px;
+        background-color: $white_1;
+        border-radius: 12px;
+
+        @include mq() {
+            border-radius: 0px;
+        }
+
+        &::after {
+            display: block;
+            width: 100%;
+            content: "";
+            clear: both;
+        }
+
+        &_name {
+            margin-bottom: 8px;
+
+            &_text {
+                font-size: 15px;
+
+                .bold {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        &_description {
+            &_text {
+                font-size: 12px;
+                line-height: 1.5em;
+                font-weight: 400;
+            }
+        }
+
+        &_icon {
+            width: 48px;
+            height: 48px;
+            padding: 4px;
+            float: left;
+            background-color: $white_1;
+            border-radius: 24px;
+            box-shadow: 0 4px 8px 0 rgba(60, 140, 255, .15);
+
+            &_img {
+                width: 40px;
+                height: 40px;
+                border-radius: 20px;
+            }
+        }
+
+        &_info {
+            padding-left: 12px;
+            margin-left: 48px;
+        }
+
+    }
+}

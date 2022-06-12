@@ -60,6 +60,17 @@
     }
   }
 
+  &_new {
+    &_event {
+      &_content {
+        width: 100%;
+        padding: 16px;
+        background-color: $white_1;
+        border-radius: 16px;
+      }
+    }
+  }
+
   &_operation {
     width: 640px;
     margin: 0px auto;
@@ -73,16 +84,17 @@
   }
 
   &_sign_in {
-    width: 640px;
-    min-height: 800px;
+    width: 100%;
+    max-width: 640px;
     margin: 0px auto;
-    padding: 80px 48px;
+    padding: 48px 48px;
     background-color: $white_1;
+    border-radius: 16px;
 
     @include mq() {
       width: 100%;
       min-height: 640px;
-      padding: 48px 16px;
+      padding: 24px 16px;
     }
   }
 
@@ -189,6 +201,10 @@
       color: $disabled_1;;
       background-color: $gray_1;
     }
+
+    &:hover {
+      background-color: $hover_blue_1;
+    }
   }
 
   &_on_generate_article{
@@ -235,6 +251,36 @@
   line-height: 48px;
   padding: 0px 16px;
   background-color: $white_1;
+  border: 1px solid $border_1;
+  border-radius: 8px;
+
+  &_caption {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    color: $gray_1;
+    margin-top: 8px;
+  }
+}
+
+.textarea {
+  width: 100%;
+  height: 240px;
+  font-size: 16px;
+  line-height: 1.5em;
+  padding: 16px;
+  background-color: $white_1;
+  border: 1px solid $border_1;
+  border-radius: 8px;
+}
+
+.datepicker {
+  display: block;
+  width: 100%;
+  height: 48px;
+  padding: 0px 16px;
+
+  line-height: 48px;
   border: 1px solid $border_1;
   border-radius: 8px;
 }

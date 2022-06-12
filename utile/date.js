@@ -20,3 +20,33 @@ export const getRimestampFromDate = (_date) => {
     const newDate = new Date(parsedDate)
     return Timestamp.fromDate(newDate);
 }
+
+export const getCalendarId = ({
+    date = new Date()
+}) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const strYear = year.toString()
+    const strMonth = month >= 10 ? month.toString() : `0${month.toString()}`
+    const strDay = day >= 10 ? month.toString() : `0${month.toString()}`
+
+    const calendarId = `${strYear}-${strMonth}`.replace(/\n|\r/g, '');
+    return calendarId;
+}
+
+export const getScheduleId = ({
+    date = new Date()
+}) => {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const strYear = year.toString()
+    const strMonth = month >= 10 ? month.toString() : `0${month.toString()}`
+    const strDay = day >= 10 ? day.toString() : `0${day.toString()}`
+
+    const scheduleId = `${strYear}-${strMonth}-${strDay}`.replace(/\n|\r/g, '');
+    return scheduleId;
+}

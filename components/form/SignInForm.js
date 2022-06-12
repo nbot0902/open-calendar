@@ -1,46 +1,67 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import InputRow from "../form/InputRow";
-import { useAuth } from "../auth/AuthContext";
+import LoadingModal from "../common/LoadingModal";
+
 import form from '../../styles/form.module.scss'
-import ACTION from '../../actions'
+import { firebaseAuth } from '../../firebase/firebase'
+import API from '../../api'
+
+import {
+    signOut,
+    signInWithEmailAndPassword,
+    signInWithRedirect,
+    signInWithPopup,
+    onAuthStateChanged,
+    getRedirectResult,
+    getAdditionalUserInfo,
+    GoogleAuthProvider,
+    ActionCodeOperation,
+    getAuth
+} from "firebase/auth";
 
 const SignInForm = () => {
-    const dispatch = useDispatch()
-    const router = useRouter()
-    const { currentUser, signIn, logout } = useAuth()
-    const [articles, setArticles] = useState()
+    const router = useRouter();
 
-    const handleSubmit = async (event) => {
+    React.useEffect(() => {
+        const _getRedirectResult = async () => {
+            const result = await getRedirectResult(firebaseAuth)
+
+            if (result) {
+                await API.signWithGoogleSuccessCallback({ result })
+                return router.push("/profile");
+            }
+        }
+
+        _getRedirectResult()
+    })
+
+    const handleSubmit = (event) => {
         event.preventDefault()
 
-        const email = event.target.email.value;
-        const password = event.target.password.value;
+        try {
+            const provider = new GoogleAuthProvider();
+            signInWithRedirect(firebaseAuth, provider);
+        } catch (_error) {
+            console.log("_error", _error)
+        }
 
-        return signIn({
-            email,
-            password
-        })
     }
 
     return (
         <div className={form.form_sign_in}>
             <div className={form.form_head}>
                 <div className={form.form_title}>
-                    <h3 className={form.form_title_text}>{"ログイン"}</h3>
+                    <h3 className={form.form_title_text}>{"Openをはじめる"}</h3>
                 </div>
                 <div className={form.form_description}>
                     <p className={form.form_description_text}>ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
-                <InputRow labelName={"メールアドレス"} placeholder={"メールアドレスを入力してください"} uniqueId={"email"} type={"text"} />
-                <InputRow labelName={"パスワード"} placeholder={"パスワードを入力してください"} uniqueId={"password"} type={"password"} />
-                <button className={form.button_on_submit} type="submit">ログインする</button>
+                <button className={form.button_on_submit} type="submit">Googleではじめる</button>
             </form>
         </div>
-
     )
 }
 export default SignInForm;

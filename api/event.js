@@ -1,17 +1,20 @@
-import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
+import { increment } from "firebase/firestore"
 import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit } from 'firebase/firestore';
 import U from '../utile';
 import C from '../constants';
 
 export const postEvent = async ({
-    calendarId = "",
-    scheduleId = "",
     data = {}
 }) => {
-    const eventRef = await doc(collection(fireStore, "events"));
-
+    const { startAt } = data;
     const userId = await U.getUserId();
-    const eventId = eventRef.id;
+    const groupId = "kadomaru";
+
+    const calendarId = U.getCalendarId({ date: startAt });
+    const scheduleId = U.getScheduleId({ date: startAt });
+    const eventsRef = doc(collection(fireStore, "events"));
+
+    const eventId = eventsRef.id;
     const createdAt = Date.now();
 
     const baseData = {
@@ -29,18 +32,20 @@ export const postEvent = async ({
     }
     const calendarData = {
         ...baseData,
+        size: increment(1)
     }
     const scheduleData = {
         ...baseData,
+        size: increment(1)
     }
 
     const eventRef = doc(fireStore, "events", eventId);
-    const scheduleRef = doc(fireStore, "schedules", scheduleId);
-    const calendarRef = doc(fireStore, "calendars", calendarId);
+    const scheduleRef = doc(fireStore, "calendars", groupId, "groupCalendars", calendarId, "calendarSchedules", scheduleId);
+    const calendarRef = doc(fireStore, "schedules", groupId, "groupSchedules", scheduleId, "events", eventId);
 
-    return Promise.all[
-        setDoc(eventRef, eventData),
-        setDoc(calendarRef, calendarData),
-        setDoc(scheduleRef, scheduleData)
-    ];
+    return Promise.all([
+        setDoc(eventRef, eventData, { merge: true }),
+        setDoc(calendarRef, calendarData, { merge: true }),
+        setDoc(scheduleRef, scheduleData, { merge: true }),
+    ]);
 }

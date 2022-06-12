@@ -4,8 +4,8 @@
 
 .body {
   width: 100%;
-  background-color: $white_1;
   position: relative;
+  background-color: $light_blue_1;
 }
 
 .wrapper {
@@ -14,27 +14,23 @@
 }
 
 .container {
+  width: 100%;
   max-width: 480px;
   min-height: 800px;
-  width: 100%;
   margin: 0px auto;
-  padding: 80px 0px 0px 0px ;
-
-  @include mq(small_pc) {
-    padding: 80px 24px 0px 24px ;
-  }
+  padding: 56px 0px 0px 0px ;
 
   @include mq() {
-    min-height: 640px;
-    padding: 80px 16px 0px 16px ;
+    min-height: 0px;
+    padding: 56px 0px 0px 0px ;
   }
 }
 
 .content {
-  padding: 32px 0px;
+  padding: 16px 0px;
 
   @include mq() {
-    padding: 16px 0px;
+    padding: 8px 0px;
   }
 
   &_head {
@@ -85,6 +81,16 @@
         }
       }
     }
+  }
+}
+
+.page_head {
+  width: 100%;
+  
+  &_text {
+    font-size: 24px;
+    text-align: center;
+    color: $black_1;
   }
 }
 
@@ -177,4 +183,30 @@
     left: 50%;
   }
 
+}
+
+.fab {
+  width: 56px;
+  height: 56px;
+  
+  background-color: $blue_1;
+  border-radius: 32px;
+
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+
+  &_inner {
+    width: 56px;
+    height: 56px;
+    position: relative;
+  }
+
+  &_icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -12px;
+    margin-left: -12px;
+  }
 }
