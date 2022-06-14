@@ -1,3 +1,5 @@
+const { withSuperjson } = require('next-superjson')
+
 const removeImports = require('next-remove-imports')({
   test: /node_modules([\s\S]*?)\.(tsx|ts|js|mjs|jsx)$/,
   matchImports: "\\.(less|css|scss|sass|styl)$"
@@ -9,9 +11,11 @@ const nextConfig = {
 }
 
 module.exports = removeImports({
-  webpack(config, options) {
+  webpack(config, { isServer }) {
     return config
   },
 })
 
-// module.exports = nextConfig
+module.exports = withSuperjson()({
+  reactStrictMode: true,
+})

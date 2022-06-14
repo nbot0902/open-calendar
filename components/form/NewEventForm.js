@@ -9,13 +9,17 @@ import form from '../../styles/form.module.scss';
 
 import API from "../../api";
 
-const NewEventForm = () => {
+const NewEventForm = ({
+    setIsLoading,
+    groupId
+}) => {
     const today = new Date();
     const initialData = setHours(setMinutes(today, 30), 12);
     const [startAt, setStartAt] = useState(initialData);
 
     const _handleSubmit = (event) => {
         event.preventDefault()
+        setIsLoading(true);
 
         const title = event.target.title.value;
         const description = event.target.description.value;
@@ -26,7 +30,8 @@ const NewEventForm = () => {
             startAt
         };
 
-        return API.postEvent({ data });
+        API.postEvent({ data, groupId });
+        setIsLoading(false);
     }
 
     useEffect(() => { })

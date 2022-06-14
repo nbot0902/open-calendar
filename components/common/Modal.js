@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import modal from '../../styles/modal.module.scss'
+import { Transition } from "react-transition-group";
 
 const Modal = ({
     children,

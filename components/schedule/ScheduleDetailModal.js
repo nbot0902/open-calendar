@@ -6,11 +6,10 @@ import s from '../../styles/schedule.module.scss'
 import modal from '../../styles/modal.module.scss'
 
 const ScheduleDetailModal = ({
+    label,
     onCloseModal = () => null,
     isActive = false,
 }) => {
-    const label = "2022年6月20日の予定"
-
     return (
         <Modal label={label} isActive={isActive} onCloseModal={onCloseModal}>
             <ul className={s.schedule_list}>

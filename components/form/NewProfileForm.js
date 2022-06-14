@@ -14,10 +14,8 @@ const NewProfileForm = ({
     profile = {},
     group = {},
 }) => {
-    const { picture = null } = profile;
-
-    const name = profile.name ?? "";
-    const groupName = group.name ?? "";
+    const { picture = null, name = "" } = profile;
+    const { groupName = "", description = "" } = group;
 
     const imageStyle = {
         backgroundImage: picture ? `url('${picture}')` : `url(${dummyIcon.src})`
@@ -28,19 +26,16 @@ const NewProfileForm = ({
 
         const name = event.target.name.value;
         const description = event.target.description.value;
-        const uniqueId = event.target.uniqueId.value;
+        const groupName = event.target.groupName.value;
 
         const userData = {
             name,
-            description,
-            uniqueId,
+            groupName,
         };
         const groupData = {
-            name: uniqueId,
-            uniqueId,
+            groupName,
+            description,
         };
-
-        console.log("group.groupId", group.groupId)
 
         return Promise.all([
             API.putUser({ data: userData }),
@@ -55,9 +50,9 @@ const NewProfileForm = ({
         <form onSubmit={_handleSubmit}>
             <div className={profileStyle.profile_detail}>
                 <div className={profileStyle.profile_thumbnail} style={imageStyle}></div>
-                <InputRow defaultValue={name} labelName={"名前"} placeholder={"名前を入力してください"} uniqueId={"name"} type={"text"} />
-                <InputRow defaultValue={groupName} labelName={"ユニークID"} placeholder={"ユニークIDを入力してください"} uniqueId={"uniqueId"} caption={"※公開するカレンダーのURLの末尾になります"} type={"text"} />
-                <TextareaRow labelName={"紹介文"} placeholder={"紹介文を入力してください"} uniqueId={"description"} type={"text"} />
+                <InputRow defaultValue={name} labelName={"ユーザー名"} placeholder={"ユーザー名を入力してください"} uniqueId={"name"} type={"text"} />
+                <InputRow defaultValue={groupName} labelName={"カレンダーのタイトル"} placeholder={"カレンダーの名前を入力してください"} uniqueId={"groupName"} caption={"※公開されるカレンダーのタイトルになります"} type={"text"} />
+                <TextareaRow defaultValue={description} labelName={"カレンダーの紹介文"} uniqueId={"description"} placeholder={"カレンダーの紹介文を入力してください"} type={"text"} />
                 <button className={form.button_on_submit} type="submit">保存する</button>
             </div>
         </form>

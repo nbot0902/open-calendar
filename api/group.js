@@ -12,7 +12,8 @@ export const getFirstUserGroup = async ({
     try {
         const groups = await Promise.all(
             _querySnapshot.docs.map((_doc) => {
-                return _doc.data()
+                const _result = _doc.data()
+                return JSON.parse(JSON.stringify(_result));
             })
         )
 
@@ -38,7 +39,7 @@ export const postGroup = async () => {
     const groupsRef = await doc(collection(fireStore, "groups"));
     const groupId = groupsRef.id;
     const userId = await U.getUserId();
-    const createdAt = Date.now();
+    const createdAt = Date.now()
 
     const baseData = {
         userId: userId,
@@ -68,7 +69,6 @@ export const putGroup = async ({
     groupId = "",
     data = {}
 }) => {
-    const userId = await U.getUserId();
     const updateAt = Date.now();
 
     const baseData = {

@@ -1,5 +1,9 @@
 import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
 import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit } from 'firebase/firestore';
+import { httpsCallableFunc } from '../firebase/firebase.js'
+import { signOut } from "firebase/auth";
+import nookies from 'nookies'
+
 import { getUserId } from "../utile/firebase";
 import U from '../utile';
 import C from '../constants';
@@ -38,15 +42,12 @@ export const getUser = async ({
 }
 
 export const getVerifiedUser = ({
-    idToken = null
+    query = {}
 }) => {
     try {
-        const _query = {
-            idToken
-        };
-        return httpsCallableFunc({ functionName: 'default-getVerifiedUser', query: _query });
+        return httpsCallableFunc({ functionName: 'default-getVerifiedUser', query: query });
     } catch (_error) {
-        throw Error(_error)
+        console.log("_getVerifiedUser_error--------", _error)
     }
 }
 
@@ -54,7 +55,7 @@ export const postUser = async ({
     data = {}
 }) => {
     const userId = await U.getUserId();
-    const createdAt = Date.now();
+    const createdAt = Date.now()
 
     const baseData = {
         userId: userId,

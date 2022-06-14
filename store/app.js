@@ -17,19 +17,7 @@ export const appSlice = createSlice({
         setCurrentUserId(state, action) {
             state.currentUserId = action.payload.currentUserId;
         },
-        setCurrentCompanyId(state, action) {
-            state.currentCompanyId = action.payload.currentCompanyId;
-        },
-        setInitialCurrentCompanyId(state, action) {
-            state.currentCompanyId = action.payload.currentCompanyId;
-        },
-        setCurrentProjectId(state, action) {
-            state.currentProjectId = action.payload.currentProjectId;
-        },
-        setInitialCurrentProjectId(state, action) {
-            state.currentProjectId = action.payload.currentProjectId;
-        },
-        cleanAppState() {
+        cleanState() {
             return initialState
         },
     },

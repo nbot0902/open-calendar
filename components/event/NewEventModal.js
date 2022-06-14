@@ -6,11 +6,13 @@ import modal from '../../styles/modal.module.scss'
 
 const NewEventModal = ({
     onCloseModal = () => null,
+    setIsLoading = () => null,
     isActive = false,
+    groupId = ""
 }) => {
     return (
         <Modal label={"新しいイベントを追加する"} isActive={isActive} onCloseModal={onCloseModal}>
-            <NewEventForm />
+            <NewEventForm groupId={groupId} setIsLoading={setIsLoading} />
         </Modal>
     );
 }

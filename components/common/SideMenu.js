@@ -5,16 +5,20 @@ import Link from 'next/link';
 import { signOut } from "firebase/auth";
 import { firebaseAuth } from '../../firebase/firebase.js'
 import s from '../../styles/side_menu.module.scss'
+
+import API from '../../api'
 import C from '../../constants'
 
 const SideMenu = ({
-    isSignOut = false,
+    page = "/",
+    profile = {},
+    group = {},
     onVisible = false,
     isActive = false,
-    page = "/"
+    isSignOut = false
 }) => {
     const router = useRouter();
-    const groupId = "kadomaru";
+    const { groupId = "" } = group;
 
     const sideMenuStyle = {
         transition: '0.3s',
@@ -30,7 +34,9 @@ const SideMenu = ({
     const _onLogout = () => {
         nookies.destroy(null, C.COOKIE_KEY);
         signOut(firebaseAuth);
-        return router.push("/");
+        onVisible();
+
+        return router.replace("/");
     }
 
     return React.useMemo(() => {
@@ -51,6 +57,13 @@ const SideMenu = ({
                                             トップページ
                                         </Link>
                                     </li>
+                                    {isSignOut ? (
+                                        <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
+                                            <Link className={s.side_menu_link} href={"/signin"}>
+                                                OPENをはじめる
+                                         </Link>
+                                        </li>
+                                    ) : null}
                                     {!isSignOut ? (
                                         <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/profile"}>
@@ -102,7 +115,7 @@ const SideMenu = ({
                 <div style={overlayStyle} onClick={onVisible} className={s.overlay}></div>
             </div>
         )
-    }, [isActive])
+    }, [isActive, isSignOut])
 }
 
 export default SideMenu;

@@ -44,11 +44,11 @@
         background-color: $transparent;
         margin: 8px auto 0px;
 
-        &.has_events {
+        &.is_blue {
             background-color: $blue_1;
         }
 
-        &.is_today {
+        &.is_white {
             background-color: $white_1;
         }
     }

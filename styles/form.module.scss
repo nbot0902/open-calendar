@@ -61,10 +61,15 @@
   }
 
   &_new {
+    width: 100%;
+    
     &_event {
+      width: 100%;
+
       &_content {
         width: 100%;
-        padding: 16px;
+        margin-bottom: 24px;
+        padding: 24px 24px;
         background-color: $white_1;
         border-radius: 16px;
       }

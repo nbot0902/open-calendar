@@ -5,10 +5,22 @@ const initialState = {
     isLoading: false
 }
 
-export const userSlice = createSlice({
-    name: 'user',
+export const groupSlice = createSlice({
+    name: 'group',
     initialState,
     reducers: {
+        getLoading(state, action) {
+            state.isLoading = true
+        },
+        getItems(state, action) {
+            const newHash = action.payload.hash;
+
+            state.hash = {
+                ...state.hash,
+                ...newHash,
+            }
+            state.isLoading = false
+        },
         getItem(state, action) {
             const newHash = action.payload.hash;
 
@@ -16,6 +28,7 @@ export const userSlice = createSlice({
                 ...state.hash,
                 ...newHash,
             }
+            state.isLoading = false
         },
         cleanState() {
             return initialState

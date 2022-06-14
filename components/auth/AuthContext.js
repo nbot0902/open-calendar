@@ -15,6 +15,7 @@ import {
 
 import Loading from "../common/Loading";
 import { useStore } from "../../store";
+import API from "../../api";
 import C from "../../constants";
 
 const AuthContext = createContext()
@@ -31,18 +32,14 @@ const AuthProvider = ({ children }) => {
         return firebaseAuth.onIdTokenChanged(async (user) => {
             if (!user) {
                 setUser(null);
-
                 nookies.destroy(null, C.COOKIE_KEY);
                 return;
             } else {
                 const token = await user.getIdToken();
-
                 setUser(user);
-
                 nookies.destroy(null, C.COOKIE_KEY);
                 nookies.set(undefined, C.COOKIE_KEY, token, {});
             }
-
         });
     }, []);
 

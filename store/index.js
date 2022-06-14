@@ -21,6 +21,10 @@ import createWebStorage from 'redux-persist/lib/storage/createWebStorage'
 
 import { appSlice } from '../store/app'
 import { userSlice } from '../store/user'
+import { calendarSlice } from '../store/calendar'
+import { scheduleSlice } from '../store/schedule'
+import { eventSlice } from '../store/event'
+import { groupSlice } from '../store/group'
 
 const createNoopStorage = () => {
     return {
@@ -44,6 +48,10 @@ const storage =
 const rootReducer = combineReducers({
     app: appSlice.reducer,
     user: userSlice.reducer,
+    calendar: calendarSlice.reducer,
+    schedule: scheduleSlice.reducer,
+    event: eventSlice.reducer,
+    group: groupSlice.reducer,
 })
 
 const migrationFunction = (state) => {
@@ -55,28 +63,16 @@ const migrationFunction = (state) => {
 const migrations = {
     app: migrationFunction,
     user: migrationFunction,
+    calendar: migrationFunction,
+    schedule: migrationFunction,
+    event: migrationFunction,
+    group: migrationFunction,
 }
 
 const persistConfig = {
-    key: 'seo_article_tool',
-    // version: 1,
+    key: 'open_calendar',
     storage,
     migrate: createMigrate(migrations, { debug: true }),
-    // whitelist: [
-    //     'app',
-    //     'article',
-    //     'user',
-    //     'company',
-    //     'companyUser',
-    //     'companyProjects',
-    //     'project',
-    //     'projectArticle',
-    //     'projectUser',
-    //     'userArticle',
-    //     'userProject',
-    //     'userCompany',
-    //     'formPostArticle'
-    // ],
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

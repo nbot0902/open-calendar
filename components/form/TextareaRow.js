@@ -2,6 +2,7 @@ import form from '../../styles/form.module.scss'
 
 const TextareaRow = ({
     labelName = "ラベル名",
+    defaultValue = "",
     required = false,
     uniqueId = "name",
     placeholder = "",
@@ -13,6 +14,7 @@ const TextareaRow = ({
             <textarea
                 className={form.textarea}
                 placeholder={placeholder}
+                defaultValue={defaultValue}
                 type={type}
                 id={uniqueId}
                 name={uniqueId}

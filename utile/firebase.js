@@ -3,6 +3,7 @@ import { getAuth, getCookie, postIdTokenToSessionLogin, serveContentForAdmin } f
 import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
 import { signOut, signInWithEmailAndPassword, signInWithRedirect, onAuthStateChanged, GoogleAuthProvider } from "firebase/auth";
 import API from '../api'
+import C from '../constants'
 
 export const verifyAuthState = async ({
     ctx
@@ -17,7 +18,13 @@ export const verifyAuthState = async ({
 
     const _isAuthRequired = authenticated.includes(url);
     const _isCalendar = url.indexOf('/u/') != -1;
-    const _isSignOut = !cookies.token;
+
+    const _query = {
+        idToken: cookies.token ?? null
+    }
+
+    const verifiedUser = _query.idToken ? await API.getVerifiedUser({ query: _query }) : null;
+    const _isSignOut = !cookies.token || !verifiedUser;
 
     const baseProps = {
         url: url,
@@ -25,14 +32,14 @@ export const verifyAuthState = async ({
         isSignOut: _isSignOut,
         idToken: cookies.token ?? null
     };
-
     const redirectTop = {
         redirect: {
             destination: '/',
             permanent: false,
         },
         props: {
-            ...baseProps
+            ...baseProps,
+            type: "redirectTop"
         },
     };
     const redirectSignin = {
@@ -41,45 +48,48 @@ export const verifyAuthState = async ({
             permanent: false,
         },
         props: {
-            ...baseProps
+            ...baseProps,
+            type: "redirectSignin"
         },
     };
     const empty = {
         props: {
-            ...baseProps
+            ...baseProps,
+            type: "empty"
         },
     };
+
+    const _getinitialUserData = async () => {
+        const userId = verifiedUser.user_id;
+
+        const _result = await Promise.all([
+            API.getFirstUserGroup({ userId }),
+            API.getUser({ userId })
+        ]);
+
+        return {
+            props: {
+                ...baseProps,
+                group: _result[0],
+                profile: _result[1],
+            },
+        };
+    }
 
     if (_isAuthRequired && _isSignOut) {
         return redirectSignin;
     } else if (_isCalendar) {
-        return empty;
+
+        // 誰でも見れる画面なので分岐
+        if (!_isSignOut) {
+            return await _getinitialUserData()
+        } else {
+            return empty;
+        }
     } else if (_isSignOut) {
         return empty;
     } else {
-        try {
-            const _query = {
-                idToken: cookies.token
-            }
-
-            const _verifiedUser = await API.getVerifiedUser({ query: _query })
-            const userId = _verifiedUser.uid;
-
-            const _result = await Promise.all([
-                API.getFirstUserGroup({ userId }),
-                API.getUser({ userId })
-            ])
-
-            return {
-                props: {
-                    ...baseProps,
-                    group: _result[0],
-                    profile: _result[1],
-                },
-            };
-        } catch (err) {
-            return redirectTop;
-        }
+        return await _getinitialUserData()
     }
 };
 
@@ -142,6 +152,18 @@ export const getUserId = async () => {
         return onAuthStateChanged(firebaseAuth, (_user) => {
             if (_user) {
                 resolve(_user.uid);
+            } else {
+                resolve(null);
+            }
+        });
+    });
+}
+
+export const getRefreshToken = async () => {
+    return new Promise((resolve, reject) => {
+        return onAuthStateChanged(firebaseAuth, (_user) => {
+            if (_user) {
+                resolve(_user.refreshToken);
             } else {
                 resolve(null);
             }

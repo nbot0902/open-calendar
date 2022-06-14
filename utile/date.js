@@ -32,7 +32,7 @@ export const getCalendarId = ({
     const strMonth = month >= 10 ? month.toString() : `0${month.toString()}`
     const strDay = day >= 10 ? month.toString() : `0${month.toString()}`
 
-    const calendarId = `${strYear}-${strMonth}`.replace(/\n|\r/g, '');
+    const calendarId = `${strYear}-${strMonth}`;
     return calendarId;
 }
 
@@ -47,6 +47,6 @@ export const getScheduleId = ({
     const strMonth = month >= 10 ? month.toString() : `0${month.toString()}`
     const strDay = day >= 10 ? day.toString() : `0${day.toString()}`
 
-    const scheduleId = `${strYear}-${strMonth}-${strDay}`.replace(/\n|\r/g, '');
+    const scheduleId = `${strYear}-${strMonth}-${strDay}`;
     return scheduleId;
 }
