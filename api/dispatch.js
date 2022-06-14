@@ -32,7 +32,6 @@ export const getMonthScheduleDispatchs = async ({
 
         return {
             calendarId,
-            group: _group,
             calendarScheduleHash: _calendarScheduleHash,
         };
     } catch (_err) {

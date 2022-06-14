@@ -35,7 +35,9 @@ export const getGroup = async ({ groupId = "" }) => {
 }
 
 
-export const postGroup = async () => {
+export const postGroup = async ({
+    data
+}) => {
     const groupsRef = await doc(collection(fireStore, "groups"));
     const groupId = groupsRef.id;
     const userId = await U.getUserId();
@@ -50,6 +52,7 @@ export const postGroup = async () => {
 
     const groupData = {
         name: groupId,
+        ...data,
         ...baseData,
     }
     const userGroupData = {

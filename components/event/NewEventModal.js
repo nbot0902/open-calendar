@@ -10,11 +10,13 @@ const NewEventModal = ({
     isActive = false,
     groupId = ""
 }) => {
-    return (
-        <Modal label={"新しいイベントを追加する"} isActive={isActive} onCloseModal={onCloseModal}>
-            <NewEventForm groupId={groupId} setIsLoading={setIsLoading} />
-        </Modal>
-    );
+    return React.useMemo(() => {
+        return (
+            <Modal label={"新しいイベントを追加する"} isActive={isActive} onCloseModal={onCloseModal}>
+                <NewEventForm groupId={groupId} setIsLoading={setIsLoading} />
+            </Modal>
+        );
+    }, [groupId, isActive])
 }
 
 export default NewEventModal;

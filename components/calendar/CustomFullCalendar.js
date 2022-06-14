@@ -21,7 +21,10 @@ const CustomFullCalendar = ({
     onClickTileContent = () => null,
 }) => {
     const today = new Date();
+    const currentCalendarId = U.getCalendarId({ date: today });
+
     const dispatch = useDispatch()
+    const baseList = [currentCalendarId]
 
     const getTileClass = ({ date, view }) => {
         if (view !== 'month') return '';
@@ -34,7 +37,12 @@ const CustomFullCalendar = ({
     const _onActiveStartDateChange = data => {
         const { activeStartDate } = data;
         const calendarId = U.getCalendarId({ date: activeStartDate });
-        return API.getMonthScheduleDispatchs({ dispatch, groupId, calendarId });
+        const isUpdate = !baseList.includes(calendarId);
+
+        if (isUpdate) {
+            API.getMonthScheduleDispatchs({ dispatch, groupId, calendarId });
+            baseList.push(calendarId);
+        }
     }
 
     return React.useMemo(() => {

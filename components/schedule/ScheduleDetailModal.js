@@ -7,19 +7,21 @@ import modal from '../../styles/modal.module.scss'
 
 const ScheduleDetailModal = ({
     label,
-    onCloseModal = () => null,
     isActive = false,
+    onCloseModal = () => null,
 }) => {
-    return (
-        <Modal label={label} isActive={isActive} onCloseModal={onCloseModal}>
-            <ul className={s.schedule_list}>
-                <EventListItem />
-                <EventListItem />
-                <EventListItem />
-                <EventListItem />
-            </ul>
-        </Modal>
-    );
+    return React.useMemo(() => {
+        return (
+            <Modal label={label} isActive={isActive} onCloseModal={onCloseModal}>
+                <ul className={s.schedule_list}>
+                    <EventListItem />
+                    <EventListItem />
+                    <EventListItem />
+                    <EventListItem />
+                </ul>
+            </Modal>
+        );
+    }, [label, isActive])
 }
 
 export default ScheduleDetailModal;

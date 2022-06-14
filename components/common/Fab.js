@@ -7,15 +7,17 @@ import common from '../../styles/common.module.scss'
 const Fab = ({
     onClick = () => { }
 }) => {
-    return (
-        <div onClick={onClick} className={common.fab}>
-            <div className={common.fab_inner}>
-                <div className={common.fab_icon}>
-                    <FiPlus color={"#ffffff"} size={24} />
+    return React.useMemo(() => {
+        return (
+            <div onClick={onClick} className={common.fab}>
+                <div className={common.fab_inner}>
+                    <div className={common.fab_icon}>
+                        <FiPlus color={"#ffffff"} size={24} />
+                    </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }, [onClick])
 };
 
 export default Fab;
