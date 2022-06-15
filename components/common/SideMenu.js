@@ -21,13 +21,13 @@ const SideMenu = ({
     const { groupId = "" } = group;
 
     const sideMenuStyle = {
-        transition: '0.3s',
+        transition: '0.2s',
         opacity: isActive ? 1 : 0,
         left: isActive ? '0px' : ' -320px',
     }
     const overlayStyle = {
         display: isActive ? 'block' : 'none',
-        transition: '0.3s',
+        transition: '0.2s',
         opacity: isActive ? 1 : 0,
     }
 
@@ -65,13 +65,6 @@ const SideMenu = ({
                                         </li>
                                     ) : null}
                                     {!isSignOut ? (
-                                        <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
-                                            <Link className={s.side_menu_link} href={"/profile"}>
-                                                プロフィール
-                                         </Link>
-                                        </li>
-                                    ) : null}
-                                    {!isSignOut ? (
                                         <li className={`${s.side_menu_list_item} ${page == "/calendar" ? s.is_active : ""}`}>
                                             <Link href={`/u/${groupId}`} className={s.side_menu_link}>
                                                 マイカレンダー
@@ -81,10 +74,42 @@ const SideMenu = ({
                                     {!isSignOut ? (
                                         <li className={`${s.side_menu_list_item} ${page == "/my_events" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/my_events"}>
-                                                登録したイベント
+                                                登録した予定
                                         </Link>
                                         </li>
                                     ) : null}
+                                </ul>
+                            </div>
+                            <div className={s.side_menu_row}>
+                                <div className={s.row_title}>
+                                    <h4 className={s.row_title_text}>
+                                        設定
+                                    </h4>
+                                </div>
+                                <ul className={s.side_menu_list}>
+                                    {!isSignOut ? (
+                                        <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
+                                            <Link className={s.side_menu_link} href={"/profile"}>
+                                                ユーザーの設定
+                                         </Link>
+                                        </li>
+                                    ) : null}
+                                    {!isSignOut ? (
+                                        <li className={`${s.side_menu_list_item} ${page == "/calendar_setting" ? s.is_active : ""}`}>
+                                            <Link className={s.side_menu_link} href={"/calendar_setting"}>
+                                                カレンダーの設定
+                                         </Link>
+                                        </li>
+                                    ) : null}
+                                </ul>
+                            </div>
+                            <div className={s.side_menu_row}>
+                                <div className={s.row_title}>
+                                    <h4 className={s.row_title_text}>
+                                        その他
+                                    </h4>
+                                </div>
+                                <ul className={s.side_menu_list}>
                                     <li className={s.side_menu_list_item}>
                                         <Link className={s.side_menu_link} href={"https://twitter.com/TCG63728721"} target={"_blank"}>
                                             運営について

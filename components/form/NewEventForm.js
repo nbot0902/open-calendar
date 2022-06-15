@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
 
 import InputRow from "../form/InputRow";
 import TextareaRow from "../form/TextareaRow";
@@ -10,43 +8,31 @@ import form from '../../styles/form.module.scss';
 import API from "../../api";
 
 const NewEventForm = ({
-    setIsLoading,
-    groupId
+    params = {},
+    date,
+    handleSubmit = () => { },
+    setDate = () => { },
 }) => {
-    const today = new Date();
-    const initialData = setHours(setMinutes(today, 30), 12);
-    const [startAt, setStartAt] = useState(initialData);
+    const isDisabled = Object.keys(params).length > 0;
 
-    const _handleSubmit = (event) => {
-        event.preventDefault()
-        setIsLoading(true);
+    const {
+        title = "",
+        description = "",
+    } = params;
 
-        const title = event.target.title.value;
-        const description = event.target.description.value;
-
-        const data = {
-            title,
-            description,
-            startAt
-        };
-
-        API.postEvent({ data, groupId });
-        setIsLoading(false);
-    }
-
-    useEffect(() => { })
-
-    return (
-        <div className={form.form_new_event}>
-            <div className={form.form_new_event_content}>
-                <form onSubmit={_handleSubmit}>
-                    <InputRow labelName={"イベントのタイトル"} placeholder={"タイトルを入力してください"} uniqueId={"title"} type={"text"} />
-                    <DatePickerRow labelName={"時間帯"} date={startAt} setDate={setStartAt} />
-                    <TextareaRow labelName={"イベントの詳細"} placeholder={"イベントの詳細を入力してください"} uniqueId={"description"} type={"text"} />
-                    <button className={form.button_on_submit} type="submit">追加する</button>
-                </form>
+    return React.useMemo(() => {
+        return (
+            <div className={form.form_new_event}>
+                <div className={form.form_new_event_content}>
+                    <form onSubmit={handleSubmit}>
+                        <InputRow defaultValue={title} labelName={"予定のタイトル"} placeholder={"タイトルを入力してください"} uniqueId={"title"} type={"text"} />
+                        <DatePickerRow isDisabled={isDisabled} labelName={"開始"} date={date} setDate={setDate} />
+                        <TextareaRow defaultValue={description} labelName={"予定の詳細"} placeholder={"イベントの詳細を入力してください"} uniqueId={"description"} type={"text"} />
+                        <button className={form.button_on_submit} type="submit">保存する</button>
+                    </form>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }, [date, params, isDisabled])
 }
 export default NewEventForm;

@@ -21,7 +21,7 @@
   padding: 56px 0px 0px 0px ;
 
   @include mq() {
-    min-height: 0px;
+    min-height: 800px;
     padding: 56px 0px 0px 0px ;
   }
 }
@@ -142,7 +142,7 @@
   display: block;
   width: 240px;
   height: 48px;
-  border-radius: 24px;
+  border-radius: 8px;
   line-height: 48px;
 
   font-size: 16px;
@@ -174,7 +174,7 @@
       font-size: 12px;
       font-weight: 600;
       height: 32px;
-      border-radius: 16px;
+      border-radius: 12px;
       line-height: 32px;    
     }
   }
@@ -183,7 +183,7 @@
 .icon_button {
   width: 32px;
   height: 32px;
-  border-radius: 16px;
+  border-radius: 12px;
   background-color: $blue_1;
   position: relative;
 

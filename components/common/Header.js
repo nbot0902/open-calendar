@@ -13,21 +13,20 @@ const Header = ({
     isSignOut = false,
     page = "/"
 }) => {
+    const { picture = null } = profile;
 
     const router = useRouter();
+    const { currentUserId = "", isLogout = false } = useSelector((state) => state.app);
+    const { hash = {} } = useSelector((state) => state.user);
 
-    const { picture = null } = profile;
-    const imageUrl = picture ? picture : dummyIcon.src;
+    const [isVisible, setIsVisible] = React.useState(false);
 
-    const { currentUserId = "", isLogout = false } = useSelector((state) => state.app)
-    const { hash = {} } = useSelector((state) => state.user)
-    const [isVisible, setIsVisible] = React.useState(false)
-
-    const userData = hash[currentUserId]
-    const userName = userData ? userData.name : "未設定"
+    const userData = hash[currentUserId];
+    const userName = userData ? userData.name : "未設定";
     const userRole = userData ? userData.role : 99999;
-    const isAdmin = userRole == 1
-    const isHide = !userData || !isAdmin
+    const isAdmin = userRole == 1;
+    const isHide = !userData || !isAdmin;
+    const imageUrl = picture ? picture : dummyIcon.src;;
 
     const _onOpenSideMenu = () => {
         if (isVisible) {

@@ -26,3 +26,48 @@ a:hover {
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
   height: auto !important;
 }
+
+.react-confirm-alert-body h1{
+  font-size: 20px;
+  color: #202129;
+  line-height: 1.25em;
+  margin-bottom: 12px;
+}
+.react-confirm-alert-body {
+  font-size: 16px;
+  font-weight: 400;
+  color: #202129;
+  line-height: 1.5em;
+}
+.react-confirm-alert-overlay {
+  background-color:rgba(64, 64, 64, 0.5) !important;
+  z-index: 100;
+}
+.react-confirm-alert-button-group > button {
+  width: 50%;
+  height: 48px;
+  padding:  0pc!important;
+  background: rgb(60, 140, 255) !important;
+  border: 1px solid rgb(60, 140, 255) !important;
+  border-radius: 12px !important;
+
+  font-size: 16px !important;
+  font-weight: bold;
+  text-align: center;
+  line-height: 48px;
+}
+.react-confirm-alert-button-group > button:first-child {
+  width: 50%;
+  height: 48px;
+  padding:  0pc!important;
+  background: #ffffff !important;
+  border: 1px solid rgb(60, 140, 255) !important;
+  border-radius: 12px !important;
+
+  font-size: 16px !important;
+  color: rgb(60, 140, 255)!important;
+  font-weight: bold;
+  text-align: center;
+  line-height: 48px;
+}
+

@@ -9,14 +9,56 @@
         padding: 16px 16px;
     }
 
-    &_row {
-        &_head {
-            margin-top: 32px;
-            margin-bottom: 20px;
+    &_rows {
+        margin-top: 24px;
+    }
 
+    &_hamburger {
+        width: 100%;
+
+        &_content {
+            width: 100%;
+        }
+    }
+
+    &_row {
+        width: 100%;
+        padding: 24px 0px;
+        border-bottom: 1px solid $border_1;
+        position: relative;
+
+        &:last-child {
+            margin-bottom: 0px;
+        }
+
+        &_head {
             &_text {
-                font-size: 20px;
+                font-size: 16px;
                 line-height: 1em;
+            }
+
+            &_caption {
+                margin-top: 8px;
+
+                &_text {
+                    font-size: 12px;
+                    line-height: 1em;
+                }
+            }
+        }
+
+        &_icon {
+            position: absolute;
+            top: 50%;
+            right: 0px;
+            margin-top: -12px;
+
+            &_inner {
+                width: 24px;
+                height: 24px;
+                padding: 2px;
+                border-radius: 12px;
+                background-color: $blue_1;
             }
         }
     }

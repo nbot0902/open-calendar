@@ -19,24 +19,6 @@ const TopScreen = props => {
     profile = {}
   } = props
 
-  const router = useRouter()
-
-  const userId = "";
-
-  const _navSignIn = () => {
-    router.push('/signin')
-  }
-  const _navCalendar = () => {
-    const groupId = "test";
-    router.push(`/u/${groupId}`)
-  }
-  const _navProfile = () => {
-    router.push(`/profile/${userId}`)
-  }
-  const _navSetting = () => {
-    router.push(`/setting/${userId}`)
-  }
-
   return (
     <Layout
       page={"/"}

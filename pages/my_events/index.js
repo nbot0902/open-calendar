@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
+
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from 'react-redux'
 
 import Layout from "../../components/common/Layout";
 import PageHead from '../../components/common/PageHead';
@@ -8,10 +10,12 @@ import Fab from '../../components/common/Fab';
 import IndicatorModal from '../../components/common/IndicatorModal';
 
 import NewEventModal from '../../components/event/NewEventModal';
-import EventListItem from "../../components/event/EventListItem";
+import EditEventModal from '../../components/event/EditEventModal';
+import MyEventList from "../../components/event/MyEventList";
 
-import events from '../../styles/my_events.module.scss'
-import s from '../../styles/schedule.module.scss'
+import events from '../../styles/my_events.module.scss';
+
+import API from "../../api";
 import U from "../../utile";
 
 export const getServerSideProps = async (ctx) => {
@@ -25,18 +29,49 @@ const MyEventsScreen = props => {
         profile = {}
     } = props;
 
+    const dispatch = useDispatch()
     const router = useRouter()
-    const [isActive, setIsActive] = React.useState(false)
-    const [isLoading, setIsLoading] = React.useState(false)
-    const { uniqueId = "" } = router.query;
 
-    const _handleModal = () => {
-        if (isActive) {
-            setIsActive(false)
+    const [isOpenNewModal, setIsOpenNewModal] = React.useState(false)
+    const [isOpenEditModal, setIsOpenEditModal] = React.useState(false)
+
+    const [params, setParams] = React.useState(false)
+
+    const [isLoading, setIsLoading] = React.useState(false)
+    const [isInitialized, setIsInitialized] = React.useState(false)
+
+    const { groupId = "" } = group;
+
+    const _handleNewModal = () => {
+        if (isOpenNewModal) {
+            setIsOpenNewModal(false)
         } else {
-            setIsActive(true)
+            setIsOpenNewModal(true)
         }
     }
+    const _handleEditModal = ({
+        data = null
+    }) => {
+        if (isOpenEditModal) {
+            setIsOpenEditModal(false)
+        } else {
+            if (data) {
+                setParams(data)
+            }
+            setIsOpenEditModal(true)
+        }
+    }
+
+    React.useLayoutEffect(() => {
+        const asyncFunc = async () => {
+            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ dispatch, groupId });
+            setIsInitialized(true);
+        }
+
+        if (!isInitialized) {
+            asyncFunc()
+        }
+    }, [])
 
     return (
         <Layout
@@ -51,24 +86,13 @@ const MyEventsScreen = props => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={events.my_event}>
-                <PageHead title={"登録したイベント"} />
-                <div className={events.my_event_row}>
-                    <div className={events.my_event_row_head}>
-                        <h3 className={events.my_event_row_head_text}>
-                            2022年6月
-                        </h3>
-                    </div>
-                    <ul className={s.schedule_list}>
-                        <EventListItem />
-                        <EventListItem />
-                        <EventListItem />
-                        <EventListItem />
-                    </ul>
-                </div>
+                <PageHead title={"登録した予定"} />
+                <MyEventList onOpenEditModal={_handleEditModal} groupId={groupId} />
             </div>
-            <Fab onClick={_handleModal} />
+            <Fab onClick={_handleNewModal} />
             <IndicatorModal isLoading={isLoading} />
-            <NewEventModal groupId={group.groupId} onCloseModal={_handleModal} isActive={isActive} />
+            <EditEventModal params={params} groupId={group.groupId} onCloseModal={_handleEditModal} isActive={isOpenEditModal} />
+            <NewEventModal groupId={group.groupId} onCloseModal={_handleNewModal} isActive={isOpenNewModal} />
         </Layout >
     )
 }

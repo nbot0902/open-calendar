@@ -4,7 +4,7 @@
 
 .footer {
   width: 100%;
-  padding: 80px 0px;
+  padding: 24px 0px;
   background-color: $black_1;
 
   &_container {
@@ -17,14 +17,16 @@
     }
   }
 
-  // @include mq(small_pc) {
-  //   height: 56px;
-  //   padding: 0px 16px;
-  // }
+  &_copyright {
+    &_text {
+      font-size: 12px;
+      text-align: center;
+      color: $white_1;
+    }
+  }
+
 
   .service_name {
-
-
     &_text {
       font-size: 24px;
       font-family: 'Martel', serif;

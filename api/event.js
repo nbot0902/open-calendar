@@ -28,7 +28,9 @@ export const postEvent = async ({
     const eventData = {
         ...data,
         ...baseData,
-        startAt: startAt.getTime()
+        eventId: eventId,
+        startAt: startAt.getTime(),
+        status: C.EVENT_STATE.ACTIVE
     }
     const calendarScheduleData = {
         ...baseData,
@@ -62,11 +64,120 @@ export const postEvent = async ({
     ]);
 }
 
+export const putEvent = async ({
+    eventId = "",
+    groupId = "",
+    data = {}
+}) => {
+    const { startAt = new Date() } = data;
+    const _startAt = U.timestampToDate({ timestamp: startAt })
+
+    const calendarId = U.getCalendarId({ date: _startAt });
+    const scheduleId = U.getScheduleId({ date: _startAt });
+    const updateAt = Date.now()
+
+    const baseData = {
+        updateAt: updateAt,
+    }
+    const eventData = {
+        ...data,
+        ...baseData,
+        startAt: _startAt.getTime()
+    }
+    const schedulesEventData = {
+        ...baseData,
+    }
+    const calendarScheduleData = {
+        ...baseData,
+    }
+    const groupCalendarData = {
+        ...baseData,
+    }
+    const groupScheduleData = {
+        ...baseData,
+    }
+
+    const eventRef = doc(fireStore, "events", eventId);
+    const schedulesEventRef = doc(fireStore, "schedules", groupId, "groupSchedules", scheduleId, "schedulesEvents", eventId);
+    const calendarScheduleRef = doc(fireStore, "calendars", groupId, "groupCalendars", calendarId, "calendarSchedules", scheduleId);
+    const groupCalendarRef = doc(fireStore, "calendars", groupId, "groupCalendars", calendarId);
+    const groupScheduleRef = doc(fireStore, "schedules", groupId, "groupSchedules", scheduleId);
+
+    return Promise.all([
+        setDoc(eventRef, eventData, { merge: true }),
+        setDoc(calendarScheduleRef, calendarScheduleData, { merge: true }),
+        setDoc(groupCalendarRef, groupCalendarData, { merge: true }),
+        setDoc(groupScheduleRef, groupScheduleData, { merge: true }),
+        setDoc(schedulesEventRef, schedulesEventData, { merge: true }),
+    ]);
+}
+
+export const deleteEvent = async ({
+    groupId = "",
+    data = {}
+}) => {
+    const { eventId = "", startAt = new Date() } = data;
+    const _startAt = U.timestampToDate({ timestamp: startAt })
+
+    const calendarId = U.getCalendarId({ date: _startAt });
+    const scheduleId = U.getScheduleId({ date: _startAt });
+    const updateAt = Date.now()
+
+    const baseData = {
+        updateAt: updateAt,
+    }
+
+    const eventData = {
+        ...baseData,
+        status: C.EVENT_STATE.INACTIVE
+    }
+    const schedulesEventData = {
+        ...baseData,
+        status: C.EVENT_STATE.INACTIVE
+    }
+    const calendarScheduleData = {
+        ...baseData,
+    }
+    const groupScheduleData = {
+        ...baseData,
+        size: increment(-1)
+    }
+    const groupCalendarData = {
+        ...baseData,
+        size: increment(-1)
+    }
+
+    const eventRef = doc(fireStore, "events", eventId);
+    const schedulesEventRef = doc(fireStore, "schedules", groupId, "groupSchedules", scheduleId, "schedulesEvents", eventId);
+    const calendarScheduleRef = doc(fireStore, "calendars", groupId, "groupCalendars", calendarId, "calendarSchedules", scheduleId);
+    const groupCalendarRef = doc(fireStore, "calendars", groupId, "groupCalendars", calendarId);
+    const groupScheduleRef = doc(fireStore, "schedules", groupId, "groupSchedules", scheduleId);
+
+    return Promise.all([
+        setDoc(eventRef, eventData, { merge: true }),
+        setDoc(calendarScheduleRef, calendarScheduleData, { merge: true }),
+        setDoc(groupCalendarRef, groupCalendarData, { merge: true }),
+        setDoc(groupScheduleRef, groupScheduleData, { merge: true }),
+        setDoc(schedulesEventRef, schedulesEventData, { merge: true }),
+    ]);
+}
+
+
+export const getEvents = async ({
+    scheduleEvents = []
+}) => {
+    return Promise.all(scheduleEvents.map(async (item, _) => await getEvent({ eventId: item.eventId })))
+}
 
 export const getEvent = async ({
     eventId = ""
 }) => {
     const docRef = await doc(fireStore, "events", eventId);
     const docSnap = await getDoc(docRef);
-    return docSnap.data()
+    const result = docSnap.data();
+
+    return {
+        ...result,
+        eventId
+    }
 }

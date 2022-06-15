@@ -9,6 +9,9 @@ export const eventSlice = createSlice({
     name: 'event',
     initialState,
     reducers: {
+        getLoading(state, action) {
+            state.isLoading = true
+        },
         getItems(state, action) {
             const newHash = action.payload.hash;
 

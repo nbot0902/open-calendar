@@ -10,19 +10,33 @@ export const calendarSlice = createSlice({
     initialState,
     reducers: {
         getItems(state, action) {
-            const newHash = action.payload.hash;
+            let _newHash = {};
+            let _groupId = action.payload.groupId;
+
+
+            const prevCalendarHash = state.hash[_groupId] ? state.hash[_groupId].hash : {}
+
+            _newHash[_groupId] = {
+                hash: {
+                    ...prevCalendarHash,
+                    ...action.payload.hash
+                }
+            };
 
             state.hash = {
                 ...state.hash,
-                ...newHash,
+                ..._newHash,
             }
         },
         getItem(state, action) {
             let _newHash = {};
             let _groupId = action.payload.groupId;
 
+            const prevCalendarHash = state.hash[_groupId] ? state.hash[_groupId].hash : {}
+
             _newHash[_groupId] = {
                 hash: {
+                    ...prevCalendarHash,
                     ...action.payload.hash
                 }
             };

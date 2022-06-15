@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
-import nookies from "nookies";
+import Holidays from 'date-holidays'
 
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from 'react-redux'
@@ -8,15 +8,26 @@ import { useDispatch, useSelector } from 'react-redux'
 import Layout from "../../components/common/Layout";
 import AutherProfile from '../../components/calendar/AutherProfile'
 import CustomFullCalendar from '../../components/calendar/CustomFullCalendar'
+import TileContent from '../../components/calendar/TileContent.js'
+
 import Fab from '../../components/common/Fab'
 import NewEventModal from '../../components/event/NewEventModal'
 import ScheduleDetailModal from '../../components/schedule/ScheduleDetailModal'
+
 import API from "../../api";
+import A from "../../actions";
 import U from "../../utile";
 
 export const getServerSideProps = async (ctx) => {
     return U.verifyAuthState({ ctx });
 };
+
+const isHoliday = ({
+    date
+}) => {
+    const holiday = new Holidays('JP', 'la', 'no');
+    return holiday.isHoliday(new Date(date));
+}
 
 const CalendarScreen = props => {
     const {
@@ -25,13 +36,18 @@ const CalendarScreen = props => {
         profile = {}
     } = props;
 
+    const today = new Date();
+
     const dispatch = useDispatch()
     const router = useRouter()
-    const [label, setLabel] = React.useState()
+    const [params, setParams] = React.useState()
 
     const [isInitialized, setIsInitialized] = React.useState(false)
     const [isActiveEventModal, setIsActiveEventModal] = React.useState(false)
     const [isActiveScheduleDetailModal, setIsActiveScheduleDetailModal] = React.useState(false)
+
+    const currentCalendarId = U.getCalendarId({ date: today });
+    const baseList = [currentCalendarId];
 
     const { groupId } = router.query;
 
@@ -44,14 +60,48 @@ const CalendarScreen = props => {
     }
 
     const _handleScheduleModal = ({
-        label
+        data
     }) => {
         if (isActiveScheduleDetailModal) {
-            setLabel("")
             setIsActiveScheduleDetailModal(false)
         } else {
-            setLabel(label)
+            const {
+                label = "",
+                scheduleId = ""
+            } = data;
+
+            setParams({
+                label,
+                scheduleId
+            })
             setIsActiveScheduleDetailModal(true)
+        }
+    }
+
+    const _getTileClass = ({ date, view }) => {
+        if (view !== 'month') return '';
+        return isHoliday({ date }) ? 'holiday' : '';
+    }
+    const _getTileContent = ({ date, view }) => {
+        if (view !== 'month') return null;
+        return (
+            <TileContent
+                groupId={groupId}
+                today={today}
+                onClickTileContent={_handleScheduleModal}
+                date={date}
+                view={view}
+            />
+        )
+    }
+    const _onActiveStartDateChange = data => {
+        const { activeStartDate } = data;
+        const calendarId = U.getCalendarId({ date: activeStartDate });
+        const isUpdate = !baseList.includes(calendarId);
+
+        if (isUpdate) {
+            API.getMonthScheduleDispatchs({ dispatch, groupId, calendarId });
+            baseList.push(calendarId);
         }
     }
 
@@ -63,7 +113,7 @@ const CalendarScreen = props => {
 
         if (!isInitialized) {
             asyncFunc()
-        }
+        };
     }, [])
 
     return (
@@ -79,10 +129,10 @@ const CalendarScreen = props => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <AutherProfile groupId={groupId} />
-            <CustomFullCalendar groupId={groupId} onClickTileContent={_handleScheduleModal} />
+            <CustomFullCalendar today={today} groupId={groupId} getTileClass={_getTileClass} getTileContent={_getTileContent} onActiveStartDateChange={_onActiveStartDateChange} />
             <Fab onClick={_handleEventModal} />
             <NewEventModal groupId={groupId} isActive={isActiveEventModal} onCloseModal={_handleEventModal} />
-            <ScheduleDetailModal label={label} isActive={isActiveScheduleDetailModal} onCloseModal={_handleScheduleModal} />
+            <ScheduleDetailModal params={params} groupId={groupId} isActive={isActiveScheduleDetailModal} onCloseModal={_handleScheduleModal} />
         </Layout>
     )
 }

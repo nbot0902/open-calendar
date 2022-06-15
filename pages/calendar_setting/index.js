@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import Layout from "../../components/common/Layout"
 import InputRow from '../../components/form/InputRow'
 import TextareaRow from '../../components/form/TextareaRow'
-import NewProfileForm from '../../components/form/NewProfileForm'
+import NewGroupForm from '../../components/form/NewGroupForm'
 
 import PageHead from '../../components/common/PageHead'
 import profileStyle from '../../styles/profile.module.scss'
@@ -16,7 +16,7 @@ export const getServerSideProps = async (ctx) => {
     return U.verifyAuthState({ ctx });
 };
 
-const ProfileScreen = props => {
+const CalendarSettingScreen = props => {
     const router = useRouter()
 
     const {
@@ -27,7 +27,7 @@ const ProfileScreen = props => {
 
     return (
         <Layout
-            page={"/profile"}
+            page={"/calendar_setting"}
             isSignOut={isSignOut}
             group={group}
             profile={profile}
@@ -38,11 +38,11 @@ const ProfileScreen = props => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={profileStyle.profile}>
-                <PageHead title={"ユーザーの設定"} />
-                <NewProfileForm profile={profile} group={group} />
+                <PageHead title={"カレンダーの設定"} />
+                <NewGroupForm profile={profile} group={group} />
             </div>
         </Layout >
     )
 }
 
-export default ProfileScreen
+export default CalendarSettingScreen

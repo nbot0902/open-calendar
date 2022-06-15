@@ -23,3 +23,17 @@ export const getCalendarSchedules = async ({
         return [];
     }
 }
+
+export const getCalendarSchedule = async ({
+    groupId = "",
+    calendarId = "",
+    scheduleId = "",
+}) => {
+    try {
+        const docRef = await doc(fireStore, "calendars", groupId, "groupCalendars", calendarId, "calendarSchedules", scheduleId);
+        const docSnap = await getDoc(docRef);
+        return docSnap.data()
+    } catch (_err) {
+        return {};
+    }
+}

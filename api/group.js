@@ -29,9 +29,7 @@ export const getFirstUserGroup = async ({
 export const getGroup = async ({ groupId = "" }) => {
     const docRef = await doc(fireStore, "groups", groupId);
     const docSnap = await getDoc(docRef);
-    const result = docSnap.data()
-
-    return result;
+    return docSnap.data()
 }
 
 

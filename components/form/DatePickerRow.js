@@ -9,6 +9,7 @@ import form from '../../styles/form.module.scss';
 
 const DatePickerRow = ({
     labelName = "ラベル名",
+    isDisabled = false,
     date,
     setDate = () => { },
 }) => {
@@ -24,9 +25,10 @@ const DatePickerRow = ({
             <DatePicker
                 className={form.datepicker}
                 locale={'ja'}
+                disabled={isDisabled}
                 selected={date}
                 onChange={_onChangeHandler}
-                timeCaption={"時間帯"}
+                timeCaption={"開始"}
                 showTimeSelect
                 // includeTimes={[
                 //     setHours(setMinutes(new Date(), 1), 0),
@@ -35,6 +37,7 @@ const DatePickerRow = ({
                 // ]}
                 dateFormat="yyyy年MMMMd日 h時mm分"
             />
+            {isDisabled ? <p className={form.input_caption}>{"※日付は変更できません"}</p> : null}
         </div>
     );
 };

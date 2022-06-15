@@ -12,7 +12,6 @@ const TileContent = ({
     groupId = "",
     onClickTileContent = () => { }
 }) => {
-    const calendarId = U.getCalendarId({ date: date });
     const { hash = {}, isLoading = false } = useSelector((state) => state.calendar)
     const calendarHash = hash[groupId] ? hash[groupId]["hash"] : {};
 
@@ -29,35 +28,50 @@ const TileContent = ({
         }
     }
 
-    const {
-        isToday,
-        isOtherMonth
-    } = _checker(date)
+    const d = React.useMemo(() => {
+        const year = moment(date).format('YYYY')
+        const month = moment(date).format('MM')
+        const day = moment(date).format('DD')
 
-    const year = moment(date).format('YYYY')
-    const month = moment(date).format('MM')
-    const day = moment(date).format('DD')
+        return {
+            year,
+            month,
+            day
+        }
+    }, [date])
 
-    const targetDate = `${year}-${month}-${day}`
-    const label = `${Number(year)}年${Number(month)}月${Number(day)}日`
+    const targetDate = `${d.year}-${d.month}-${d.day}`;
+    const label = `${Number(d.year)}年${Number(d.month)}月${Number(d.day)}日`;
     const content = calendarHash[targetDate] ? calendarHash[targetDate] : null;
     const events = content ? content.list : [];
-
-    const _formatDate = (date) => {
-        return date.getDate();
-    };
-
-    const _onClickTileContent = () => {
-        onClickTileContent({ label })
-    }
+    const hasEvents = events.length > 0
 
     return React.useMemo(() => {
+        const {
+            isToday,
+            isOtherMonth
+        } = _checker(date)
+
+        const _formatDate = (date) => {
+            return date.getDate();
+        };
+
+        const _onClickTileContent = () => {
+            if (!hasEvents) {
+                return null;
+            }
+
+            const scheduleId = U.getScheduleId({ date })
+            const _data = { label, scheduleId };
+            return onClickTileContent({ data: _data })
+        }
+
         return (
             <div onClick={_onClickTileContent} className={`${s.calendar_content} ${isToday ? s.is_today : ""}`}>
                 <p className={`${s.calendar_day_text} ${isToday ? s.is_today : ""}`}>
                     {`${_formatDate(date)}`}
                 </p>
-                <Badge isToday={isToday} hasEvents={events.length > 0} />
+                <Badge isToday={isToday} hasEvents={hasEvents} />
             </div>
         );
     }, [events.length])

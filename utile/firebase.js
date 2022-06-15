@@ -8,8 +8,10 @@ import C from '../constants'
 export const verifyAuthState = async ({
     ctx
 }) => {
+
     const authenticated = [
         '/profile',
+        '/calendar_setting',
         '/my_events'
     ];
 

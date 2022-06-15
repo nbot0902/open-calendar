@@ -29,7 +29,7 @@ const SignInForm = () => {
 
             if (result) {
                 await API.signWithGoogleSuccessCallback({ result })
-                return router.push("/profile");
+                return router.push("/calendar_setting");
             }
         }
 

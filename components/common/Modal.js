@@ -9,16 +9,16 @@ const Modal = ({
     label = ""
 }) => {
     const style = {
-        transition: '0.3s',
+        transition: '0.2s',
         visibility: isActive ? 'visible' : 'hidden',
         opacity: isActive ? 1 : 0,
     }
     const contentStyle = {
-        transition: '0.3s',
+        transition: '0.2s',
         top: isActive ? '0px' : '160px'
     }
     const overlayStyle = {
-        transition: '0.3s',
+        transition: '0.2s',
         opacity: isActive ? 1 : 0,
         filter: isActive ? 'blur(0px)' : 'blur(6px)'
     }
