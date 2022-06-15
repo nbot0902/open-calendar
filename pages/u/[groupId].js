@@ -130,7 +130,7 @@ const CalendarScreen = props => {
             </Head>
             <AutherProfile groupId={groupId} />
             <CustomFullCalendar today={today} groupId={groupId} getTileClass={_getTileClass} getTileContent={_getTileContent} onActiveStartDateChange={_onActiveStartDateChange} />
-            <Fab onClick={_handleEventModal} />
+            {!isSignOut ? <Fab onClick={_handleEventModal} /> : null}
             <NewEventModal groupId={groupId} isActive={isActiveEventModal} onCloseModal={_handleEventModal} />
             <ScheduleDetailModal params={params} groupId={groupId} isActive={isActiveScheduleDetailModal} onCloseModal={_handleScheduleModal} />
         </Layout>
