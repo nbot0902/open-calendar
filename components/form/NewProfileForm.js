@@ -16,8 +16,11 @@ const NewProfileForm = ({
 }) => {
     const { picture = null, name = "" } = profile;
 
+    // const imageStyle = {
+    //     backgroundImage: picture ? `url('${picture}')` : `url(${dummyIcon.src})`
+    // }
     const imageStyle = {
-        backgroundImage: picture ? `url('${picture}')` : `url(${dummyIcon.src})`
+        backgroundImage: `url(${dummyIcon.src})`
     }
 
     const _handleSubmit = (event) => {

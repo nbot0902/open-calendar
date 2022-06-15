@@ -18,7 +18,6 @@ const Header = ({
     const router = useRouter();
     const { currentUserId = "", isLogout = false } = useSelector((state) => state.app);
     const { hash = {} } = useSelector((state) => state.user);
-
     const [isVisible, setIsVisible] = React.useState(false);
 
     const userData = hash[currentUserId];
@@ -26,7 +25,9 @@ const Header = ({
     const userRole = userData ? userData.role : 99999;
     const isAdmin = userRole == 1;
     const isHide = !userData || !isAdmin;
-    const imageUrl = picture ? picture : dummyIcon.src;;
+
+    // const imageUrl = picture ? picture : dummyIcon.src;;
+    const imageUrl = dummyIcon.src;;
 
     const _onOpenSideMenu = () => {
         if (isVisible) {
