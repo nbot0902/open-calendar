@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+
+import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux'
 
 import setHours from "date-fns/setHours";
@@ -16,6 +18,7 @@ const NewEventModal = ({
     groupId = ""
 }) => {
     const dispatch = useDispatch()
+    const router = useRouter();
 
     const today = new Date()
     const initialData = setHours(setMinutes(today, 30), 12);
@@ -23,6 +26,7 @@ const NewEventModal = ({
 
     const _successCallback = () => {
         onCloseModal({ data: null })
+        router.replace(`/u/${groupId}`);
 
         return alert("予定が追加されました");
     }
