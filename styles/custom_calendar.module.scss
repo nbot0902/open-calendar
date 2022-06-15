@@ -121,3 +121,33 @@
 
     }
 }
+
+.copy {
+    width: 100%;
+    margin-top:24px;
+
+    &_area{
+        display: flex;
+        justify-content: center;
+        padding: 12px;
+        border-radius: 12px;
+        border: 1px solid $border_1;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $light_blue_1;
+        }
+
+        &_text {
+            font-size: 12px;
+            font-weight: 600;
+            line-height: 16px;
+            margin-left: 8px;
+            color: $blue_1;
+
+            svg {
+                display: inline;
+            }
+        }
+    }
+}
