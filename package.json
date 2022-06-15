@@ -40,7 +40,8 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "sass": "^1.52.1",
-    "superjson": "^1.9.1"
+    "superjson": "^1.9.1",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "eslint": "8.16.0",

@@ -51,6 +51,7 @@ const MyEventListRow = ({
                 {_scheduleEvents.map((item, _) => {
                     return (
                         <EventListItem
+                            key={`my-event_event-list-item-${item.eventId}`}
                             groupId={groupId}
                             onOpenEditModal={onOpenEditModal}
                             isEdit={true}
@@ -115,6 +116,7 @@ const MyEventList = ({
                 {schedules.map((item, index) => {
                     return (
                         <MyEventListRow
+                            key={`my-event_my-event-list-row-${item.scheduleId}`}
                             eventHash={eventHash}
                             groupId={groupId}
                             onOpenEditModal={onOpenEditModal}

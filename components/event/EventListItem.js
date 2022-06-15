@@ -11,6 +11,7 @@ import C from '../../constants';
 import s from '../../styles/schedule.module.scss';
 
 const EventListItem = ({
+    key = key,
     item = {},
     groupId = "",
     isEdit = false,
@@ -57,10 +58,9 @@ const EventListItem = ({
             ]
         });
     }
-
     return React.useMemo(() => {
         return (
-            <li className={s.schedule_list_item}>
+            <li key={key} className={s.schedule_list_item}>
                 <div className={s.schedule_list_item_content}>
                     {false ? <img className={s.event_img} src="https://placehold.jp/600x400.png" /> : null}
                     <h4 className={s.event_title} style={disableStyle}>

@@ -32,7 +32,14 @@ const ScheduleDetailModal = ({
     const ListCompornent = React.useMemo(() => {
         return (
             <ul className={s.schedule_list}>
-                {scheduleEvents.map((item, _) => <EventListItem item={item} />)}
+                {scheduleEvents.map((item, _) => {
+                    return (
+                        <EventListItem
+                            key={`schedule-detail-modal_event-list-item-${item.eventId}`}
+                            item={item}
+                        />
+                    )
+                })}
             </ul>
         )
     }, [scheduleId, scheduleEvents.length])

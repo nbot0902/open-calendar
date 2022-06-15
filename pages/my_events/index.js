@@ -30,7 +30,6 @@ const MyEventsScreen = props => {
     } = props;
 
     const dispatch = useDispatch()
-    const router = useRouter()
 
     const [isOpenNewModal, setIsOpenNewModal] = React.useState(false)
     const [isOpenEditModal, setIsOpenEditModal] = React.useState(false)
