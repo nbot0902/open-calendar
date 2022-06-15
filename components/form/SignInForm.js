@@ -43,6 +43,7 @@ const SignInForm = () => {
             const provider = new GoogleAuthProvider();
             signInWithRedirect(firebaseAuth, provider);
         } catch (_error) {
+            alert(_error);
             console.log("_error", _error)
         }
 
