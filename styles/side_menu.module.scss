@@ -23,16 +23,21 @@
         &_row {
             margin-bottom: 32px;
 
-            .row_title {
-                margin-bottom: 8px;
-                padding: 0px 16px;
-
-                &_text {
-                    font-size: 12px;
-                    font-weight: 600;
+            .row {
+                &_title {
                     color: $gray_1;
+                    margin-bottom: 8px;  
+                    padding: 0px 16px;
+
+                    &_text {
+                        font-size: 12px;
+                        font-weight: bold;
+                        color: $gray_1;    
+                    }
+    
                 }
             }
+
         }
 
         &_list {
@@ -47,6 +52,7 @@
                     display: block;
                     width: 100%;
                     font-size: 16px;
+                    font-weight: bold;
                     color: $black_1;
                     padding: 12px 8px;
                     border-radius: 8px;

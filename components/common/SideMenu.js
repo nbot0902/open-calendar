@@ -61,7 +61,7 @@ const SideMenu = ({
                                         <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/signin"}>
                                                 OPENをはじめる
-                                         </Link>
+                                            </Link>
                                         </li>
                                     ) : null}
                                     {!isSignOut ? (
@@ -75,34 +75,33 @@ const SideMenu = ({
                                         <li className={`${s.side_menu_list_item} ${page == "/my_events" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/my_events"}>
                                                 登録した予定
-                                        </Link>
+                                            </Link>
                                         </li>
                                     ) : null}
                                 </ul>
                             </div>
-                            <div className={s.side_menu_row}>
-                                <div className={s.row_title}>
-                                    <h4 className={s.row_title_text}>
-                                        設定
-                                    </h4>
-                                </div>
-                                <ul className={s.side_menu_list}>
-                                    {!isSignOut ? (
+                            {!isSignOut ? (
+                                <div className={s.side_menu_row}>
+                                    <div className={s.row_title}>
+                                        <h4 className={s.row_title_text}>
+                                            設定
+                                        </h4>
+                                    </div>
+                                    <ul className={s.side_menu_list}>
                                         <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/profile"}>
                                                 ユーザーの設定
-                                         </Link>
+                                            </Link>
                                         </li>
-                                    ) : null}
-                                    {!isSignOut ? (
                                         <li className={`${s.side_menu_list_item} ${page == "/calendar_setting" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/calendar_setting"}>
                                                 カレンダーの設定
-                                         </Link>
+                                            </Link>
                                         </li>
-                                    ) : null}
-                                </ul>
-                            </div>
+
+                                    </ul>
+                                </div>
+                            ) : null}
                             <div className={s.side_menu_row}>
                                 <div className={s.row_title}>
                                     <h4 className={s.row_title_text}>
@@ -129,7 +128,7 @@ const SideMenu = ({
                                         <li className={s.side_menu_list_item}>
                                             <a className={s.side_menu_link} onClick={_onLogout}>
                                                 ログアウト
-                                         </a>
+                                            </a>
                                         </li>
                                     ) : null}
                                 </ul>

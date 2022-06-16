@@ -1,24 +1,21 @@
+@import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
 html,
 body {
   padding: 0px;
   margin: 0px;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
 }
-
 a {
   color: inherit;
   text-decoration: none;
 }
-
 a:hover {
   cursor: pointer;
 }
-
 * {
   box-sizing: border-box;
 }
-
 *:hover {
   transition: 0.3s;
 }
@@ -26,7 +23,6 @@ a:hover {
 .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
   height: auto !important;
 }
-
 .react-confirm-alert-body h1{
   font-size: 20px;
   color: #202129;
