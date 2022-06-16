@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 import EventListItem from "./EventListItem";
@@ -14,7 +14,6 @@ const MyEventListRow = ({
     eventHash = {},
     onOpenEditModal = () => { }
 }) => {
-    const dispatch = useDispatch()
     const [isOpen, setIsOpen] = React.useState(false);
     const [isUpdate, setIsUpdate] = React.useState(false);
 
@@ -38,7 +37,7 @@ const MyEventListRow = ({
             return setIsOpen(false);
         } else {
             if (!isUpdate) {
-                A.getEventsDispatch({ dispatch, scheduleEvents: _scheduleEvents })
+                A.getEventsDispatch({ scheduleEvents: _scheduleEvents })
                 setIsUpdate(true);
             }
             setIsOpen(true);

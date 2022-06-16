@@ -2,11 +2,10 @@ import { useSelector } from 'react-redux'
 import { calendarSlice } from '../store/calendar'
 import API from '../api'
 
-export const getCalendarSchedulesDispatch = async ({
-    dispatch,
+export const getCalendarSchedulesDispatch = ({
     groupId = "",
     calendarId = ""
-}) => {
+}) => async dispatch => {
     const _calendarSchedules = await API.getCalendarSchedules({ groupId, calendarId });
 
     var _newHash = {};

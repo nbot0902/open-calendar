@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { FiEdit2 } from "react-icons/fi";
 
 import A from '../../actions';
@@ -11,13 +11,11 @@ import C from '../../constants';
 import s from '../../styles/schedule.module.scss';
 
 const EventListItem = ({
-    key = key,
     item = {},
     groupId = "",
     isEdit = false,
     onOpenEditModal = () => { }
 }) => {
-    const dispatch = useDispatch()
     const { eventId, scheduleId } = item;
     const { hash = {}, isLoading = false } = useSelector((state) => state.event);
 
@@ -50,7 +48,7 @@ const EventListItem = ({
                 {
                     label: '中止する',
                     onClick: () => {
-                        return A.deleteEventDispatch({ dispatch, groupId, data: eventData }).then(() => {
+                        return A.deleteEventDispatch({ groupId, data: eventData }).then(() => {
                             alert("この予定を中止になりました")
                         });
                     }
@@ -60,7 +58,7 @@ const EventListItem = ({
     }
     return React.useMemo(() => {
         return (
-            <li key={key} className={s.schedule_list_item}>
+            <li className={s.schedule_list_item}>
                 <div className={s.schedule_list_item_content}>
                     {false ? <img className={s.event_img} src="https://placehold.jp/600x400.png" /> : null}
                     <h4 className={s.event_title} style={disableStyle}>

@@ -3,9 +3,8 @@ import { groupSlice } from '../store/group'
 import API from '../api'
 
 export const getGroupDispatch = async ({
-    dispatch,
     groupId = ""
-}) => {
+}) => async dispatch => {
     dispatch(groupSlice.actions.getLoading({ hash: _newHash }));
 
     const _group = await API.getGroup({ groupId });

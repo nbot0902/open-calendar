@@ -5,9 +5,8 @@ import A from '../actions'
 import U from '../utile'
 
 export const getEventsDispatch = async ({
-    dispatch,
     scheduleEvents = []
-}) => {
+}) => async dispatch => {
     dispatch(eventSlice.actions.getLoading());
 
     const _events = await API.getEvents({ scheduleEvents });
@@ -22,9 +21,10 @@ export const getEventsDispatch = async ({
 }
 
 export const getEventDispatch = async ({
-    dispatch,
     eventId = ""
-}) => {
+}) => async dispatch => {
+    console.log("dispatch", dispatch);
+    dispatch(eventSlice.actions.getLoading());
     const _event = await API.getEvent({ eventId });
     const _newHash = {};
 
@@ -34,10 +34,12 @@ export const getEventDispatch = async ({
 }
 
 export const postEventDispatch = async ({
-    dispatch,
     groupId = "",
     data = {}
-}) => {
+}) => async dispatch => {
+    console.log("dispatch", dispatch);
+    dispatch(eventSlice.actions.getLoading());
+
     const { eventId = "未設定", startAt = Date.now() } = data;
     const _startAt = U.timestampToDate({ timestamp: startAt });
     const calendarId = U.getCalendarId({ date: _startAt })
@@ -45,28 +47,30 @@ export const postEventDispatch = async ({
 
     return API.postEvent({ groupId, data }).then((_) => {
         return Promise.all([
-            A.getEventDispatch({ dispatch, eventId }),
-            A.getScheduleEventsDispatch({ dispatch, groupId, calendarId, scheduleId })
+            A.getEventDispatch({ eventId }),
+            A.getScheduleEventsDispatch({ groupId, calendarId, scheduleId })
         ])
     })
 }
 
 export const putEventDispatch = async ({
-    dispatch,
     groupId = "",
     data = {}
-}) => {
+}) => async dispatch => {
+    dispatch(eventSlice.actions.getLoading());
+
     const { eventId = "", startAt = Date.now() } = data;
-    return API.putEvent({ groupId, eventId, data }).then((_) => getEventDispatch({ dispatch, eventId }))
+    return API.putEvent({ groupId, eventId, data }).then((_) => getEventDispatch({ eventId }))
 }
 
 export const deleteEventDispatch = async ({
-    dispatch,
     groupId = "",
     data = {}
-}) => {
+}) => async dispatch => {
+    dispatch(eventSlice.actions.getLoading());
+
     const { eventId = "未設定", startAt = Date.now() } = data;
-    return API.deleteEvent({ groupId, data }).then((_) => getEventDispatch({ dispatch, eventId }))
+    return API.deleteEvent({ groupId, data }).then((_) => getEventDispatch({ eventId }))
 }
 
 export const cleanEventState = ({ dispatch }) => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -19,7 +19,6 @@ const EditEventModal = ({
     groupId = "",
     params = {}
 }) => {
-    const dispatch = useDispatch()
 
     const {
         startAt = new Date(),
@@ -51,7 +50,7 @@ const EditEventModal = ({
             startAt: date,
         };
 
-        return A.putEventDispatch({ dispatch, data, groupId }).then(() => _successCallback())
+        return A.putEventDispatch({ data, groupId }).then(() => _successCallback())
     }
 
     React.useEffect(() => {

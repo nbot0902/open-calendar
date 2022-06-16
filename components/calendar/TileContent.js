@@ -5,13 +5,17 @@ import Badge from './Badge.js'
 import U from '../../utile'
 import s from '../../styles/custom_calendar.module.scss'
 
-const TileContent = ({
-    date,
-    view,
-    today = new Date(),
-    groupId = "",
-    onClickTileContent = () => { }
-}) => {
+const TileContent = props => {
+    const {
+        date,
+        view,
+        today = new Date(),
+        groupId = "",
+        onClickTileContent = () => { }
+    } = props;
+
+    console.log("date", date)
+
     const { hash = {}, isLoading = false } = useSelector((state) => state.calendar)
     const calendarHash = hash[groupId] ? hash[groupId]["hash"] : {};
 
@@ -43,10 +47,12 @@ const TileContent = ({
     const targetDate = `${d.year}-${d.month}-${d.day}`;
     const label = `${Number(d.year)}年${Number(d.month)}月${Number(d.day)}日`;
     const content = calendarHash[targetDate] ? calendarHash[targetDate] : null;
-    const events = content ? content.list : [];
-    const hasEvents = events.length > 0
 
     return React.useMemo(() => {
+
+        const events = content ? content.list : [];
+        const hasEvents = events.length > 0
+
         const {
             isToday,
             isOtherMonth
@@ -74,7 +80,7 @@ const TileContent = ({
                 <Badge isToday={isToday} hasEvents={hasEvents} />
             </div>
         );
-    }, [events.length])
+    }, [content])
 }
 
 export default TileContent;

@@ -3,11 +3,11 @@ import { calendarSlice } from '../store/calendar'
 import API from '../api'
 
 export const getScheduleEventsDispatch = async ({
-    dispatch,
     groupId = "",
     calendarId = "",
-    scheduleId = ""
-}) => {
+    scheduleId = "",
+}) => async dispatch => {
+    console.log("dispatch", dispatch)
     const _calendarSchedule = await API.getCalendarSchedule({ groupId, calendarId, scheduleId })
 
     var _newHash = {};

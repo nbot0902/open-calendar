@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -17,7 +17,6 @@ const NewEventModal = ({
     isActive = false,
     groupId = ""
 }) => {
-    const dispatch = useDispatch()
     const router = useRouter();
 
     const today = new Date()
@@ -43,7 +42,7 @@ const NewEventModal = ({
             startAt: date
         };
 
-        return A.postEventDispatch({ dispatch, data, groupId }).then(() => _successCallback())
+        return A.postEventDispatch({ data, groupId }).then(() => _successCallback())
     }
 
     return React.useMemo(() => {

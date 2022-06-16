@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import Modal from '../common/Modal'
 import EventListItem from '../event/EventListItem'
@@ -13,7 +13,6 @@ const ScheduleDetailModal = ({
     isActive = false,
     onCloseModal = () => null,
 }) => {
-    const dispatch = useDispatch()
 
     const { label = "", scheduleId = "" } = params;
     const initialized = false;
@@ -24,7 +23,7 @@ const ScheduleDetailModal = ({
 
     React.useEffect(() => {
         if (!initialized) {
-            A.getEventsDispatch({ dispatch, scheduleEvents })
+            A.getEventsDispatch({ scheduleEvents })
             initialized = true;
         }
     }, [scheduleId, scheduleEvents.length])

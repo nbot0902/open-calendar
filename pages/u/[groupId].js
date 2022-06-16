@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Holidays from 'date-holidays'
 
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import Layout from "../../components/common/Layout";
 import AutherProfile from '../../components/calendar/AutherProfile'
@@ -38,7 +38,6 @@ const CalendarScreen = props => {
 
     const today = new Date();
 
-    const dispatch = useDispatch()
     const router = useRouter()
     const [params, setParams] = React.useState()
 
@@ -83,7 +82,10 @@ const CalendarScreen = props => {
         return isHoliday({ date }) ? 'holiday' : '';
     }
     const _getTileContent = ({ date, view }) => {
-        if (view !== 'month') return null;
+        if (view !== 'month') {
+            return null
+        }
+
         return (
             <TileContent
                 groupId={groupId}
@@ -100,14 +102,14 @@ const CalendarScreen = props => {
         const isUpdate = !baseList.includes(calendarId);
 
         if (isUpdate) {
-            API.getMonthScheduleDispatchs({ dispatch, groupId, calendarId });
+            API.getMonthScheduleDispatchs({ groupId, calendarId });
             baseList.push(calendarId);
         }
     }
 
     React.useLayoutEffect(() => {
         const asyncFunc = async () => {
-            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ dispatch, groupId });
+            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ groupId });
             setIsInitialized(true);
         }
 

@@ -10,7 +10,6 @@ const AutherProfile = (
     groupId = "",
 ) => {
     const calendarUrl = window.location.href ?? "";
-    console.log("calendarUrl", calendarUrl)
 
     const { hash = {}, isLoading = false } = useSelector((state) => state.group)
     const { picture = null, groupName = "私のカレンダー", description = "このカレンダーにはみんなと共有したい予定を掲載します。" } = hash[groupId] ?? {};

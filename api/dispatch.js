@@ -3,14 +3,13 @@ import A from '../actions';
 
 export const getCurrentMonthScheduleDispatchs = async ({
     groupId = "",
-    dispatch
 }) => {
     const date = new Date();
     const calendarId = U.getCalendarId({ date: date });
 
     try {
-        const _group = await A.getGroupDispatch({ dispatch, groupId });
-        const _calendarScheduleHash = await A.getCalendarSchedulesDispatch({ dispatch, groupId, calendarId });
+        const _group = await A.getGroupDispatch({ groupId });
+        const _calendarScheduleHash = await A.getCalendarSchedulesDispatch({ groupId, calendarId });
 
         return {
             calendarId,
@@ -24,11 +23,10 @@ export const getCurrentMonthScheduleDispatchs = async ({
 
 export const getMonthScheduleDispatchs = async ({
     groupId = "",
-    dispatch,
     calendarId
 }) => {
     try {
-        const _calendarScheduleHash = await A.getCalendarSchedulesDispatch({ dispatch, groupId, calendarId });
+        const _calendarScheduleHash = await A.getCalendarSchedulesDispatch({ groupId, calendarId });
 
         return {
             calendarId,
