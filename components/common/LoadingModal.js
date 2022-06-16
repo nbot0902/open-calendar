@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRouter } from "next/router"
-import { Grid } from 'react-loader-spinner'
+import { MutatingDots } from 'react-loader-spinner'
 import s from '../../styles/common.module.scss'
 
 const LoadingModal = ({
@@ -11,7 +11,7 @@ const LoadingModal = ({
             return (
                 <div className={s.loading_modal}>
                     <div className={s.loading_modal_spinner}>
-                        <Grid color={"#1e41af"} height={48} width={48} />
+                        <MutatingDots color="#3c8cff" height={80} width={80} />
                     </div>
                 </div>
             )
