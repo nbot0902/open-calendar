@@ -11,7 +11,7 @@ const LoadingModal = ({
             return (
                 <div className={s.loading_modal}>
                     <div className={s.loading_modal_spinner}>
-                        <MutatingDots color="#3c8cff" height={80} width={80} />
+                        <MutatingDots color="#3c8cff" height={100} width={100} />
                     </div>
                 </div>
             )
