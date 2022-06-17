@@ -58,8 +58,8 @@ const SignInForm = () => {
                 <div className={form.form_description}>
                     <p className={form.form_description_text}>
                         Openはカレンダーの共有アプリです。<br />
-                        SNSのプロフィールに貼り付けることで、自分の活動をみんなに共有することができます。
-                        </p>
+                        URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
+                    </p>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <button className={form.button_on_submit} type="submit">Googleではじめる</button>
