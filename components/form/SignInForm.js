@@ -56,13 +56,15 @@ const SignInForm = () => {
                     <h3 className={form.form_title_text}>{"Openをはじめる"}</h3>
                 </div>
                 <div className={form.form_description}>
-                    <p className={form.form_description_text}>Openはカレンダーの共有アプリです。SNSのプロフィールに貼り付けることで、自分の活動をみんなに共有することができます。</p>
+                    <p className={form.form_description_text}>
+                        Openはカレンダーの共有アプリです。<br />
+                        SNSのプロフィールに貼り付けることで、自分の活動をみんなに共有することができます。
+                        </p>
                 </div>
+                <form onSubmit={handleSubmit}>
+                    <button className={form.button_on_submit} type="submit">Googleではじめる</button>
+                </form>
             </div>
-            <form onSubmit={handleSubmit}>
-                <button className={form.button_on_submit} type="submit">Googleではじめる</button>
-            </form>
-        </div>
     )
 }
 export default SignInForm;
