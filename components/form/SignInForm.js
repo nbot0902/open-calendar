@@ -56,7 +56,7 @@ const SignInForm = () => {
                     <h3 className={form.form_title_text}>{"Openをはじめる"}</h3>
                 </div>
                 <div className={form.form_description}>
-                    <p className={form.form_description_text}>ああああああああああああああああああああああああああああああああああああああああああああああああああああああああああ</p>
+                    <p className={form.form_description_text}>Openはカレンダーの共有アプリです。SNSのプロフィールに貼り付けることで、自分の活動をみんなに共有することができます。</p>
                 </div>
             </div>
             <form onSubmit={handleSubmit}>
