@@ -9,6 +9,12 @@ export const eventSlice = createSlice({
     name: 'event',
     initialState,
     reducers: {
+        postLoading(state, action) {
+            state.isLoading = true
+        },
+        postFailed(state, action) {
+            state.isLoading = false
+        },
         getLoading(state, action) {
             state.isLoading = true
         },

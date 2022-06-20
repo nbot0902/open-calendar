@@ -18,6 +18,25 @@ export const getGroupDispatch = async ({
     return _group ?? {};
 }
 
+export const putGroupDispatch = async ({
+    data,
+    groupId,
+    newPicture,
+    dispatch
+}) => {
+    try {
+        dispatch(groupSlice.actions.postLoading());
+
+        return API.putGroup({ data, groupId, newPicture })
+            .then((_) => {
+                return getGroupDispatch({ dispatch, groupId })
+            })
+
+    } catch (_error) {
+        dispatch(groupSlice.actions.postFailed());
+    }
+}
+
 export const cleanUserState = ({
     dispatch
 }) => {

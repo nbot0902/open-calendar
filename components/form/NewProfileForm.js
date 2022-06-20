@@ -46,7 +46,7 @@ const NewProfileForm = ({
     return (
         <form onSubmit={_handleSubmit}>
             <div className={profileStyle.profile_detail}>
-                <div className={profileStyle.profile_thumbnail} style={imageStyle}></div>
+                {true ? <div className={profileStyle.profile_thumbnail} style={imageStyle}></div> : null}
                 <InputRow defaultValue={name} labelName={"ユーザー名"} placeholder={"ユーザー名を入力してください"} uniqueId={"name"} type={"text"} />
                 <button className={form.button_on_submit} type="submit">保存する</button>
             </div>

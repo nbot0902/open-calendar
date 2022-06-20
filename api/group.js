@@ -1,5 +1,7 @@
-import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
+import { firebaseApp, fireStore, firebaseAuth, firebaseStorage } from '../firebase/firebase.js'
 import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit } from 'firebase/firestore';
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage"
+
 import U from '../utile';
 import C from '../constants';
 
@@ -61,29 +63,34 @@ export const postGroup = async ({
     const userGroupRef = doc(fireStore, "users", userId, "userGroups", groupId);
 
     return Promise.all[
-        setDoc(groupRef, groupData),
-        setDoc(userGroupRef, userGroupData)
+        setDoc(groupRef, groupData, { merge: true }),
+        setDoc(userGroupRef, userGroupData, { merge: true })
     ];
 }
 
 export const putGroup = async ({
     groupId = "",
-    data = {}
+    data = {},
+    newPicture = null
 }) => {
-    const updateAt = Date.now();
+    const _groupRef = doc(fireStore, "groups", groupId);
+    const _updateAt = Date.now();
 
-    const baseData = {
-        updateAt: updateAt,
+    const _baseData = {
+        updateAt: _updateAt,
     }
-    const groupData = {
-        ...baseData,
+    const _groupData = {
+        ..._baseData,
         ...data,
     }
 
-    const groupRef = doc(fireStore, "groups", groupId);
+    if (newPicture) {
+        const _resizedFile = await U.getResizedFile({ file: newPicture });
+        const _groupImageRef = ref(firebaseStorage, `groups/${groupId}/picture`);
+        const _snapshot = await uploadBytesResumable(_groupImageRef, _resizedFile);
+        _groupData.picture = await getDownloadURL(_snapshot.ref)
+    }
 
-    return Promise.all[
-        setDoc(groupRef, groupData, { merge: true })
-    ];
+    return setDoc(_groupRef, _groupData, { merge: true })
 }
 

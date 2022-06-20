@@ -10,13 +10,14 @@
     }
 
     &_detail {
-       width: 100%;
-       margin-top: 40px;
-       padding: 92px 24px 24px 24px ;
-       position: relative;
-       background-color: $white_1;
-       border-radius: 12px;
-       box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
+        width: 100%;
+        margin-top: 48px;
+        padding: 92px 24px 24px 24px ;
+        // padding: 24px 24px 24px 24px;
+        position: relative;
+        background-color: $white_1;
+        border-radius: 12px;
+        box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
     }
 
     &_thumbnail {
@@ -31,8 +32,47 @@
         background-position: center center;
         background-size: cover;
         background-repeat: no-repeat;
-        background-color: $blue_1;
+        background-color: $light_blue_1;
         border: 8px solid $white_1;
         box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
+
+        &_input {
+            display: none;
+        }
+
+        &_inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+    }
+}
+
+.picture {
+    &_icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 16px;
+        background-color: $white_1;
+
+        box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
+        position: absolute;
+        right: -4px;
+        bottom: -4px;
+        z-index: 10;
+
+        &_inner {
+            width: 32px;
+            height: 32px;
+            position: relative;
+        }
+
+        &_image {
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            position: absolute;
+        }
     }
 }

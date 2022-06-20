@@ -95,7 +95,7 @@ const SideMenu = ({
                                         </li>
                                         <li className={`${s.side_menu_list_item} ${page == "/calendar_setting" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/calendar_setting"}>
-                                                オーガナイザー情報
+                                                カレンダー情報
                                             </Link>
                                         </li>
 

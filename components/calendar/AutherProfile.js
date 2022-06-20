@@ -3,16 +3,16 @@ import { useSelector } from 'react-redux'
 import AutherProfileLoading from '../../components/loading/AutherProfileLoading'
 import { FiLink } from "react-icons/fi";
 
-import dummyIcon from '../../public/images/dummy_icon_for_user.png'
+import dummyIcon from '../../public/images/dummy_icon_for_group.png'
 import s from '../../styles/custom_calendar.module.scss'
 
-const AutherProfile = (
-    groupId = "",
-) => {
+const AutherProfile = ({
+    groupId = ""
+}) => {
     const calendarUrl = window.location.href ?? "";
-
     const { hash = {}, isLoading = false } = useSelector((state) => state.group)
-    const { picture = null, groupName = "私のカレンダー", description = "このカレンダーにはみんなと共有したい予定を掲載します。" } = hash[groupId] ?? {};
+    const data = hash[groupId] ?? {}
+    const { picture = null, groupName = "私のカレンダー", description = "このカレンダーにはみんなと共有したい予定を掲載します。" } = data;
 
     const imageStyle = {
         backgroundImage: picture ? `url('${picture}')` : `url(${dummyIcon.src})`
@@ -59,7 +59,7 @@ const AutherProfile = (
                 }
             </div>
         )
-    }, [isLoading, calendarUrl, groupName, description])
+    }, [isLoading, data, calendarUrl, groupName, description])
 }
 
 export default AutherProfile;

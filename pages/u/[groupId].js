@@ -51,7 +51,7 @@ const CalendarScreen = props => {
     const currentCalendarId = U.getCalendarId({ date: today });
     const baseList = [currentCalendarId];
 
-    const { groupId } = router.query;
+    const { groupId = "" } = router.query;
 
     const _handleEventModal = () => {
         if (isActiveEventModal) {
