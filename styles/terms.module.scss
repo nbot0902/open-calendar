@@ -5,6 +5,11 @@
 .terms {
     padding: 16px 0px;
 
+    a {
+        color: $blue_1;
+        text-decoration: underline;
+    }
+
     @include mq() {
         padding: 16px 16px;
     }
