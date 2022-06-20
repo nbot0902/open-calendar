@@ -84,13 +84,26 @@
   }
 }
 
-.page_head {
-  width: 100%;
+.page{
+  &_head {
+    width: 100%;
+    
+    &_text {
+      font-size: 24px;
+      text-align: center;
+      color: $black_1;
+    }
+  }
   
-  &_text {
-    font-size: 24px;
-    text-align: center;
-    color: $black_1;
+  &_description {
+    width: 100%;
+    margin-top: 24px;
+    
+    &_text {
+      font-size: 16px;
+      line-height: 2em;
+      color: $black_1;
+    }
   }
 }
 

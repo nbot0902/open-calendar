@@ -1,0 +1,91 @@
+.terms {
+    padding: 16px 0px;
+
+    &_row {
+        width: 100%;
+        margin-top: 32px;
+
+        &_title {
+            width: 100%;
+            margin-bottom: 16px;
+
+            &_text {
+                width: 100%;
+                font-size: 20px;
+                font-weight: 600;
+                line-height: 1.25em;
+            }
+        }
+
+        &_description {
+            width: 100%;
+            margin-bottom: 20px;
+
+            &_text {
+                width: 100%;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 2em;
+            }
+        }
+    }
+
+    &_list_a {
+        width: 100%;
+        counter-reset: li;
+
+        &_item {
+            width: 100%;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 2em;
+
+            margin-bottom: 8px;
+            padding-left: 32px;
+            
+            position: relative;
+            list-style-type: none;
+
+            &:before {
+                position: absolute;
+                top: 3px;
+                left: 0px;
+                counter-increment: li;
+                content: counter(li); 
+                margin-right: 1em; 
+                line-height: 1.6;
+            }
+
+            .sub {
+                &_list {
+                    width: 100%;
+                    margin-top: 16px;
+                    counter-reset: sub_li;
+
+                    &_item {
+                        width: 100%;
+                        font-size: 16px;
+                        font-weight: 400;
+                        line-height: 2em;
+
+                        margin-bottom: 8px;
+                        padding-left: 32px;
+                        
+                        position: relative;
+                        list-style-type: none;
+            
+                        &:before {
+                            position: absolute;
+                            top: 3px;
+                            left: 0px;
+                            counter-increment: sub_li;
+                            content: "(" counter(sub_li) ")"; 
+                            margin-right: 1em; 
+                            line-height: 1.6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

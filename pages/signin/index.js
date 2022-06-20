@@ -14,6 +14,7 @@ const SignInScreen = props => {
     profile = {}
   } = props;
 
+  console.log("props", props)
   return (
     <Layout
       page={"/signin"}

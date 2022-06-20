@@ -46,24 +46,24 @@ const SignInForm = () => {
             alert(_error);
             console.log("_error", _error)
         }
-
-        return (
-            <div className={form.form_sign_in}>
-                <div className={form.form_head}>
-                    <div className={form.form_title}>
-                        <h3 className={form.form_title_text}>{"Openをはじめる"}</h3>
-                    </div>
-                    <div className={form.form_description}>
-                        <p className={form.form_description_text}>
-                            Openはカレンダーの共有アプリです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
-                        </p>
-                    </div>
-                    <form onSubmit={handleSubmit}>
-                        <button className={form.button_on_submit} type="submit">Googleではじめる</button>
-                    </form>
-                </div>
-            </div>
-        )
     }
+
+    return (
+        <div className={form.form_sign_in}>
+            <div className={form.form_head}>
+                <div className={form.form_title}>
+                    <h3 className={form.form_title_text}>{"Openをはじめる"}</h3>
+                </div>
+                <div className={form.form_description}>
+                    <p className={form.form_description_text}>
+                        Openはイベントや交流会の予定をカレンダーで共有できるアプリです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
+                        </p>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <button className={form.button_on_submit} type="submit">Googleではじめる</button>
+                </form>
+            </div>
+        </div>
+    )
 }
 export default SignInForm;
