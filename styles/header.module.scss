@@ -18,18 +18,21 @@
     max-width: 480px;
     width: 100%;
     margin: 0px auto;
-
-    @include mq() {
-      padding: 0px 12px;
-    }
   }
 
   .user {
-    display: block;
+    width: 32px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    top: 50%;
+    top: 0px;
     left: 0px;
-    margin-top: -16px;
+
+    @include mq() {
+      width: 56px;
+    }
 
     &_icon {
       width: 32px;
@@ -37,7 +40,6 @@
       border-radius: 16px;
       background-color: $light_blue_1;
       overflow: hidden;
-      float: left;
 
       &_img {
           display: block;
@@ -67,6 +69,10 @@
     top: 50%;
     right: 0px;
     margin-top: -16px;
+
+    @include mq() {
+      margin-right: 12px;
+    }
 
     &_button {
       width: 80px;
