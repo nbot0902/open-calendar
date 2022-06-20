@@ -6,7 +6,8 @@ export const getScheduleEventsDispatch = async ({
     groupId = "",
     calendarId = "",
     scheduleId = "",
-}) => async dispatch => {
+    dispatch
+}) => {
     console.log("dispatch", dispatch)
     const _calendarSchedule = await API.getCalendarSchedule({ groupId, calendarId, scheduleId })
 
@@ -26,6 +27,8 @@ export const getScheduleEventsDispatch = async ({
     return _newHash;
 }
 
-export const cleanCalendarState = ({ dispatch }) => {
+export const cleanCalendarState = ({
+    dispatch
+}) => {
     dispatch(calendarSlice.actions.cleanState());
 }

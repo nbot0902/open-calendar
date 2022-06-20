@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Holidays from 'date-holidays'
 
 import { useRouter } from "next/router";
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import Layout from "../../components/common/Layout";
 import AutherProfile from '../../components/calendar/AutherProfile'
@@ -22,11 +22,12 @@ export const getServerSideProps = async (ctx) => {
     return U.verifyAuthState({ ctx });
 };
 
+const holiday = new Holidays('JP', 'la', 'no');
+
 const isHoliday = ({
     date
 }) => {
-    const holiday = new Holidays('JP', 'la', 'no');
-    return holiday.isHoliday(new Date(date));
+    return holiday.isHoliday(date);
 }
 
 const CalendarScreen = props => {
@@ -39,6 +40,8 @@ const CalendarScreen = props => {
     const today = new Date();
 
     const router = useRouter()
+    const dispatch = useDispatch();
+
     const [params, setParams] = React.useState()
 
     const [isInitialized, setIsInitialized] = React.useState(false)
@@ -83,7 +86,7 @@ const CalendarScreen = props => {
     }
     const _getTileContent = ({ date, view }) => {
         if (view !== 'month') {
-            return null
+            return null;
         }
 
         return (
@@ -96,10 +99,10 @@ const CalendarScreen = props => {
             />
         )
     }
-    const _onActiveStartDateChange = data => {
+    const _onActiveStartDateChange = async data => {
         const { activeStartDate } = data;
-        const calendarId = U.getCalendarId({ date: activeStartDate });
-        const isUpdate = !baseList.includes(calendarId);
+        const calendarId = await U.getCalendarId({ date: activeStartDate });
+        const isUpdate = await !baseList.includes(calendarId);
 
         if (isUpdate) {
             API.getMonthScheduleDispatchs({ groupId, calendarId });
@@ -109,7 +112,7 @@ const CalendarScreen = props => {
 
     React.useLayoutEffect(() => {
         const asyncFunc = async () => {
-            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ groupId });
+            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ dispatch, groupId });
             setIsInitialized(true);
         }
 

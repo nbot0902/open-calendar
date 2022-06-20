@@ -3,8 +3,9 @@ import { groupSlice } from '../store/group'
 import API from '../api'
 
 export const getGroupDispatch = async ({
-    groupId = ""
-}) => async dispatch => {
+    groupId = "",
+    dispatch
+}) => {
     dispatch(groupSlice.actions.getLoading({ hash: _newHash }));
 
     const _group = await API.getGroup({ groupId });
@@ -17,6 +18,8 @@ export const getGroupDispatch = async ({
     return _group ?? {};
 }
 
-export const cleanUserState = ({ dispatch }) => {
+export const cleanUserState = ({
+    dispatch
+}) => {
     dispatch(groupSlice.actions.cleanState());
 }

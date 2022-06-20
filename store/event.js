@@ -12,6 +12,9 @@ export const eventSlice = createSlice({
         getLoading(state, action) {
             state.isLoading = true
         },
+        getFailed(state, action) {
+            state.isLoading = false
+        },
         getItems(state, action) {
             const newHash = action.payload.hash;
 
@@ -19,6 +22,7 @@ export const eventSlice = createSlice({
                 ...state.hash,
                 ...newHash,
             }
+            state.isLoading = false
         },
         getItem(state, action) {
             const newHash = action.payload.hash;
@@ -27,6 +31,7 @@ export const eventSlice = createSlice({
                 ...state.hash,
                 ...newHash,
             }
+            state.isLoading = false
         },
         cleanState() {
             return initialState

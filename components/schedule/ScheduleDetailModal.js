@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Modal from '../common/Modal'
 import EventListItem from '../event/EventListItem'
@@ -13,17 +13,21 @@ const ScheduleDetailModal = ({
     isActive = false,
     onCloseModal = () => null,
 }) => {
+    const dispatch = useDispatch()
 
     const { label = "", scheduleId = "" } = params;
     const initialized = false;
 
-    const { hash = {}, isLoading = false } = useSelector((state) => state.calendar)
-    const calendarHash = hash && hash[groupId] ? hash[groupId].hash : null;
+    const calendar = useSelector((state) => state.calendar)
+    const calendarHash = calendar.hash && calendar.hash[groupId] ? calendar.hash[groupId].hash : null;
     const scheduleEvents = calendarHash != null && calendarHash[scheduleId] != null ? calendarHash[scheduleId].list : [];
+
+    const event = useSelector((state) => state.event);
+    const eventHash = event.hash ?? {};
 
     React.useEffect(() => {
         if (!initialized) {
-            A.getEventsDispatch({ scheduleEvents })
+            A.getEventsDispatch({ scheduleEvents, dispatch })
             initialized = true;
         }
     }, [scheduleId, scheduleEvents.length])
@@ -31,11 +35,14 @@ const ScheduleDetailModal = ({
     const ListCompornent = React.useMemo(() => {
         return (
             <ul className={s.schedule_list}>
-                {scheduleEvents.map((item, _) => {
+                {scheduleEvents.map((_event, _) => {
+                    const { eventId, scheduleId } = _event;
+                    const data = eventHash[eventId] ?? {};
+
                     return (
                         <EventListItem
                             key={`schedule-detail-modal_event-list-item-${item.eventId}`}
-                            item={item}
+                            data={data}
                         />
                     )
                 })}

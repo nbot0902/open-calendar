@@ -12,13 +12,11 @@ import s from '../../styles/schedule.module.scss';
 
 const EventListItem = ({
     item = {},
+    hash = {},
     groupId = "",
     isEdit = false,
     onOpenEditModal = () => { }
 }) => {
-    const { eventId, scheduleId } = item;
-    const { hash = {}, isLoading = false } = useSelector((state) => state.event);
-
     const eventData = hash[eventId] ?? {};
     const { title = "未設定", description = "", startAt = Date.now(), status = C.EVENT_STATE.ACTIVE } = eventData;
     const _startAt = U.timestampToDateLabel({ timestamp: startAt })
@@ -56,6 +54,7 @@ const EventListItem = ({
             ]
         });
     }
+
     return React.useMemo(() => {
         return (
             <li className={s.schedule_list_item}>

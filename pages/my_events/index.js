@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 
 import { useRouter } from "next/router";
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
 import Layout from "../../components/common/Layout";
 import PageHead from '../../components/common/PageHead';
@@ -28,6 +28,8 @@ const MyEventsScreen = props => {
         group = {},
         profile = {}
     } = props;
+
+    const dispatch = useDispatch();
 
     const [isOpenNewModal, setIsOpenNewModal] = React.useState(false)
     const [isOpenEditModal, setIsOpenEditModal] = React.useState(false)
@@ -61,13 +63,16 @@ const MyEventsScreen = props => {
 
     React.useLayoutEffect(() => {
         const asyncFunc = async () => {
-            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ groupId });
+            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ dispatch, groupId });
+
+            console.log("_calendarData", _calendarData)
             setIsInitialized(true);
         }
 
-        if (!isInitialized) {
-            asyncFunc()
-        }
+        // if (!isInitialized) {
+        //     asyncFunc()
+        // }
+        asyncFunc()
     }, [])
 
     return (

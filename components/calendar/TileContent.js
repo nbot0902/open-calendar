@@ -14,8 +14,6 @@ const TileContent = props => {
         onClickTileContent = () => { }
     } = props;
 
-    console.log("date", date)
-
     const { hash = {}, isLoading = false } = useSelector((state) => state.calendar)
     const calendarHash = hash[groupId] ? hash[groupId]["hash"] : {};
 

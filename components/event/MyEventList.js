@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 import EventListItem from "./EventListItem";
@@ -8,6 +8,7 @@ import A from '../../actions';
 import events from '../../styles/my_events.module.scss';
 
 const MyEventListRow = ({
+    dispatch,
     scheduleId,
     hash,
     groupId = "",
@@ -37,7 +38,7 @@ const MyEventListRow = ({
             return setIsOpen(false);
         } else {
             if (!isUpdate) {
-                A.getEventsDispatch({ scheduleEvents: _scheduleEvents })
+                A.getEventsDispatch({ scheduleEvents: _scheduleEvents, dispatch: dispatch })
                 setIsUpdate(true);
             }
             setIsOpen(true);
@@ -98,11 +99,12 @@ const MyEventList = ({
     groupId = "",
     onOpenEditModal = () => { }
 }) => {
-    const { hash = {}, isLoading = false } = useSelector((state) => state.calendar);
+    const dispatch = useDispatch()
+    const calendarState = useSelector((state) => state.calendar);
     const eventState = useSelector((state) => state.event);
 
-    const eventHash = eventState.hash;
-    const calendarHash = hash[groupId] ? hash[groupId].hash : {};
+    const eventHash = eventState.hash ?? {};
+    const calendarHash = calendarState.hash[groupId] ? calendarState.hash[groupId].hash : {};
     const schedules = Object.keys(calendarHash).map((id) => calendarHash[id]);
 
     schedules.sort((a, b) => {
@@ -116,6 +118,7 @@ const MyEventList = ({
                     return (
                         <MyEventListRow
                             key={`my-event_my-event-list-row-${item.scheduleId}`}
+                            dispatch={dispatch}
                             eventHash={eventHash}
                             groupId={groupId}
                             onOpenEditModal={onOpenEditModal}

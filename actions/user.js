@@ -3,8 +3,9 @@ import { userSlice } from '../store/user'
 import API from '../api'
 
 export const getUserDispatch = async ({
-    userId = ""
-}) => async dispatch => {
+    userId = "",
+    dispatch
+}) => {
     console.log("dispatch", dispatch)
     const _user = await API.getUser({ userId });
     const _newHash = {};
@@ -14,6 +15,8 @@ export const getUserDispatch = async ({
     dispatch(userSlice.actions.getItem({ hash: _newHash }));
 }
 
-export const cleanUserState = () => async dispatch => {
+export const cleanUserState = ({
+    dispatch
+}) => {
     dispatch(userSlice.actions.cleanState());
 }
