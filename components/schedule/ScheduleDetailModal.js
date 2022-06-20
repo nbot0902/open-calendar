@@ -41,7 +41,7 @@ const ScheduleDetailModal = ({
 
                     return (
                         <EventListItem
-                            key={`schedule-detail-modal_event-list-item-${item.eventId}`}
+                            key={`schedule-detail-modal_event-list-item-${data.eventId}`}
                             data={data}
                         />
                     )
