@@ -11,14 +11,12 @@ import C from '../../constants';
 import s from '../../styles/schedule.module.scss';
 
 const EventListItem = ({
-    item = {},
-    hash = {},
+    data = {},
     groupId = "",
     isEdit = false,
     onOpenEditModal = () => { }
 }) => {
-    const eventData = hash[eventId] ?? {};
-    const { title = "未設定", description = "", startAt = Date.now(), status = C.EVENT_STATE.ACTIVE } = eventData;
+    const { title = "未設定", description = "", startAt = Date.now(), status = C.EVENT_STATE.ACTIVE } = data;
     const _startAt = U.timestampToDateLabel({ timestamp: startAt })
 
     const isActive = C.EVENT_STATE.ACTIVE == status
@@ -28,7 +26,7 @@ const EventListItem = ({
     }
 
     const _onOpenEditModal = () => {
-        return onOpenEditModal({ data: eventData });
+        return onOpenEditModal({ data: data });
     }
 
     const _onCloseEvent = () => {
@@ -101,7 +99,7 @@ const EventListItem = ({
                 ) : null}
             </li>
         );
-    }, [eventData])
+    }, [data])
 };
 
 export default EventListItem;

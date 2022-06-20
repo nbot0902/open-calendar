@@ -48,14 +48,17 @@ const MyEventListRow = ({
     const ListCompornent = React.useMemo(() => {
         return (
             <ul className={events.my_event_list}>
-                {_scheduleEvents.map((item, _) => {
+                {_scheduleEvents.map((_scheduleEvent, _) => {
+                    const { eventId } = _scheduleEvent;
+                    const data = eventHash[eventId] ?? {};
+
                     return (
                         <EventListItem
-                            key={`my-event_event-list-item-${item.eventId}`}
+                            key={`my-event_event-list-item-${data.eventId}`}
                             groupId={groupId}
                             onOpenEditModal={onOpenEditModal}
                             isEdit={true}
-                            item={item}
+                            data={data}
                         />
                     )
                 })}
