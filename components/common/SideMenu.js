@@ -114,7 +114,7 @@ const SideMenu = ({
                                             運営について
                                         </Link>
                                     </li>
-                                    <li className={`${s.side_menu_list_item} ${page == "/terms" ? s.is_active : ""}`}>
+                                    {/* <li className={`${s.side_menu_list_item} ${page == "/terms" ? s.is_active : ""}`}>
                                         <Link className={s.side_menu_link} href={"/terms"}>
                                             利用規約
                                         </Link>
@@ -123,7 +123,7 @@ const SideMenu = ({
                                         <Link className={s.side_menu_link} href={"/privacy_policy"}>
                                             プライバシーポリシー
                                         </Link>
-                                    </li>
+                                    </li> */}
                                     {!isSignOut ? (
                                         <li className={s.side_menu_list_item}>
                                             <a className={s.side_menu_link} onClick={_onLogout}>

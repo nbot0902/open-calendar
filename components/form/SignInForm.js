@@ -56,8 +56,8 @@ const SignInForm = () => {
                 </div>
                 <div className={form.form_description}>
                     <p className={form.form_description_text}>
-                        Openはイベントや交流会の予定をカレンダーで共有できるアプリです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
-                        </p>
+                        Openはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
+                    </p>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <button className={form.button_on_submit} type="submit">Googleではじめる</button>
