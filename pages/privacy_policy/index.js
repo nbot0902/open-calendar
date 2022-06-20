@@ -244,7 +244,7 @@ const PrivacyPolicyScreen = props => {
           </div>
           <div className={s.privacy_policy_row_description}>
             <div className={s.privacy_policy_row_description_text}>
-              開示等のお申出、ご意見、ご質問、苦情のお申出その他個人情報の取扱いに関するお問い合わせは、下記の窓口までお願いいたします。<br /><a href="https://twitter.com/TCG63728721" target="_blank">https://twitter.com/TCG63728721</a>
+              開示等のお申出、ご意見、ご質問、苦情のお申出その他個人情報の取扱いに関するお問い合わせは、下記の窓口までお願いいたします。<br /><a href="https://twitter.com/TCG63728721" rel="noreferrer" target="_blank">https://twitter.com/TCG63728721</a>
             </div>
           </div>
         </div>
