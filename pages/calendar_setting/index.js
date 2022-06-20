@@ -38,7 +38,7 @@ const CalendarSettingScreen = props => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={profileStyle.profile}>
-                <PageHead title={"カレンダーの設定"} />
+                <PageHead title={"オーガナイザー情報"} />
                 <NewGroupForm profile={profile} group={group} />
             </div>
         </Layout >

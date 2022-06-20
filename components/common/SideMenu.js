@@ -90,12 +90,12 @@ const SideMenu = ({
                                     <ul className={s.side_menu_list}>
                                         <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/profile"}>
-                                                ユーザーの設定
+                                                ユーザー情報
                                             </Link>
                                         </li>
                                         <li className={`${s.side_menu_list_item} ${page == "/calendar_setting" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/calendar_setting"}>
-                                                カレンダーの設定
+                                                オーガナイザー情報
                                             </Link>
                                         </li>
 
