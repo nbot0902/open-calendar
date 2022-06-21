@@ -98,7 +98,6 @@
 
     @include mq() {
       width: 100%;
-      min-height: 640px;
       padding: 24px 16px;
     }
   }

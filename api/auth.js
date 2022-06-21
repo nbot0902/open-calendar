@@ -29,9 +29,14 @@ export const signWithGoogleSuccessCallback = async ({ result }) => {
             picture: userInfo.profile.picture
         };
 
-        await Promise.all([
+        const _result = await Promise.all([
             API.postUser({ data: userData }),
             API.postGroup({ data: groupData })
+        ])
+
+        return Promise.all([
+            API.getUser({ userId: _result[0].userId }),
+            API.getGroup({ groupId: _result[1].groupId })
         ])
     }
 

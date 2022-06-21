@@ -1,6 +1,5 @@
 import React from 'react'
-import { useRouter } from "next/router"
-import { Grid } from 'react-loader-spinner'
+import { StageSpinner } from "react-spinners-kit";
 import s from '../../styles/common.module.scss'
 
 const IndicatorModal = ({
@@ -11,7 +10,7 @@ const IndicatorModal = ({
             return (
                 <div className={s.indicator_modal}>
                     <div className={s.indicator_modal_spinner}>
-                        <Grid color={"#ffffff"} height={48} width={48} />
+                        <StageSpinner size={60} color={"#fff"} loading={isLoading} />;
                     </div>
                 </div>
             )

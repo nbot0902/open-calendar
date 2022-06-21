@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import InputRow from "../form/InputRow";
-import LoadingModal from "../common/LoadingModal";
 
 import form from '../../styles/form.module.scss'
 import { firebaseAuth } from '../../firebase/firebase'
@@ -20,31 +18,42 @@ import {
     getAuth
 } from "firebase/auth";
 
-const SignInForm = () => {
+const SignInForm = ({
+    setLoading = () => { }
+}) => {
     const router = useRouter();
+    const [count, setCount] = React.useState(0)
 
     React.useEffect(() => {
+        setLoading(true);
+
         const _getRedirectResult = async () => {
+
             const result = await getRedirectResult(firebaseAuth)
 
             if (result) {
                 await API.signWithGoogleSuccessCallback({ result })
+                await setLoading(false);
                 return router.push("/calendar_setting");
+            } else {
+                setLoading(false);
             }
         }
 
         _getRedirectResult()
-    })
+    }, [count])
 
     const handleSubmit = (event) => {
         event.preventDefault()
+
+        setCount(count++);
 
         try {
             const provider = new GoogleAuthProvider();
             signInWithRedirect(firebaseAuth, provider);
         } catch (_error) {
+            setLoading(false);
             alert(_error);
-            console.log("_error", _error)
         }
     }
 
@@ -59,10 +68,10 @@ const SignInForm = () => {
                         Openはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
                     </p>
                 </div>
-                <form onSubmit={handleSubmit}>
-                    <button className={form.button_on_submit} type="submit">Googleではじめる</button>
-                </form>
             </div>
+            <form onSubmit={handleSubmit}>
+                <button className={form.button_on_submit} type="submit">Googleではじめる</button>
+            </form>
         </div>
     )
 }

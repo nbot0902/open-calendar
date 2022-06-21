@@ -70,9 +70,11 @@ export const postUser = async ({
 
     const userRef = doc(fireStore, "users", userId);
 
-    return Promise.all[
+    await Promise.all[
         setDoc(userRef, userData, { merge: true })
     ];
+
+    return { userId }
 }
 
 export const putUser = async ({

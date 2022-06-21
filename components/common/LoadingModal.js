@@ -1,6 +1,5 @@
 import React from 'react'
-import { useRouter } from "next/router"
-import { MutatingDots } from 'react-loader-spinner'
+import { StageSpinner } from "react-spinners-kit";
 import s from '../../styles/common.module.scss'
 
 const LoadingModal = ({
@@ -11,7 +10,7 @@ const LoadingModal = ({
             return (
                 <div className={s.loading_modal}>
                     <div className={s.loading_modal_spinner}>
-                        <MutatingDots color="#3c8cff" height={100} width={100} />
+                        <StageSpinner size={60} color={"#3c8cff"} loading={isLoading} />;
                     </div>
                 </div>
             )

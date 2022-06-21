@@ -62,10 +62,12 @@ export const postGroup = async ({
     const groupRef = doc(fireStore, "groups", groupId);
     const userGroupRef = doc(fireStore, "users", userId, "userGroups", groupId);
 
-    return Promise.all[
+    await Promise.all[
         setDoc(groupRef, groupData, { merge: true }),
         setDoc(userGroupRef, userGroupData, { merge: true })
     ];
+
+    return { groupId }
 }
 
 export const putGroup = async ({
