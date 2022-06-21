@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
+import toast from 'react-hot-toast';
 
 import InputRow from "./InputRow";
-import TextareaRow from "./TextareaRow";
 import form from '../../styles/form.module.scss';
 import profileStyle from '../../styles/profile.module.scss'
 import API from "../../api";
@@ -23,21 +21,29 @@ const NewProfileForm = ({
         backgroundImage: `url(${dummyIcon.src})`
     }
 
+    const _successCallback = () => {
+        return toast.success('ユーザー情報が保存されました')
+    }
+    const _failedCallback = () => {
+        return toast.error('ユーザー情報が保存に失敗しました')
+    }
+
     const _handleSubmit = (event) => {
         event.preventDefault()
 
         const name = event.target.name.value;
-        const description = event.target.description.value;
-        const groupName = event.target.groupName.value;
 
         const userData = {
             name,
-            groupName,
         };
 
         return Promise.all([
             API.putUser({ data: userData }),
-        ])
+        ]).then(() => {
+            _successCallback();
+        }).catch(() => {
+            _failedCallback();
+        })
 
     }
 

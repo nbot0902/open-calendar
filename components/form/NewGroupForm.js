@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FiCamera } from "react-icons/fi";
 import { useDispatch } from 'react-redux'
+
+import { FiCamera } from "react-icons/fi";
+import toast from 'react-hot-toast';
 
 import InputRow from "./InputRow";
 import TextareaRow from "./TextareaRow";
@@ -41,7 +43,10 @@ const NewGroupForm = ({
         const _groupId = group.groupId
 
         const _successCallback = () => {
-            return alert("カレンダー情報が保存されました");
+            return toast.success('ユーザー情報が保存されました')
+        }
+        const _failedCallback = () => {
+            return toast.error('ユーザー情報が保存に失敗しました')
         }
 
         return A.putGroupDispatch({
@@ -51,7 +56,9 @@ const NewGroupForm = ({
             newPicture
         }).then(() => {
             _successCallback()
-        });
+        }).catch(() => {
+            _failedCallback()
+        })
     }
 
     const _onChangePicture = (e) => {
@@ -74,7 +81,6 @@ const NewGroupForm = ({
                         <input className={profileStyle.profile_thumbnail_input} type="file" name="photo" id="filesend" multiple accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png" />
                     </div>
                 </label>
-
                 <InputRow defaultValue={groupName} labelName={"カレンダーのタイトル"} placeholder={"カレンダーのタイトルを入力してください"} uniqueId={"groupName"} type={"text"} />
                 <TextareaRow defaultValue={description} labelName={"カレンダーの紹介文"} uniqueId={"description"} placeholder={"カレンダーの紹介文を入力してください"} type={"text"} />
                 <button className={form.button_on_submit} type="submit">保存する</button>

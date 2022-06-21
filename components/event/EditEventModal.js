@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import toast from 'react-hot-toast';
 
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -33,9 +34,14 @@ const EditEventModal = ({
     const initialData = setHours(setMinutes(_params.startAt, 30), 12);
     const [date, setDate] = useState(initialData);
 
+
     const _successCallback = () => {
         onCloseModal({ data: null })
-        return alert("編集内容が保存されました");
+        return toast.success('予定が変更されました')
+    }
+    const _failedCallback = () => {
+        onCloseModal({ data: null })
+        return toast.error('予定の変更に失敗しました')
     }
 
     const _handleSubmit = (event) => {
@@ -51,7 +57,13 @@ const EditEventModal = ({
             startAt: date,
         };
 
-        return A.putEventDispatch({ dispatch, data, groupId }).then(() => _successCallback())
+        return A.putEventDispatch({ dispatch, data, groupId })
+            .then(() => {
+                _successCallback()
+            })
+            .catch(() => {
+                _failedCallback()
+            })
     }
 
     React.useEffect(() => {

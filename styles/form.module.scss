@@ -6,17 +6,30 @@
   width: 100%;
   
   &_head { 
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   &_caption {
+    width: 100%;
+
+    &_title {
+      margin-bottom: 16px;
+
+      &_text {
+        font-size: 16px;
+        font-weight: 600;
+        line-height: 1.25em;
+        color: $black_1;
+      }
+    }
+
     &_list {
       padding-left: 16px;
 
       &_item {
         width: 100%;
-        font-size: 12px;
-        font-weight: 600;
+        font-size: 16px;
+        font-weight: 400;
         line-height: 1.25em;
         list-style-type: disc;
         margin-bottom: 8px;

@@ -27,8 +27,11 @@ const NewEventModal = ({
     const _successCallback = () => {
         onCloseModal({ data: null })
         router.replace(`/u/${groupId}`);
-
-        return alert("予定が追加されました");
+        return toast.success('予定が追加されました')
+    }
+    const _failedCallback = () => {
+        onCloseModal({ data: null })
+        return toast.error('予定の追加に失敗しました')
     }
 
     const _handleSubmit = (event) => {
@@ -43,7 +46,13 @@ const NewEventModal = ({
             startAt: date
         };
 
-        return A.postEventDispatch({ dispatch, data, groupId }).then(() => _successCallback())
+        return A.postEventDispatch({ dispatch, data, groupId })
+            .then(() => {
+                _successCallback()
+            })
+            .catch(() => {
+                _failedCallback()
+            })
     }
 
     return React.useMemo(() => {

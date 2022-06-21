@@ -69,6 +69,24 @@ const SignInForm = ({
                     </p>
                 </div>
             </div>
+            <div className={form.form_caption}>
+                <div className={form.form_caption_title}>
+                    <h4 className={form.form_caption_title_text}>
+                        おすすめの使い方
+                    </h4>
+                </div>
+                <ul className={form.form_caption_list}>
+                    <li className={form.form_caption_list_item}>
+                        イベントの宣伝
+                    </li>
+                    <li className={form.form_caption_list_item}>
+                        オンライン交流会の宣伝
+                    </li>
+                    <li className={form.form_caption_list_item}>
+                        etc
+                    </li>
+                </ul>
+            </div>
             <form onSubmit={handleSubmit}>
                 <button className={form.button_on_submit} type="submit">Googleではじめる</button>
             </form>
