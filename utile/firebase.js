@@ -20,6 +20,7 @@ export const verifyAuthState = async ({
 
     const _isAuthRequired = authenticated.includes(url);
     const _isCalendar = url.indexOf('/u/') != -1;
+    const _isTop = url == "/" || url == '';
 
     const _query = {
         idToken: cookies.token ?? null
@@ -78,12 +79,11 @@ export const verifyAuthState = async ({
         };
     }
 
-    if (url == "/" || url == '') {
+    if (_isTop) {
         return redirectSignin;
     } else if (_isAuthRequired && _isSignOut) {
         return redirectSignin;
     } else if (_isCalendar) {
-
         // 誰でも見れる画面なので分岐
         if (!_isSignOut) {
             return await _getinitialUserData()
