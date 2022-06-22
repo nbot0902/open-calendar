@@ -24,6 +24,7 @@ export const getCurrentMonthScheduleDispatchs = async ({
 }
 
 export const getMonthScheduleDispatchs = async ({
+    dispatch,
     groupId = "",
     calendarId
 }) => {
