@@ -105,7 +105,7 @@ const CalendarScreen = props => {
         const isUpdate = await baseList.includes(calendarId);
 
         if (isUpdate) {
-            API.getMonthScheduleDispatchs({ groupId, calendarId });
+            API.getMonthScheduleDispatchs({ dispatch, groupId, calendarId });
             baseList.push(calendarId);
         }
     }
