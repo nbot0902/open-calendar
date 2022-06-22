@@ -132,9 +132,10 @@
     &_item {
       display: inline-block;
       width: auto;
+      font-size: 12px;
 
       a {
-        font-size: 16px;
+        font-size: 12px;
         font-weight: 600;
         color: $deep_green_1;
         margin: 0px 4px;
