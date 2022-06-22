@@ -78,7 +78,9 @@ export const verifyAuthState = async ({
         };
     }
 
-    if (_isAuthRequired && _isSignOut) {
+    if (url == "/") {
+        return redirectSignin;
+    } else if (_isAuthRequired && _isSignOut) {
         return redirectSignin;
     } else if (_isCalendar) {
 
