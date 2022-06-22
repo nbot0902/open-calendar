@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import form from '../../styles/form.module.scss'
@@ -66,7 +67,7 @@ const SignInForm = ({
                 </div>
                 <div className={form.form_description}>
                     <p className={form.form_description_text}>
-                        Openはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動を簡単にみんなに共有することができます。
+                        {C.SERVICE_NAME}はイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。<br />URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。
                     </p>
                 </div>
             </div>
@@ -88,6 +89,24 @@ const SignInForm = ({
                     </li>
                 </ul>
             </div>
+            <ul className={form.legal_list}>
+                <li className={form.legal_list_item}>
+                    <Link href={"/terms"}>
+                        利用規約
+                    </Link>
+                </li>
+                <li className={form.legal_list_item}>
+                    と
+                </li>
+                <li className={form.legal_list_item}>
+                    <Link href={"/privacy_policy"}>
+                        プライバシーポリシー
+                    </Link>
+                </li>
+                <li className={form.legal_list_item}>
+                    に同意して
+                </li>
+            </ul>
             <form onSubmit={handleSubmit}>
                 <button className={`${form.button_on_submit} ${form.is_google}`} type="submit">Googleではじめる</button>
             </form>
