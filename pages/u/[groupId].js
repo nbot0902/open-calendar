@@ -102,9 +102,10 @@ const CalendarScreen = props => {
     const _onActiveStartDateChange = async data => {
         const { activeStartDate } = data;
         const calendarId = await U.getCalendarId({ date: activeStartDate });
-        const isUpdate = await baseList.includes(calendarId);
+        const hasData = await baseList.includes(calendarId);
 
-        if (isUpdate) {
+
+        if (!hasData) {
             API.getMonthScheduleDispatchs({ dispatch, groupId, calendarId });
             baseList.push(calendarId);
         }

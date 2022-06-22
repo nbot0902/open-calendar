@@ -12,7 +12,6 @@ export const getCurrentMonthScheduleDispatchs = async ({
         const _group = await A.getGroupDispatch({ groupId, dispatch });
         const _calendarScheduleHash = await A.getCalendarSchedulesDispatch({ groupId, calendarId, dispatch });
 
-
         return {
             calendarId,
             group: _group,
