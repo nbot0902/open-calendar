@@ -20,7 +20,7 @@ export const verifyAuthState = async ({
 
     const _isAuthRequired = authenticated.includes(url);
     const _isCalendar = url.indexOf('/u/') != -1;
-    const _isTop = url == "/" || url == '';
+    const _isTop = url == "/" || url.indexOf('index') != -1;
 
     const _query = {
         idToken: cookies.token ?? null

@@ -52,11 +52,11 @@ const SideMenu = ({
                                     </h4>
                                 </div>
                                 <ul className={s.side_menu_list}>
-                                    <li className={`${s.side_menu_list_item} ${page == "/" ? s.is_active : ""}`}>
+                                    {false ? <li className={`${s.side_menu_list_item} ${page == "/" ? s.is_active : ""}`}>
                                         <Link className={s.side_menu_link} href={"/"}>
                                             トップページ
                                         </Link>
-                                    </li>
+                                    </li> : null}
                                     {isSignOut ? (
                                         <li className={`${s.side_menu_list_item} ${page == "/signin" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/signin"}>
