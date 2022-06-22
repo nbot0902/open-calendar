@@ -10,7 +10,7 @@ const LoadingModal = ({
             return (
                 <div className={s.loading_modal}>
                     <div className={s.loading_modal_spinner}>
-                        <StageSpinner size={60} color={"#3c8cff"} loading={isLoading} />;
+                        <StageSpinner size={60} color={"#51B8D5"} loading={isLoading} />;
                     </div>
                 </div>
             )

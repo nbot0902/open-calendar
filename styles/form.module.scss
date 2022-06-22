@@ -207,10 +207,11 @@
     width: 100%;
     height: 48px;
     margin: 24px auto 0px;
-    background-color: $blue_1;
+    background-color: $deep_green_1;
     border-radius: 8px;
 
     font-size: 16px;
+    font-weight: 600;
     line-height: 48px;
     color: $white_1;
 
@@ -220,7 +221,33 @@
     }
 
     &:hover {
-      background-color: $hover_blue_1;
+      background-color: $deep_green_1_hover;
+    }
+
+    &.is_google {
+      position: relative;
+      padding: 0px 40px;
+      color: $black_1;
+      border: 1px solid $border_1;
+      background-color: $white_1;
+
+      &::before {
+        display: block;
+        width: 48px;
+        height: 48px;
+        content: "";
+        background-image: url("../public/images/official/google_logo.png");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        position: absolute;
+        left: 0px;
+      }
+
+      &:hover {
+        background-color: $transparent;
+      }
     }
   }
 }

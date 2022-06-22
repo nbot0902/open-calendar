@@ -22,7 +22,7 @@
             border-radius: 12px;
             margin-bottom: 8px;
             padding: 24px;
-            box-shadow: 0 8px 16px 0 rgba(60, 140, 255, .15);
+            box-shadow: 0 8px 16px 0 rgba(55, 55, 55, .15);
             position: relative;
 
             .edit_button_list {
@@ -42,16 +42,16 @@
                     cursor: pointer;
 
                     font-size: 16px;
-                    color: $blue_1;
+                    color: $deep_green_1;
                     text-align: center;
                     line-height: 48px;
     
                     background-color: $white_1;
-                    border: 1px solid $blue_1;
+                    border: 1px solid $deep_green_1;
                     border-radius: 8px;
 
                     &:hover {
-                        background-color: $light_blue_1;
+                        background-color: $deep_green_3;
                     }
 
                     &.is_red {
@@ -62,7 +62,7 @@
                         border: 0px solid $red_1;
 
                         &:hover {
-                            background-color: $light_blue_1;
+                            background-color: $red_3;
                         }
                     }
                 }

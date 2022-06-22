@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import form from '../../styles/form.module.scss'
 import { firebaseAuth } from '../../firebase/firebase'
 import API from '../../api'
+import C from '../../constants'
 
 import {
     signOut,
@@ -61,7 +62,7 @@ const SignInForm = ({
         <div className={form.form_sign_in}>
             <div className={form.form_head}>
                 <div className={form.form_title}>
-                    <h3 className={form.form_title_text}>{"Openをはじめる"}</h3>
+                    <h3 className={form.form_title_text}>{`${C.SERVICE_NAME}をはじめる`}</h3>
                 </div>
                 <div className={form.form_description}>
                     <p className={form.form_description_text}>
@@ -88,7 +89,7 @@ const SignInForm = ({
                 </ul>
             </div>
             <form onSubmit={handleSubmit}>
-                <button className={form.button_on_submit} type="submit">Googleではじめる</button>
+                <button className={`${form.button_on_submit} ${form.is_google}`} type="submit">Googleではじめる</button>
             </form>
         </div>
     )

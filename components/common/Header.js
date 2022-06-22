@@ -60,7 +60,7 @@ const Header = ({
                             </div>
                             <div className={header.header_content_title}>
                                 <Link className={header.service_logo} href={isLogout ? "/" : "/mypage/articles"}>
-                                    <img className={header.service_logo_img} src="/images/logo.png" />
+                                    <img className={header.service_logo_img} src="/images/evecale_logo.png" />
                                 </Link>
                             </div>
                             {isSignOut ? (

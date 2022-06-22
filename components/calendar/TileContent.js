@@ -61,7 +61,7 @@ const TileContent = props => {
         };
 
         const _onClickTileContent = () => {
-            if (!hasEvents) {
+            if (!hasEvents || isOtherMonth) {
                 return null;
             }
 
@@ -71,7 +71,7 @@ const TileContent = props => {
         }
 
         return (
-            <div onClick={_onClickTileContent} className={`${s.calendar_content} ${isToday ? s.is_today : ""}`}>
+            <div onClick={_onClickTileContent} className={`${s.calendar_content} ${isToday ? s.is_today : hasEvents ? s.has_events : ""}`}>
                 <p className={`${s.calendar_day_text} ${isToday ? s.is_today : ""}`}>
                     {`${_formatDate(date)}`}
                 </p>

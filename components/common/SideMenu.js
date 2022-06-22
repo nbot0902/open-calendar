@@ -60,7 +60,7 @@ const SideMenu = ({
                                     {isSignOut ? (
                                         <li className={`${s.side_menu_list_item} ${page == "/signin" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/signin"}>
-                                                OPENをはじめる
+                                                {`${C.SERVICE_NAME}をはじめる`}
                                             </Link>
                                         </li>
                                     ) : null}

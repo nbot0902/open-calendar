@@ -10,14 +10,28 @@
         border-radius: 12px;
 
         &:hover {
-            background-color: $light_blue_1;
+            background-color: $orange_1;
+        }
+
+        &.is_disable {
+            &:hover {
+                background-color: $transparent;
+            }
         }
 
         &.is_today {
-            background-color: $blue_1;
+            border: 4px solid $orange_1;
 
             &:hover {
-                background-color: $blue_1;
+                background-color: $orange_1;
+            }
+        }
+
+        &.has_events {
+            background-color: $orange_2;
+
+            &:hover {
+                background-color: $orange_1;
             }
         }
     }
@@ -28,11 +42,11 @@
             color: $black_1;
 
             &.is_today {
-                color: $white_1;
+                color: $black_1;
             }
 
             &.is_other_month {
-                color: $gray_1;
+                color: $gray_3;
             }
         }
     }
@@ -46,7 +60,7 @@
         transition: 0.3s;
 
         &.is_blue {
-            background-color: $blue_1;
+            background-color: $black_1;
         }
 
         &.is_white {
@@ -110,7 +124,7 @@
                 background-position: center;
                 background-size: cover;
                 background-repeat: no-repeat;
-                background-color: $blue_1;
+                background-color: $deep_green_2;
             }
         }
 
@@ -135,7 +149,7 @@
         cursor: pointer;
 
         &:hover {
-            background-color: $light_blue_1;
+            background-color: $deep_green_3;
         }
 
         &_text {
@@ -143,7 +157,7 @@
             font-weight: 600;
             line-height: 16px;
             margin-left: 8px;
-            color: $blue_1;
+            color: $deep_green_1;
 
             svg {
                 display: inline;

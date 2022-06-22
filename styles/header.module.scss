@@ -38,7 +38,7 @@
       width: 32px;
       height: 32px;
       border-radius: 16px;
-      background-color: $light_blue_1;
+      background-color: $deep_green_2;
       overflow: hidden;
 
       &_img {
@@ -78,10 +78,10 @@
       width: 80px;
       height: 32px;
       border-radius: 8px;
-      background-color: $blue_1;
+      background-color: $deep_green_1;
 
       &:hover {
-        background-color: $hover_blue_1;
+        background-color: $deep_green_1_hover;
         cursor: pointer;
       }
 
@@ -147,13 +147,15 @@
     }
   }
 
-  .service_logo {
-    margin: 0px auto;
-
-    &_img {
-      display: inline-block;
-      height: 40px;
-      margin: 8px 0px;
+  .service {
+    &_logo {
+      margin: 0px auto;
+  
+      &_img {
+        display: inline-block;
+        height: 20px;
+        margin: 18px 0px;
+      }
     }
   }
 

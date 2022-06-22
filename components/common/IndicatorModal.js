@@ -10,7 +10,7 @@ const IndicatorModal = ({
             return (
                 <div className={s.indicator_modal}>
                     <div className={s.indicator_modal_spinner}>
-                        <StageSpinner size={60} color={"#fff"} loading={isLoading} />;
+                        <StageSpinner size={60} color={"#ffffff"} loading={isLoading} />;
                     </div>
                 </div>
             )

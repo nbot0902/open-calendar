@@ -5,23 +5,21 @@
 .body {
   width: 100%;
   position: relative;
-  background-color: $light_blue_1;
+  background-color: $gray_3;
 }
 
 .wrapper {
   width: 100%;
-  background-color: $gray_2;
+  background-color: $gray_3;
 }
 
 .container {
   width: 100%;
   max-width: 480px;
-  min-height: 800px;
   margin: 0px auto;
   padding: 56px 0px 0px 0px ;
 
   @include mq() {
-    min-height: 800px;
     padding: 56px 0px 0px 0px ;
   }
 }
@@ -224,12 +222,16 @@
   width: 56px;
   height: 56px;
   
-  background-color: $blue_1;
+  background-color: $deep_green_1;
   border-radius: 32px;
 
   position: fixed;
   bottom: 12px;
   right: 12px;
+
+  &:hover {
+    background-color: $deep_green_1_hover;
+  }
 
   &_inner {
     width: 56px;

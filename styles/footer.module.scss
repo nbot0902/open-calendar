@@ -64,7 +64,7 @@
       }
 
       &.is_active {
-        box-shadow: 0px -4px 0px 0px $blue_1 inset;
+        box-shadow: 0px -4px 0px 0px $black_1 inset;
       }
       &:last-child {
         margin-right: 0px;
@@ -101,7 +101,8 @@
   }
 
   &.landing_page {
-    box-shadow: 0 0px 0px 0 rgba(64, 64, 64, 0);
+    box-shadow: 0px 0px 0px 0px $black_1;
+
 
     .service_logo {  
       &_text {
