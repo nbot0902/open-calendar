@@ -61,7 +61,7 @@ const TileContent = props => {
         };
 
         const _onClickTileContent = () => {
-            if (!hasEvents || isOtherMonth) {
+            if (!hasEvents) {
                 return null;
             }
 
