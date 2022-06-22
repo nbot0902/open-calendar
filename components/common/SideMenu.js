@@ -110,7 +110,7 @@ const SideMenu = ({
                                 </div>
                                 <ul className={s.side_menu_list}>
                                     <li className={s.side_menu_list_item}>
-                                        <Link className={s.side_menu_link} href={"https://twitter.com/TCG63728721"} target={"_blank"}>
+                                        <Link className={s.side_menu_link} href={C.SUPPORT_URL} target={"_blank"}>
                                             運営について
                                         </Link>
                                     </li>
