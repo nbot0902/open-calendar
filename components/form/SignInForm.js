@@ -8,16 +8,9 @@ import API from '../../api'
 import C from '../../constants'
 
 import {
-    signOut,
-    signInWithEmailAndPassword,
     signInWithRedirect,
-    signInWithPopup,
-    onAuthStateChanged,
     getRedirectResult,
-    getAdditionalUserInfo,
     GoogleAuthProvider,
-    ActionCodeOperation,
-    getAuth
 } from "firebase/auth";
 
 const SignInForm = ({
@@ -30,7 +23,6 @@ const SignInForm = ({
         setLoading(true);
 
         const _getRedirectResult = async () => {
-
             const result = await getRedirectResult(firebaseAuth)
 
             if (result) {
@@ -47,7 +39,6 @@ const SignInForm = ({
 
     const handleSubmit = (event) => {
         event.preventDefault()
-
         setCount(count++);
 
         try {

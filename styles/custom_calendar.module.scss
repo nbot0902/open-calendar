@@ -20,6 +20,7 @@
         }
 
         &.is_today {
+            background-color: $orange_2;
             border: 4px solid $orange_1;
 
             &:hover {
@@ -64,7 +65,7 @@
         }
 
         &.is_white {
-            background-color: $white_1;
+            background-color: $black_1;
         }
     }
 }
