@@ -11,6 +11,7 @@ const Header = ({
     profile = {},
     group = {},
     isSignOut = false,
+    isSupportMode = false,
     page = "/"
 }) => {
     const { picture = null } = profile;
@@ -53,17 +54,19 @@ const Header = ({
                 <div className={header.header}>
                     <div className={header.header_container}>
                         <div className={header.header_content}>
-                            <div onClick={_onOpenSideMenu} className={header.user}>
-                                <div className={header.user_icon}>
-                                    <img className={header.user_icon_img} src={imageUrl} width={64} height={64} alt={userName} />
+                            {!isSupportMode ? (
+                                <div onClick={_onOpenSideMenu} className={header.user}>
+                                    <div className={header.user_icon}>
+                                        <img className={header.user_icon_img} src={imageUrl} width={64} height={64} alt={userName} />
+                                    </div>
                                 </div>
-                            </div>
+                            ) : null}
                             <div className={header.header_content_title}>
                                 <Link className={header.service_logo} href={isLogout ? "/" : "/mypage/articles"}>
                                     <img className={header.service_logo_img} src="/images/evecale_logo.png" />
                                 </Link>
                             </div>
-                            {isSignOut ? (
+                            {isSignOut && !isSupportMode ? (
                                 <div onClick={_onSignIn} className={header.action}>
                                     <div className={header.action_button}>
                                         <Link href={"/signin"}>

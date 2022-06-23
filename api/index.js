@@ -6,9 +6,11 @@ import * as auth from './auth';
 import * as calendar from './calendar';
 import * as schedule from './schedule';
 import * as dispatch from './dispatch';
+import * as support from './support';
 
 export default {
   ...dispatch,
+  ...support,
   ...auth,
   ...user,
   ...group,

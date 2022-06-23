@@ -18,7 +18,6 @@ const SignInScreen = props => {
 
   const [isLoading, setLoading] = React.useState(false)
 
-
   return (
     <Layout
       page={"/signin"}

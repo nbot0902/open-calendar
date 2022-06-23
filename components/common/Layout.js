@@ -7,13 +7,13 @@ const Layout = ({
     children,
     page,
     isSignOut,
+    isSupportMode = false,
     group,
     profile
 }) => {
     const heightStyle = {
         minHeight: window.innerHeight
     }
-
 
     const toastOptions = {
         success: {
@@ -37,9 +37,10 @@ const Layout = ({
             },
         },
     }
+
     return (
         <div className={common.body}>
-            <Header page={page} isSignOut={isSignOut} group={group} profile={profile} />
+            <Header page={page} isSignOut={isSignOut} isSupportMode={isSupportMode} group={group} profile={profile} />
             <div className={common.container} style={heightStyle}>
                 <div className={common.content}>
                     {children}

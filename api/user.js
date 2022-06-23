@@ -1,8 +1,6 @@
 import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
 import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit } from 'firebase/firestore';
 import { httpsCallableFunc } from '../firebase/firebase.js'
-import { signOut } from "firebase/auth";
-import nookies from 'nookies'
 
 import { getUserId } from "../utile/firebase";
 import U from '../utile';

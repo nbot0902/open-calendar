@@ -1,0 +1,11 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.support {
+    padding: 16px 0px;
+    
+    @include mq() {
+        padding: 16px 16px;
+    }
+}
