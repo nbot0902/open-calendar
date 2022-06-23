@@ -20,7 +20,7 @@ const EventListItem = ({
     const eventHash = event.hash ?? {};
     const data = eventHash[eventId] ?? {};
 
-    const { title = "", description = "", startAt = null, status = C.EVENT_STATE.ACTIVE } = data;
+    const { title = "未設定", description = "", startAt = null, status = C.EVENT_STATE.ACTIVE } = data;
     const _startAt = U.timestampToDateLabel({ timestamp: startAt })
 
     const isActive = C.EVENT_STATE.ACTIVE == status
@@ -66,11 +66,13 @@ const EventListItem = ({
                         {title}
                     </h4>
 
-                    <ul className={s.event_info_list} style={disableStyle}>
-                        <li className={s.event_info_list_item}>
-                            <p className={s.event_info_list_item_text}>開始: {_startAt}</p>
-                        </li>
-                    </ul>
+                    {_startAt ? (
+                        <ul className={s.event_info_list} style={disableStyle}>
+                            <li className={s.event_info_list_item}>
+                                <p className={s.event_info_list_item_text}>開始: {_startAt}</p>
+                            </li>
+                        </ul>
+                    ) : null}
 
                     {description ? (
                         <div className={s.event_description} style={disableStyle}>
