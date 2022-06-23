@@ -110,7 +110,7 @@ const MyEventList = ({
         return Number(b.scheduleId.replace(/-/g, '')) - Number(a.scheduleId.replace(/-/g, ''))
     });
 
-    const isVisible = schedules.length !== 0 && schedules.length !== 10 && schedules.length % 10 == 0;
+    const isVisible = schedules.length !== 0 && schedules.length % 10 == 0;
 
     const _onMoreLoadMyEvents = () => {
         const scheduleId = schedules[schedules.length - 1].scheduleId
