@@ -71,7 +71,10 @@ export const timestampToDate = ({ timestamp = null }) => {
     return new Date(timestamp);
 }
 
-export const timestampToDateLabel = ({ timestamp }) => {
+export const timestampToDateLabel = ({ timestamp = null }) => {
+    if (!timestamp) {
+        return ""
+    }
     const date = new Date(timestamp);
     const yyyy = `${date.getFullYear()}`;
 

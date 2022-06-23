@@ -20,7 +20,7 @@ const EventListItem = ({
     const eventHash = event.hash ?? {};
     const data = eventHash[eventId] ?? {};
 
-    const { title = "未設定", description = "", startAt = Date.now(), status = C.EVENT_STATE.ACTIVE } = data;
+    const { title = "", description = "", startAt = null, status = C.EVENT_STATE.ACTIVE } = data;
     const _startAt = U.timestampToDateLabel({ timestamp: startAt })
 
     const isActive = C.EVENT_STATE.ACTIVE == status
