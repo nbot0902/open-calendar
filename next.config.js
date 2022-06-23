@@ -19,3 +19,9 @@ module.exports = removeImports({
 module.exports = withSuperjson()({
   reactStrictMode: true,
 })
+
+module.exports = {
+  experimental: {
+    outputStandalone: true,
+  },
+}
