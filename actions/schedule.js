@@ -8,7 +8,6 @@ export const getScheduleEventsDispatch = async ({
     scheduleId = "",
     dispatch
 }) => {
-    console.log("dispatch", dispatch)
     const _calendarSchedule = await API.getCalendarSchedule({ groupId, calendarId, scheduleId })
 
     var _newHash = {};

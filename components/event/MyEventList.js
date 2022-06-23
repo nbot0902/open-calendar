@@ -6,13 +6,13 @@ import EventListItem from "./EventListItem";
 import U from '../../utile';
 import A from '../../actions';
 import events from '../../styles/my_events.module.scss';
+import common from '../../styles/common.module.scss';
 
 const MyEventListRow = ({
     dispatch,
     scheduleId,
     hash,
     groupId = "",
-    eventHash = {},
     onOpenEditModal = () => { }
 }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -50,21 +50,19 @@ const MyEventListRow = ({
             <ul className={events.my_event_list}>
                 {_scheduleEvents.map((_scheduleEvent, _) => {
                     const { eventId } = _scheduleEvent;
-                    const data = eventHash[eventId] ?? {};
-
                     return (
                         <EventListItem
-                            key={`my-event_event-list-item-${data.eventId}`}
+                            key={`my-event_event-list-item-${eventId}`}
                             groupId={groupId}
                             onOpenEditModal={onOpenEditModal}
                             isEdit={true}
-                            data={data}
+                            eventId={eventId}
                         />
                     )
                 })}
             </ul>
         )
-    }, [_scheduleEvents, _scheduleEvents.length, eventHash])
+    }, [_scheduleEvents, _scheduleEvents.length])
 
     return (
         <React.Fragment>
@@ -103,36 +101,52 @@ const MyEventList = ({
     onOpenEditModal = () => { }
 }) => {
     const dispatch = useDispatch()
-    const calendarState = useSelector((state) => state.calendar);
-    const eventState = useSelector((state) => state.event);
+    const myEventState = useSelector((state) => state.myEvent);
 
-    const eventHash = eventState.hash ?? {};
-    const calendarHash = calendarState.hash[groupId] ? calendarState.hash[groupId].hash : {};
-    const schedules = Object.keys(calendarHash).map((id) => calendarHash[id]);
+    const myEventHash = myEventState.hash[groupId] ? myEventState.hash[groupId].hash : {};
+    const schedules = Object.keys(myEventHash).map((id) => myEventHash[id]);
 
     schedules.sort((a, b) => {
         return Number(b.scheduleId.replace(/-/g, '')) - Number(a.scheduleId.replace(/-/g, ''))
     });
 
+    const isVisible = schedules.length !== 0 && schedules.length !== 10 && schedules.length % 10 == 0;
+
+    const _onMoreLoadMyEvents = () => {
+        const scheduleId = schedules[schedules.length - 1].scheduleId
+
+        return A.getMoreMyGroupSchedulesDispatch({ dispatch, groupId, scheduleId }).then(() => {
+            console.log("OK")
+        }).catch((_error) => {
+            console.log("_error", _error)
+        });
+    }
+
     return React.useMemo(() => {
         return (
-            <div className={events.my_event_rows}>
-                {schedules.map((item, index) => {
-                    return (
-                        <MyEventListRow
-                            key={`my-event_my-event-list-row-${item.scheduleId}`}
-                            dispatch={dispatch}
-                            eventHash={eventHash}
-                            groupId={groupId}
-                            onOpenEditModal={onOpenEditModal}
-                            hash={calendarHash}
-                            scheduleId={item.scheduleId}
-                        />
-                    )
-                })}
-            </div>
+            <React.Fragment>
+                <div className={events.my_event_rows}>
+                    {schedules.map((item, index) => {
+                        return (
+                            <MyEventListRow
+                                key={`my-event_my-event-list-row-${item.scheduleId}`}
+                                dispatch={dispatch}
+                                groupId={groupId}
+                                onOpenEditModal={onOpenEditModal}
+                                hash={myEventHash}
+                                scheduleId={item.scheduleId}
+                            />
+                        )
+                    })}
+                </div>
+                {isVisible ? <div className={events.my_event_more_load}>
+                    <div onClick={_onMoreLoadMyEvents} className={common.button}>
+                        もっと見る
+                    </div>
+                </div> : null}
+            </React.Fragment>
         );
-    }, [schedules, schedules.length, eventHash])
+    }, [schedules, schedules.length])
 };
 
 export default MyEventList;

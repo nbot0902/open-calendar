@@ -15,7 +15,7 @@ import MyEventList from "../../components/event/MyEventList";
 
 import events from '../../styles/my_events.module.scss';
 
-import API from "../../api";
+import A from "../../actions";
 import U from "../../utile";
 
 export const getServerSideProps = async (ctx) => {
@@ -63,13 +63,10 @@ const MyEventsScreen = props => {
 
     React.useLayoutEffect(() => {
         const asyncFunc = async () => {
-            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ dispatch, groupId });
+            const _data = await A.getMyGroupSchedulesDispatch({ dispatch, groupId });
             setIsInitialized(true);
         }
 
-        // if (!isInitialized) {
-        //     asyncFunc()
-        // }
         asyncFunc()
     }, [])
 

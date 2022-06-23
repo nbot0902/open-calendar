@@ -8,7 +8,7 @@ export const postEvent = async ({
     groupId = "",
     data = {}
 }) => {
-    const { startAt = new Date() } = data;
+    const { startAt = Date.now() } = data;
     const userId = await U.getUserId();
 
     const calendarId = U.getCalendarId({ date: startAt });
@@ -69,7 +69,7 @@ export const putEvent = async ({
     groupId = "",
     data = {}
 }) => {
-    const { startAt = new Date() } = data;
+    const { startAt = Date.now() } = data;
     const _startAt = U.timestampToDate({ timestamp: startAt })
 
     const calendarId = U.getCalendarId({ date: _startAt });
@@ -116,7 +116,7 @@ export const deleteEvent = async ({
     groupId = "",
     data = {}
 }) => {
-    const { eventId = "", startAt = new Date() } = data;
+    const { eventId = "", startAt = Date.now() } = data;
     const _startAt = U.timestampToDate({ timestamp: startAt })
 
     const calendarId = U.getCalendarId({ date: _startAt });

@@ -11,11 +11,15 @@ import C from '../../constants';
 import s from '../../styles/schedule.module.scss';
 
 const EventListItem = ({
-    data = {},
+    eventId = "",
     groupId = "",
     isEdit = false,
     onOpenEditModal = () => { }
 }) => {
+    const event = useSelector((state) => state.event);
+    const eventHash = event.hash ?? {};
+    const data = eventHash[eventId] ?? {};
+
     const { title = "未設定", description = "", startAt = Date.now(), status = C.EVENT_STATE.ACTIVE } = data;
     const _startAt = U.timestampToDateLabel({ timestamp: startAt })
 

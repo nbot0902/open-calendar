@@ -22,9 +22,6 @@ const ScheduleDetailModal = ({
     const calendarHash = calendar.hash && calendar.hash[groupId] ? calendar.hash[groupId].hash : null;
     const scheduleEvents = calendarHash != null && calendarHash[scheduleId] != null ? calendarHash[scheduleId].list : [];
 
-    const event = useSelector((state) => state.event);
-    const eventHash = event.hash ?? {};
-
     React.useEffect(() => {
         if (!initialized) {
             A.getEventsDispatch({ scheduleEvents, dispatch })
@@ -36,13 +33,12 @@ const ScheduleDetailModal = ({
         return (
             <ul className={s.schedule_list}>
                 {scheduleEvents.map((_event, _) => {
-                    const { eventId, scheduleId } = _event;
-                    const data = eventHash[eventId] ?? {};
+                    const { eventId } = _event;
 
                     return (
                         <EventListItem
-                            key={`schedule-detail-modal_event-list-item-${data.eventId}`}
-                            data={data}
+                            key={`schedule-detail-modal_event-list-item-${eventId}`}
+                            eventId={eventId}
                         />
                     )
                 })}

@@ -1,5 +1,6 @@
 import * as group from './group';
 import * as event from './event';
+import * as myEvent from './my_event';
 import * as session from './session';
 import * as user from './user';
 import * as auth from './auth';
@@ -15,6 +16,7 @@ export default {
   ...user,
   ...group,
   ...event,
+  ...myEvent,
   ...calendar,
   ...session,
   ...schedule,

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import toast from 'react-hot-toast';
-
 import { FiCamera } from "react-icons/fi";
-import toast from 'react-hot-toast';
 
 import InputRow from "./InputRow";
 import TextareaRow from "./TextareaRow";

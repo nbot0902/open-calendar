@@ -25,6 +25,7 @@ import { calendarSlice } from '../store/calendar'
 import { scheduleSlice } from '../store/schedule'
 import { eventSlice } from '../store/event'
 import { groupSlice } from '../store/group'
+import { myEventSlice } from '../store/my_event'
 
 const createNoopStorage = () => {
     return {
@@ -51,6 +52,7 @@ const rootReducer = combineReducers({
     calendar: calendarSlice.reducer,
     schedule: scheduleSlice.reducer,
     event: eventSlice.reducer,
+    myEvent: myEventSlice.reducer,
     group: groupSlice.reducer,
 })
 
@@ -66,6 +68,7 @@ const migrations = {
     calendar: migrationFunction,
     schedule: migrationFunction,
     event: migrationFunction,
+    myEvent: migrationFunction,
     group: migrationFunction,
 }
 
