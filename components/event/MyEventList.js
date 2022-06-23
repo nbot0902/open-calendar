@@ -74,7 +74,7 @@ const MyEventListRow = ({
                 </div>
                 <div className={events.my_event_row_head_caption}>
                     <p className={events.my_event_row_head_caption_text}>
-                        {_scheduleEvents.length}件の予定があります
+                        {_scheduleEvents.length}件のイベントがあります
                     </p>
                 </div>
 
