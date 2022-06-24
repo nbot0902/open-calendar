@@ -14,7 +14,9 @@ const firebaseConfig = {
 }
 
 export const _getFirebaseApp = () => {
-    return initializeApp(firebaseConfig);
+    if (getApps().length == 0) {
+        return initializeApp(firebaseConfig);
+    }
 };
 export const _getFirebaseAuth = () => {
     return getAuth(_getFirebaseApp());
