@@ -51,7 +51,6 @@ export const postGroup = async ({
     }
 
     const groupData = {
-        name: groupId,
         ...data,
         ...baseData,
     }
