@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "docker": "docker run -p 3000:3000 nextjs-docker"
   },
   "dependencies": {
     "@fullcalendar/core": "^5.11.0",
