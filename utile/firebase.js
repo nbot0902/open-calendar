@@ -23,6 +23,9 @@ const _getinitialUserData = async ({ verifiedUser }) => {
 export const verifyAuthState = async ({
     ctx
 }) => {
+    const cookies = nookies.get(ctx);
+    const url = ctx.req.url || '';
+
     const authenticated = [
         '/profile',
         '/calendar_setting',
@@ -31,12 +34,23 @@ export const verifyAuthState = async ({
     const supportScreens = [
         '/maintenance',
     ];
-
-    const cookies = nookies.get(ctx);
-    const url = ctx.req.url || '';
-
     const _isAuthRequired = authenticated.includes(url);
     const _isSupportScreen = supportScreens.includes(url);
+
+    const forcedTermination = {
+        redirect: {
+            destination: '/maintenance',
+            permanent: false,
+        },
+        props: {
+            type: "forcedTermination"
+        },
+    };
+
+    // 攻撃があった時の対策
+    if (true && !_isSupportScreen) {
+        return forcedTermination;
+    }
 
     const _isCalendar = url.indexOf('/u/') != -1;
     const _isTop = url == "/" || url.indexOf('index') != -1;
