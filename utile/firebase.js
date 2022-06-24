@@ -90,7 +90,7 @@ export const verifyAuthState = async ({
         return redirectMaintenance;
     } else if (_isSupportScreen) {
         // 非サポート状態 + サポート関連画面
-        return redirectSignin;
+        return empty;
     } else if (_isTop) {
         // トップページの場合
         return redirectSignin;
