@@ -42,10 +42,10 @@ const NewGroupForm = ({
         const _groupId = group.groupId
 
         const _successCallback = () => {
-            return toast.success('ユーザー情報が保存されました')
+            return toast.success('カレンダー情報が保存されました')
         }
         const _failedCallback = () => {
-            return toast.error('ユーザー情報が保存に失敗しました')
+            return toast.error('カレンダー情報が保存に失敗しました')
         }
 
         return A.putGroupDispatch({
