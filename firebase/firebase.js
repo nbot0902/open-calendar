@@ -12,9 +12,12 @@ const firebaseConfig = {
     // messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
     appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 }
+const _apps = getApps()
 
 export const _getFirebaseApp = () => {
-    return initializeApp(firebaseConfig);
+    if (_apps.length == 0) {
+        return initializeApp(firebaseConfig);
+    }
 };
 export const _getFirebaseAuth = () => {
     return getAuth(_getFirebaseApp());
