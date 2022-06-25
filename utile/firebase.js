@@ -48,17 +48,6 @@ export const verifyAuthState = async ({
                 type: "forcedTermination"
             },
         }
-    } else if (_isSupportScreen) {
-        // 非サポート状態 + サポート関連画面
-        return {
-            props: {
-                url: "",
-                isCalendar: false,
-                isSignOut: false,
-                isSupportMode: true,
-                idToken: null
-            }
-        };
     } else {
         const _isCalendar = url.indexOf('/u/') != -1;
         const _isTop = url == "/" || url.indexOf('index') != -1;
