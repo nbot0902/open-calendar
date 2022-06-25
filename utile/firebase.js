@@ -48,7 +48,7 @@ export const verifyAuthState = async ({
     };
 
     // 攻撃があった時の対策
-    if (true && !_isSupportScreen) {
+    if (false && !_isSupportScreen) {
         return forcedTermination;
     }
 
