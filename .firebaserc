@@ -1,8 +1,7 @@
 {
   "projects": {
     "default": "open-calendar-dev-ade59",
-        "dev": "open-calendar-dev-ade59",
-        "prod": "open-calendar-prod"
-
+    "dev": "open-calendar-dev-ade59",
+    "prod": "open-calendar-prod"
   }
 }
