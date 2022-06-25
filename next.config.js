@@ -21,6 +21,7 @@ module.exports = withSuperjson()({
 })
 
 module.exports = {
+  distDir: "./.next",
   experimental: {
     outputStandalone: true,
   },
