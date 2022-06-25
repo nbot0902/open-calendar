@@ -4,12 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "deploy": "next build && firebase deploy --only hosting",
-    "logs": "firebase functions:log",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build": "next build"
   },
   "dependencies": {
     "@fullcalendar/core": "^5.11.0",
