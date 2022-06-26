@@ -298,6 +298,14 @@
     color: $gray_1;
     margin-top: 8px;
   }
+
+  &_error {
+    width: 100%;
+    font-size: 12px;
+    font-weight: 600;
+    color: $red_1;
+    margin-top: 8px;
+  }
 }
 
 .textarea {

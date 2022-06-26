@@ -24,11 +24,33 @@ const NewEventForm = ({
         return (
             <div className={form.form_new_event}>
                 <div className={form.form_new_event_content}>
-                    <form onSubmit={handleSubmit}>
-                        <InputRow defaultValue={title} labelName={"予定のタイトル"} placeholder={"タイトルを入力してください"} uniqueId={"title"} type={"text"} />
-                        <DatePickerRow isDisabled={isDisabled} labelName={"開始"} date={date} setDate={setDate} />
-                        <TextareaRow defaultValue={description} labelName={"予定の詳細"} placeholder={"イベントの詳細を入力してください"} uniqueId={"description"} type={"text"} />
-                        <button className={form.button_on_submit} type="submit">保存する</button>
+                    <form>
+                        <InputRow
+                            defaultValue={title}
+                            labelName={"予定のタイトル"}
+                            placeholder={"タイトルを入力してください"}
+                            uniqueId={"title"}
+                            type={"text"}
+                        />
+                        <DatePickerRow
+                            isDisabled={isDisabled}
+                            labelName={"開始"}
+                            date={date}
+                            setDate={setDate}
+                        />
+                        <TextareaRow
+                            defaultValue={description}
+                            labelName={"予定の詳細"}
+                            placeholder={"イベントの詳細を入力してください"}
+                            uniqueId={"description"}
+                            type={"text"}
+                        />
+                        <button
+                            onClick={handleSubmit}
+                            className={form.button_on_submit}
+                        >
+                            保存する
+                        </button>
                     </form>
                 </div>
             </div>

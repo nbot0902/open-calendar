@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { useRouter } from "next/router";
 import Layout from "../../components/common/Layout"
 import InputRow from '../../components/form/InputRow'
-import TextareaRow from '../../components/form/TextareaRow'
+import IndicatorModal from '../../components/common/IndicatorModal'
 import NewGroupForm from '../../components/form/NewGroupForm'
 
 import PageHead from '../../components/common/PageHead'
@@ -18,6 +18,7 @@ export const getServerSideProps = async (ctx) => {
 
 const CalendarSettingScreen = props => {
     const router = useRouter()
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const {
         isSignOut = false,
@@ -39,8 +40,9 @@ const CalendarSettingScreen = props => {
             </Head>
             <div className={profileStyle.profile}>
                 <PageHead title={"カレンダー情報"} />
-                <NewGroupForm profile={profile} group={group} />
+                <NewGroupForm isLoading={isLoading} setIsLoading={setIsLoading} profile={profile} group={group} />
             </div>
+            <IndicatorModal isLoading={isLoading} />
         </Layout >
     )
 }

@@ -35,7 +35,6 @@ const MyEventsScreen = props => {
     const [isOpenEditModal, setIsOpenEditModal] = React.useState(false)
 
     const [params, setParams] = React.useState(false)
-
     const [isLoading, setIsLoading] = React.useState(false)
     const [isInitialized, setIsInitialized] = React.useState(false)
 
@@ -83,13 +82,35 @@ const MyEventsScreen = props => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <div className={events.my_event}>
-                <PageHead title={"登録した予定"} />
-                <MyEventList onOpenEditModal={_handleEditModal} groupId={groupId} />
+                <PageHead
+                    title={"登録した予定"}
+                />
+                <MyEventList
+                    onOpenEditModal={_handleEditModal}
+                    groupId={groupId}
+                />
             </div>
-            <Fab onClick={_handleNewModal} />
-            <IndicatorModal isLoading={isLoading} />
-            <EditEventModal params={params} groupId={group.groupId} onCloseModal={_handleEditModal} isActive={isOpenEditModal} />
-            <NewEventModal groupId={group.groupId} onCloseModal={_handleNewModal} isActive={isOpenNewModal} />
+            <Fab
+                onClick={_handleNewModal}
+            />
+            <IndicatorModal
+                isLoading={isLoading}
+            />
+            <EditEventModal
+                params={params}
+                isLoading={isLoading}
+                groupId={group.groupId}
+                isActive={isOpenEditModal}
+                setIsLoading={setIsLoading}
+                onCloseModal={_handleEditModal}
+            />
+            <NewEventModal
+                isActive={isOpenNewModal}
+                isLoading={isLoading}
+                groupId={group.groupId}
+                setIsLoading={setIsLoading}
+                onCloseModal={_handleNewModal}
+            />
         </Layout >
     )
 }

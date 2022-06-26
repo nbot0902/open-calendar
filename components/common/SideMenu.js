@@ -1,11 +1,12 @@
 import React from 'react'
 import nookies from 'nookies';
-import { useRouter } from "next/router";
 import Link from 'next/link';
+import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { firebaseAuth } from '../../firebase/firebase.js'
-import s from '../../styles/side_menu.module.scss'
+import { confirmAlert } from 'react-confirm-alert';
 
+import s from '../../styles/side_menu.module.scss'
 import API from '../../api'
 import C from '../../constants'
 
@@ -31,11 +32,33 @@ const SideMenu = ({
         opacity: isActive ? 1 : 0,
     }
 
+    const _onWithdrawal = () => {
+        return confirmAlert({
+            title: "本当に退会しますか？",
+            message: '一度、退会してしまうとユーザー情報を元に戻すことはできません',
+            buttons: [
+                {
+                    label: '閉じる',
+                    onClick: () => {
+                        return onVisible();
+                    }
+                },
+                {
+                    label: '退会する',
+                    onClick: () => {
+                        nookies.destroy(null, C.COOKIE_KEY);
+                        signOut(firebaseAuth);
+                        onVisible();
+                        return router.replace("/");
+                    }
+                }
+            ]
+        });
+    }
     const _onLogout = () => {
         nookies.destroy(null, C.COOKIE_KEY);
         signOut(firebaseAuth);
         onVisible();
-
         return router.replace("/");
     }
 
@@ -124,6 +147,13 @@ const SideMenu = ({
                                             プライバシーポリシー
                                         </Link>
                                     </li>
+                                    {!isSignOut ? (
+                                        <li className={s.side_menu_list_item}>
+                                            <a className={s.side_menu_link} onClick={_onWithdrawal}>
+                                                退会する
+                                            </a>
+                                        </li>
+                                    ) : null}
                                     {!isSignOut ? (
                                         <li className={s.side_menu_list_item}>
                                             <a className={s.side_menu_link} onClick={_onLogout}>

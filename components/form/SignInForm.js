@@ -37,7 +37,7 @@ const SignInForm = ({
         _getRedirectResult()
     }, [count])
 
-    const handleSubmit = (event) => {
+    const _handleSubmit = (event) => {
         event.preventDefault()
         setCount(count++);
 
@@ -98,8 +98,13 @@ const SignInForm = ({
                     に同意して
                 </li>
             </ul>
-            <form onSubmit={handleSubmit}>
-                <button className={`${form.button_on_submit} ${form.is_google}`} type="submit">Googleではじめる</button>
+            <form>
+                <button
+                    onClick={_handleSubmit}
+                    className={`${form.button_on_submit} ${form.is_google}`}
+                >
+                    Googleではじめる
+                </button>
             </form>
         </div>
     )

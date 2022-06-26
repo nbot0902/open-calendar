@@ -123,6 +123,16 @@ const MyEventList = ({
     }
 
     return React.useMemo(() => {
+        if (schedules.length == 0) {
+            return (
+                <div className={events.my_event}>
+                    <div className={events.my_event_empty}>
+                        <p className={events.my_event_empty_text}>現在登録されている予定はありません</p>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <React.Fragment>
                 <div className={events.my_event_rows}>
