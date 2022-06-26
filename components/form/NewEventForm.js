@@ -24,7 +24,7 @@ const NewEventForm = ({
         return (
             <div className={form.form_new_event}>
                 <div className={form.form_new_event_content}>
-                    <form>
+                    <form onSubmit={handleSubmit} >
                         <InputRow
                             defaultValue={title}
                             labelName={"予定のタイトル"}
@@ -46,8 +46,8 @@ const NewEventForm = ({
                             type={"text"}
                         />
                         <button
-                            onClick={handleSubmit}
                             className={form.button_on_submit}
+                            type={"submit"}
                         >
                             保存する
                         </button>

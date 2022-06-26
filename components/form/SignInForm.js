@@ -98,14 +98,12 @@ const SignInForm = ({
                     に同意して
                 </li>
             </ul>
-            <form>
-                <button
-                    onClick={_handleSubmit}
-                    className={`${form.button_on_submit} ${form.is_google}`}
-                >
-                    Googleではじめる
-                </button>
-            </form>
+            <button
+                onClick={_handleSubmit}
+                className={`${form.button_on_submit} ${form.is_google}`}
+            >
+                Googleではじめる
+            </button>
         </div>
     )
 }

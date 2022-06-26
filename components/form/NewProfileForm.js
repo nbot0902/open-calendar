@@ -59,13 +59,13 @@ const NewProfileForm = ({
     useEffect(() => { })
 
     return (
-        <form>
+        <form onSubmit={_handleSubmit}>
             <div className={profileStyle.profile_detail}>
                 {true ? <div className={profileStyle.profile_thumbnail} style={imageStyle}></div> : null}
                 <InputRow defaultValue={name} labelName={"ユーザー名"} placeholder={"ユーザー名を入力してください"} uniqueId={"name"} type={"text"} />
                 <button
-                    onClick={_handleSubmit}
                     className={form.button_on_submit}
+                    type={"submit"}
                 >
                     保存する
                 </button>

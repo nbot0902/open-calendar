@@ -144,9 +144,8 @@ const NewGroupForm = ({
     }
 
     return (
-        <form >
+        <form onSubmit={_handleSubmit}>
             <div className={profileStyle.profile_detail}>
-
                 <label onChange={_onChangePicture} className={profileStyle.profile_thumbnail} style={imageStyle}>
                     <div className={profileStyle.profile_thumbnail_inner}>
                         <div className={profileStyle.picture_icon}>
@@ -198,8 +197,8 @@ const NewGroupForm = ({
                     type={"text"}
                 />
                 <button
-                    onClick={_handleSubmit}
                     className={form.button_on_submit}
+                    type={"submit"}
                 >
                     保存する
                 </button>
