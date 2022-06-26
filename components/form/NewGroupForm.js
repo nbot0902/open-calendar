@@ -37,7 +37,6 @@ const NewGroupForm = ({
     const _getBlobUrl = (_newPicture) => {
         return window.URL.createObjectURL(_newPicture)
     }
-
     const imageStyle = {
         backgroundImage: newPicture ? `url(${_getBlobUrl(newPicture)})` : picture ? `url('${picture}')` : `url(${dummyIcon.src})`
     }
@@ -47,6 +46,9 @@ const NewGroupForm = ({
 
         if (isLoading) {
             return;
+        }
+        if (isTiktokUrlError || isTwitterUrlError || isOtherUrlError) {
+            return toast.error('入力内容に誤りがあります')
         }
 
         setIsLoading(true);
