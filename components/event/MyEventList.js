@@ -27,7 +27,6 @@ const MyEventListRow = ({
         opacity: isOpen ? 1 : 0,
         transition: "0.2s",
         marginBottom: isOpen ? "48px" : "0px",
-        overflow: "hidden"
     }
     const rowStyle = {
         borderBottom: isOpen ? "0px solid rgba(64, 64, 64, 0.25)" : "1px solid rgba(64, 64, 64, 0.25)"

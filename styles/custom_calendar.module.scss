@@ -71,6 +71,15 @@
 }
 
 .auther {
+    width: 100%;
+
+    &::after {
+        display: block;
+        width: 100%;
+        content: "";
+        clear: both;
+    }
+
     &_profile {
         width: 100%;
         margin-bottom: 8px;
@@ -134,6 +143,29 @@
             margin-left: 48px;
         }
 
+    }
+}
+
+.social {
+    width: 100%;
+    margin-top: 16px;
+
+    &_list {
+        &_item {
+            width: 33.3333%;
+            display: inline-block;
+            text-align: center;
+            border-right: 1px solid $border_1;
+
+            &:last-child {
+                border-right: 0px solid $border_1;
+            }
+
+            &_icon {
+                width: 100%;
+                padding: 4px;
+            }
+        }
     }
 }
 

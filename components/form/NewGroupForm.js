@@ -20,11 +20,6 @@ const NewGroupForm = ({
 }) => {
     const dispatch = useDispatch();
 
-    const [newPicture, setNewPicture] = React.useState();
-    const [isTwitterUrlError, setIsTwitterError] = React.useState(false);
-    const [isTiktokUrlError, setIsTiktokError] = React.useState(false);
-    const [isOtherUrlError, setIsOtherUrlError] = React.useState(false);
-
     const {
         picture = null,
         groupName = "",
@@ -34,11 +29,18 @@ const NewGroupForm = ({
         otherUrl = "",
     } = group;
 
+    const [newPicture, setNewPicture] = React.useState(null);
+    const [isTwitterUrlError, setIsTwitterError] = React.useState(false);
+    const [isTiktokUrlError, setIsTiktokError] = React.useState(false);
+    const [isOtherUrlError, setIsOtherUrlError] = React.useState(false);
+
     const _getBlobUrl = (_newPicture) => {
         return window.URL.createObjectURL(_newPicture)
     }
     const imageStyle = {
-        backgroundImage: newPicture ? `url(${_getBlobUrl(newPicture)})` : picture ? `url('${picture}')` : `url(${dummyIcon.src})`
+        backgroundImage: picture ?
+            `url('${picture}')` : newPicture ?
+                `url(${_getBlobUrl(newPicture)})` : `url(${dummyIcon.src})`
     }
 
     const _handleSubmit = (event) => {
@@ -153,14 +155,30 @@ const NewGroupForm = ({
                         <div className={profileStyle.picture_icon}>
                             <div className={profileStyle.picture_icon_inner}>
                                 <div className={profileStyle.picture_icon_image}>
-                                    <FiCamera color={"#3c8cff"} size={16} />
+                                    <FiCamera
+                                        color={"#3c8cff"}
+                                        size={16}
+                                    />
                                 </div>
                             </div>
                         </div>
-                        <input className={profileStyle.profile_thumbnail_input} type="file" name="photo" id="filesend" multiple accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png" />
+                        <input
+                            className={profileStyle.profile_thumbnail_input}
+                            type="file"
+                            name="photo"
+                            id="filesend"
+                            multiple
+                            accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png"
+                        />
                     </div>
                 </label>
-                <InputRow defaultValue={groupName} labelName={"カレンダーのタイトル"} placeholder={"カレンダーのタイトルを入力してください"} uniqueId={"groupName"} type={"text"} />
+                <InputRow
+                    defaultValue={groupName}
+                    labelName={"カレンダーのタイトル"}
+                    placeholder={"カレンダーのタイトルを入力してください"}
+                    uniqueId={"groupName"}
+                    type={"text"}
+                />
                 <TextareaRow
                     defaultValue={description}
                     labelName={"カレンダーの紹介文"}
