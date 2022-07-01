@@ -1,13 +1,14 @@
 import React from 'react'
 import nookies from 'nookies';
 import Link from 'next/link';
+import { useDispatch } from 'react-redux'
 import { useRouter } from "next/router";
 import { signOut } from "firebase/auth";
 import { firebaseAuth } from '../../firebase/firebase.js'
 import { confirmAlert } from 'react-confirm-alert';
 
 import s from '../../styles/side_menu.module.scss'
-import API from '../../api'
+import A from '../../actions'
 import C from '../../constants'
 
 const SideMenu = ({
@@ -19,6 +20,8 @@ const SideMenu = ({
     isSignOut = false
 }) => {
     const router = useRouter();
+    const dispatch = useDispatch();
+
     const { groupId = "" } = group;
 
     const sideMenuStyle = {
@@ -46,6 +49,7 @@ const SideMenu = ({
                 {
                     label: '退会する',
                     onClick: () => {
+                        A.deleteUserDispatch({ dispatch, groupId })
                         nookies.destroy(null, C.COOKIE_KEY);
                         signOut(firebaseAuth);
                         onVisible();

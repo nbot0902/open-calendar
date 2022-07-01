@@ -1,3 +1,8 @@
+import nookies from 'nookies';
+import { useRouter } from "next/router";
+import { signOut } from "firebase/auth";
+import { firebaseApp, fireStore, firebaseAuth, firebaseStorage } from '../firebase/firebase.js'
+
 import { httpsCallableFunc } from '../firebase/firebase.js'
 import axios from "axios";
 import API from '../api';
@@ -15,6 +20,11 @@ export const sessionLoginApi = async ({
     } catch (_error) {
         throw Error(_error)
     }
+}
+
+export const logout = () => {
+    nookies.destroy(null, C.COOKIE_KEY);
+    signOut(firebaseAuth);
 }
 
 export const postNewTokenApi = async () => {

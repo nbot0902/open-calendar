@@ -35,7 +35,8 @@ const CalendarScreen = props => {
     const {
         isSignOut = false,
         group = {},
-        profile = {}
+        profile = {},
+        userStatus = C.USER_STATE.NOT_SET
     } = props;
 
     const today = new Date();

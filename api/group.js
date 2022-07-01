@@ -95,3 +95,20 @@ export const putGroup = async ({
     return setDoc(_groupRef, _groupData, { merge: true })
 }
 
+export const deleteGroup = async ({
+    groupId = "",
+}) => {
+    const _groupRef = doc(fireStore, "groups", groupId);
+    const _updateAt = Date.now();
+
+    const _baseData = {
+        status: C.GROUP_STATE.INACTIVE,
+        updateAt: _updateAt,
+    }
+    const _groupData = {
+        ..._baseData,
+    }
+
+    return setDoc(_groupRef, _groupData, { merge: true })
+}
+

@@ -115,6 +115,7 @@ export const verifyAuthState = async ({
                         ...baseProps,
                         group: _data.group,
                         profile: _data.profile,
+                        userStatus: _data.profile.status
                     },
                 };
             } else {
@@ -134,6 +135,7 @@ export const verifyAuthState = async ({
                     ...baseProps,
                     group: _data.group,
                     profile: _data.profile,
+                    userStatus: _data.profile.status
                 },
             };
         }
