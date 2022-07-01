@@ -34,19 +34,28 @@ const EditEventModal = ({
     const initialData = setHours(setMinutes(_params.startAt, 30), 12);
     const [date, setDate] = useState(initialData);
 
-
     const _successCallback = () => {
-        onCloseModal({ data: null })
-        return toast.success('予定が変更されました')
+        return setTimeout(() => {
+            setIsLoading(false);
+            router.replace(`/u/${groupId}`);
+            return toast.success('予定が変更されました')
+        }, 2000)
     }
     const _failedCallback = () => {
-        onCloseModal({ data: null })
-        return toast.error('予定の変更に失敗しました')
+        return setTimeout(() => {
+            setIsLoading(false);
+            return toast.error('予定の変更に失敗しました')
+        }, 2000)
     }
 
     const _handleSubmit = (event) => {
         event.preventDefault()
 
+        if (isLoading) {
+            return;
+        }
+
+        setIsLoading(true);
         const title = event.target.title.value;
         const description = event.target.description.value;
 
@@ -57,11 +66,13 @@ const EditEventModal = ({
             startAt: date,
         };
 
+        onCloseModal({ data: null })
+
         return A.putEventDispatch({ dispatch, data, groupId })
             .then(() => {
                 _successCallback()
             })
-            .catch(() => {
+            .catch((_error) => {
                 _failedCallback()
             })
     }

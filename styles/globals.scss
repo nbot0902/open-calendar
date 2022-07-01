@@ -25,6 +25,7 @@ a:hover {
 }
 .react-confirm-alert-body h1{
   font-size: 20px;
+  text-align: center !important;
   color: #202129;
   line-height: 1.25em;
   margin-bottom: 12px;
@@ -37,7 +38,7 @@ a:hover {
 }
 .react-confirm-alert-overlay {
   background-color:rgba(64, 64, 64, 0.5) !important;
-  z-index: 100;
+  z-index: 1000 !important
 }
 .react-confirm-alert-button-group > button {
   width: 50%;

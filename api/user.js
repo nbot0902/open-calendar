@@ -1,4 +1,5 @@
 import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
+import { deleteUser } from 'firebase/auth';
 import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit } from 'firebase/firestore';
 import { httpsCallableFunc } from '../firebase/firebase.js'
 
@@ -21,7 +22,6 @@ export const getUsers = async () => {
                 }
             })
         )
-
         return {
             userId,
             users

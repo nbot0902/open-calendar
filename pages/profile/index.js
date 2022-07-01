@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from "next/router";
 import Layout from "../../components/common/Layout"
-import InputRow from '../../components/form/InputRow'
-import TextareaRow from '../../components/form/TextareaRow'
+import IndicatorModal from "../../components/common/IndicatorModal"
 import NewProfileForm from '../../components/form/NewProfileForm'
 
 import PageHead from '../../components/common/PageHead'
@@ -18,6 +17,7 @@ export const getServerSideProps = async (ctx) => {
 
 const ProfileScreen = props => {
     const router = useRouter()
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const {
         isSignOut = false,
@@ -39,7 +39,15 @@ const ProfileScreen = props => {
             </Head>
             <div className={profileStyle.profile}>
                 <PageHead title={"ユーザーの設定"} />
-                <NewProfileForm profile={profile} group={group} />
+                <NewProfileForm
+                    isLoading={isLoading}
+                    setIsLoading={setIsLoading}
+                    profile={profile}
+                    group={group}
+                />
+                <IndicatorModal
+                    isLoading={isLoading}
+                />
             </div>
         </Layout >
     )

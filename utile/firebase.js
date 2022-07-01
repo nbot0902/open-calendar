@@ -37,83 +37,96 @@ export const verifyAuthState = async ({
     const _isAuthRequired = authenticated.includes(url);
     const _isSupportScreen = supportScreens.includes(url);
 
-    const forcedTermination = {
-        redirect: {
-            destination: '/maintenance',
-            permanent: false,
-        },
-        props: {
-            type: "forcedTermination"
-        },
-    };
-
     // 攻撃があった時の対策
-    if (true && !_isSupportScreen) {
-        return forcedTermination;
-    }
+    if (false && !_isSupportScreen) {
+        return {
+            redirect: {
+                destination: '/maintenance',
+                permanent: false,
+            },
+            props: {
+                type: "forcedTermination"
+            },
+        }
+    } else {
+        const _isCalendar = url.indexOf('/u/') != -1;
+        const _isTop = url == "/" || url.indexOf('index') != -1;
 
-    const _isCalendar = url.indexOf('/u/') != -1;
-    const _isTop = url == "/" || url.indexOf('index') != -1;
+        const _support = await API.getSupport();
+        const _isSupportMode = _support.isMaintenance && !_isSupportScreen;
 
-    const _support = await API.getSupport();
-    const _isSupportMode = _support.isMaintenance && !_isSupportScreen;
+        const _query = {
+            idToken: cookies.token ?? null
+        }
 
-    const _query = {
-        idToken: cookies.token ?? null
-    }
+        const _verifiedUser = _query.idToken ? await API.getVerifiedUser({ query: _query }) : null;
+        const _isSignOut = !cookies.token || !_verifiedUser;
 
-    const _verifiedUser = _query.idToken ? await API.getVerifiedUser({ query: _query }) : null;
-    const _isSignOut = !cookies.token || !_verifiedUser;
+        const baseProps = {
+            url: url,
+            isCalendar: _isCalendar,
+            isSignOut: _isSignOut,
+            isSupportMode: _support.isMaintenance,
+            idToken: cookies.token ?? null
+        };
+        const redirectSignin = {
+            redirect: {
+                destination: '/signin',
+                permanent: false,
+            },
+            props: {
+                ...baseProps,
+                type: "redirectSignin"
+            },
+        };
+        const redirectMaintenance = {
+            redirect: {
+                destination: '/maintenance',
+                permanent: false,
+            },
+            props: {
+                ...baseProps,
+                type: "redirectMaintenance"
+            },
+        };
+        const empty = {
+            props: {
+                ...baseProps,
+                type: "empty"
+            },
+        };
 
-    const baseProps = {
-        url: url,
-        isCalendar: _isCalendar,
-        isSignOut: _isSignOut,
-        isSupportMode: _support.isMaintenance,
-        idToken: cookies.token ?? null
-    };
-    const redirectSignin = {
-        redirect: {
-            destination: '/signin',
-            permanent: false,
-        },
-        props: {
-            ...baseProps,
-            type: "redirectSignin"
-        },
-    };
-    const redirectMaintenance = {
-        redirect: {
-            destination: '/maintenance',
-            permanent: false,
-        },
-        props: {
-            ...baseProps,
-            type: "redirectMaintenance"
-        },
-    };
-    const empty = {
-        props: {
-            ...baseProps,
-            type: "empty"
-        },
-    };
+        if (_isSupportMode) {
+            // サポート状態 + サポート関連画面
+            return redirectMaintenance;
+        } else if (_isTop) {
+            // トップページの場合
+            return redirectSignin;
+        } else if (_isAuthRequired && _isSignOut) {
+            // サインアウト状態 + ログイン後のページの場合
+            return redirectSignin;
+        } else if (_isCalendar) {
+            if (!_isSignOut) {
+                // サインイン状態 + カレンダー
+                const _data = await _getinitialUserData({ verifiedUser: _verifiedUser })
 
-    if (_isSupportMode) {
-        // サポート状態 + サポート関連画面
-        return redirectMaintenance;
-    } else if (_isSupportScreen) {
-        // 非サポート状態 + サポート関連画面
-        return empty;
-    } else if (_isTop) {
-        // トップページの場合
-        return redirectSignin;
-    } else if (_isAuthRequired && _isSignOut) {
-        // サインアウト状態 + ログイン後のページの場合
-        return redirectSignin;
-    } else if (_isCalendar) {
-        if (!_isSignOut) {
-            // サインイン状態 + カレンダー
+                return {
+                    props: {
+                        ...baseProps,
+                        group: _data.group,
+                        profile: _data.profile,
+                    },
+                };
+            } else {
+                // サインアウト状態
+                // カレンダーは誰でも見れる画面なので分岐
+                return empty;
+            }
+        } else if (_isSignOut) {
+            // サインアウト状態
+            return empty;
+        } else {
+            // サインイン状態
             const _data = await _getinitialUserData({ verifiedUser: _verifiedUser })
 
             return {
@@ -123,25 +136,7 @@ export const verifyAuthState = async ({
                     profile: _data.profile,
                 },
             };
-        } else {
-            // サインアウト状態
-            // カレンダーは誰でも見れる画面なので分岐
-            return empty;
         }
-    } else if (_isSignOut) {
-        // サインアウト状態
-        return empty;
-    } else {
-        // サインイン状態
-        const _data = await _getinitialUserData({ verifiedUser: _verifiedUser })
-
-        return {
-            props: {
-                ...baseProps,
-                group: _data.group,
-                profile: _data.profile,
-            },
-        };
     }
 };
 

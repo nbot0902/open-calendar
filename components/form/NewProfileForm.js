@@ -10,6 +10,8 @@ import dummyIcon from '../../public/images/dummy_icon_for_user.png'
 
 const NewProfileForm = ({
     profile = {},
+    isLoading = false,
+    setIsLoading = () => { },
     group = {},
 }) => {
     const { picture = null, name = "" } = profile;
@@ -22,20 +24,27 @@ const NewProfileForm = ({
     }
 
     const _successCallback = () => {
-        return toast.success('ユーザー情報が保存されました')
+        return setTimeout(() => {
+            setIsLoading(false);
+            return toast.success('ユーザー情報が保存されました')
+        }, 2000)
     }
     const _failedCallback = () => {
-        return toast.error('ユーザー情報が保存に失敗しました')
+        return setTimeout(() => {
+            setIsLoading(false);
+            return toast.error('ユーザー情報が保存に失敗しました')
+        }, 2000)
     }
 
     const _handleSubmit = (event) => {
         event.preventDefault()
+        if (isLoading) {
+            return;
+        }
+        setIsLoading(true);
 
-        const name = event.target.name.value;
-
-        const userData = {
-            name,
-        };
+        const _name = event.target.name.value;
+        const userData = { name: _name };
 
         return Promise.all([
             API.putUser({ data: userData }),
@@ -54,7 +63,12 @@ const NewProfileForm = ({
             <div className={profileStyle.profile_detail}>
                 {true ? <div className={profileStyle.profile_thumbnail} style={imageStyle}></div> : null}
                 <InputRow defaultValue={name} labelName={"ユーザー名"} placeholder={"ユーザー名を入力してください"} uniqueId={"name"} type={"text"} />
-                <button className={form.button_on_submit} type="submit">保存する</button>
+                <button
+                    className={form.button_on_submit}
+                    type={"submit"}
+                >
+                    保存する
+                </button>
             </div>
         </form>
     )

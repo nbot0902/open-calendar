@@ -15,6 +15,8 @@ import API from '../../api'
 
 const NewEventModal = ({
     onCloseModal = () => null,
+    setIsLoading = () => null,
+    isLoading = false,
     isActive = false,
     groupId = ""
 }) => {
@@ -26,17 +28,27 @@ const NewEventModal = ({
     const [date, setDate] = useState(initialData);
 
     const _successCallback = () => {
-        onCloseModal({ data: null })
-        router.replace(`/u/${groupId}`);
-        return toast.success('予定が追加されました')
+        return setTimeout(() => {
+            setIsLoading(false);
+            router.replace(`/u/${groupId}`);
+            return toast.success('予定が追加されました')
+        }, 2000)
     }
     const _failedCallback = () => {
-        onCloseModal({ data: null })
-        return toast.error('予定の追加に失敗しました')
+        return setTimeout(() => {
+            setIsLoading(false);
+            return toast.error('予定の追加に失敗しました')
+        }, 2000)
     }
 
     const _handleSubmit = (event) => {
         event.preventDefault()
+
+        if (isLoading) {
+            return;
+        }
+
+        setIsLoading(true);
 
         const title = event.target.title.value;
         const description = event.target.description.value;
@@ -47,11 +59,13 @@ const NewEventModal = ({
             startAt: date
         };
 
+        onCloseModal({ data: null })
+
         return A.postEventDispatch({ dispatch, data, groupId })
             .then(() => {
                 _successCallback()
             })
-            .catch(() => {
+            .catch((_error) => {
                 _failedCallback()
             })
     }

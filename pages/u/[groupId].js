@@ -9,6 +9,7 @@ import Layout from "../../components/common/Layout";
 import AutherProfile from '../../components/calendar/AutherProfile'
 import CustomFullCalendar from '../../components/calendar/CustomFullCalendar'
 import TileContent from '../../components/calendar/TileContent.js'
+import IndicatorModal from '../../components/common/IndicatorModal.js'
 
 import Fab from '../../components/common/Fab'
 import NewEventModal from '../../components/event/NewEventModal'
@@ -43,6 +44,7 @@ const CalendarScreen = props => {
     const dispatch = useDispatch();
 
     const [params, setParams] = React.useState()
+    const [isLoading, setIsLoading] = React.useState(false)
 
     const [isInitialized, setIsInitialized] = React.useState(false)
     const [isActiveEventModal, setIsActiveEventModal] = React.useState(false)
@@ -134,10 +136,32 @@ const CalendarScreen = props => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <AutherProfile groupId={groupId} />
-            <CustomFullCalendar today={today} groupId={groupId} getTileClass={_getTileClass} getTileContent={_getTileContent} onActiveStartDateChange={_onActiveStartDateChange} />
-            {!isSignOut ? <Fab onClick={_handleEventModal} /> : null}
-            <NewEventModal groupId={groupId} isActive={isActiveEventModal} onCloseModal={_handleEventModal} />
-            <ScheduleDetailModal params={params} groupId={groupId} isActive={isActiveScheduleDetailModal} onCloseModal={_handleScheduleModal} />
+            <CustomFullCalendar
+                today={today}
+                groupId={groupId}
+                getTileClass={_getTileClass}
+                getTileContent={_getTileContent}
+                onActiveStartDateChange={_onActiveStartDateChange}
+            />
+            {!isSignOut ? <Fab
+                onClick={_handleEventModal}
+            /> : null}
+            <NewEventModal
+                groupId={groupId}
+                isLoading={isLoading}
+                isActive={isActiveEventModal}
+                onCloseModal={_handleEventModal}
+                setIsLoading={setIsLoading}
+            />
+            <ScheduleDetailModal
+                params={params}
+                groupId={groupId}
+                isActive={isActiveScheduleDetailModal}
+                onCloseModal={_handleScheduleModal}
+            />
+            <IndicatorModal
+                isLoading={isLoading}
+            />
         </Layout>
     )
 }

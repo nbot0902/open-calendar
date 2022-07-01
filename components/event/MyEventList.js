@@ -27,7 +27,6 @@ const MyEventListRow = ({
         opacity: isOpen ? 1 : 0,
         transition: "0.2s",
         marginBottom: isOpen ? "48px" : "0px",
-        overflow: "hidden"
     }
     const rowStyle = {
         borderBottom: isOpen ? "0px solid rgba(64, 64, 64, 0.25)" : "1px solid rgba(64, 64, 64, 0.25)"
@@ -123,6 +122,16 @@ const MyEventList = ({
     }
 
     return React.useMemo(() => {
+        if (schedules.length == 0) {
+            return (
+                <div className={events.my_event}>
+                    <div className={events.my_event_empty}>
+                        <p className={events.my_event_empty_text}>現在登録されている予定はありません</p>
+                    </div>
+                </div>
+            )
+        }
+
         return (
             <React.Fragment>
                 <div className={events.my_event_rows}>

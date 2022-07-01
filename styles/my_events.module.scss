@@ -3,7 +3,13 @@
 @import "./foundation/mixin";
 
 .my_event {
-    padding: 16px 0px;
+    padding: 24px 0px;
+
+    &_empty {
+        &_text {
+            text-align: center;
+        }
+    }
     
     @include mq() {
         padding: 16px 16px;
