@@ -13,6 +13,49 @@ import API from "../../api";
 
 import dummyIcon from '../../public/images/dummy_icon_for_group.png'
 
+const IconInput = ({
+    picture = null,
+    newPicture = null,
+    onChangePicture = () => { }
+}) => {
+    const _getBlobUrl = (_newPicture) => {
+        return window.URL.createObjectURL(_newPicture)
+    }
+
+    return React.useMemo(() => {
+        const imageStyle = {
+            backgroundImage: newPicture ?
+                `url(${_getBlobUrl(newPicture)})` : picture ?
+                    `url('${picture}')` : `url(${dummyIcon.src})`
+        }
+
+        return (
+            <label onChange={onChangePicture} className={profileStyle.profile_thumbnail} style={imageStyle}>
+                <div className={profileStyle.profile_thumbnail_inner}>
+                    <div className={profileStyle.picture_icon}>
+                        <div className={profileStyle.picture_icon_inner}>
+                            <div className={profileStyle.picture_icon_image}>
+                                <FiCamera
+                                    color={"#3c8cff"}
+                                    size={16}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <input
+                        className={profileStyle.profile_thumbnail_input}
+                        type="file"
+                        name="photo"
+                        id="filesend"
+                        multiple
+                        accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png"
+                    />
+                </div>
+            </label>
+        )
+    }, [picture, newPicture])
+}
+
 const NewGroupForm = ({
     group = {},
     isLoading = false,
@@ -33,15 +76,6 @@ const NewGroupForm = ({
     const [isTwitterUrlError, setIsTwitterError] = React.useState(false);
     const [isTiktokUrlError, setIsTiktokError] = React.useState(false);
     const [isOtherUrlError, setIsOtherUrlError] = React.useState(false);
-
-    const _getBlobUrl = (_newPicture) => {
-        return window.URL.createObjectURL(_newPicture)
-    }
-    const imageStyle = {
-        backgroundImage: picture ?
-            `url('${picture}')` : newPicture ?
-                `url(${_getBlobUrl(newPicture)})` : `url(${dummyIcon.src})`
-    }
 
     const _handleSubmit = (event) => {
         event.preventDefault()
@@ -150,28 +184,11 @@ const NewGroupForm = ({
     return (
         <form onSubmit={_handleSubmit}>
             <div className={profileStyle.profile_detail}>
-                <label onChange={_onChangePicture} className={profileStyle.profile_thumbnail} style={imageStyle}>
-                    <div className={profileStyle.profile_thumbnail_inner}>
-                        <div className={profileStyle.picture_icon}>
-                            <div className={profileStyle.picture_icon_inner}>
-                                <div className={profileStyle.picture_icon_image}>
-                                    <FiCamera
-                                        color={"#3c8cff"}
-                                        size={16}
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <input
-                            className={profileStyle.profile_thumbnail_input}
-                            type="file"
-                            name="photo"
-                            id="filesend"
-                            multiple
-                            accept=".jpg,.gif,.png,image/gif,image/jpeg,image/png"
-                        />
-                    </div>
-                </label>
+                <IconInput
+                    picture={picture}
+                    newPicture={newPicture}
+                    onChangePicture={_onChangePicture}
+                />
                 <InputRow
                     defaultValue={groupName}
                     labelName={"カレンダーのタイトル"}
