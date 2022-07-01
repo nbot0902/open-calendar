@@ -15,6 +15,22 @@ export const getUserDispatch = async ({
     dispatch(userSlice.actions.getItem({ hash: _newHash }));
 }
 
+export const deleteUserDispatch = async ({
+    groupId,
+    dispatch
+}) => {
+    try {
+        dispatch(userSlice.actions.postLoading());
+
+        return Promise.all([
+            API.deleteUser(),
+            API.deleteGroup({ groupId })
+        ])
+    } catch (_error) {
+        dispatch(userSlice.actions.postFailed());
+    }
+}
+
 export const cleanUserState = ({
     dispatch
 }) => {

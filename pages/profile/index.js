@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from "next/router";
+import { signOut } from "firebase/auth";
+
 import Layout from "../../components/common/Layout"
 import IndicatorModal from "../../components/common/IndicatorModal"
 import NewProfileForm from '../../components/form/NewProfileForm'
@@ -10,6 +12,7 @@ import profileStyle from '../../styles/profile.module.scss'
 import form from '../../styles/form.module.scss'
 import API from "../../api";
 import U from "../../utile";
+import C from "../../constants";
 
 export const getServerSideProps = async (ctx) => {
     return U.verifyAuthState({ ctx });
@@ -22,7 +25,8 @@ const ProfileScreen = props => {
     const {
         isSignOut = false,
         group = {},
-        profile = {}
+        profile = {},
+        userStatus = C.USER_STATE.NOT_SET
     } = props;
 
     return (

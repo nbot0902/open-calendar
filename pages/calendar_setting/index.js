@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
 import { useRouter } from "next/router";
+import toast from 'react-hot-toast';
+
 import Layout from "../../components/common/Layout"
 import InputRow from '../../components/form/InputRow'
 import IndicatorModal from '../../components/common/IndicatorModal'
@@ -11,6 +13,7 @@ import profileStyle from '../../styles/profile.module.scss'
 import form from '../../styles/form.module.scss'
 import API from "../../api";
 import U from "../../utile";
+import C from "../../constants";
 
 export const getServerSideProps = async (ctx) => {
     return U.verifyAuthState({ ctx });
@@ -23,8 +26,17 @@ const CalendarSettingScreen = props => {
     const {
         isSignOut = false,
         group = {},
-        profile = {}
+        profile = {},
+        userStatus = C.USER_STATE.NOT_SET
     } = props;
+
+    React.useLayoutEffect(() => {
+        if (userStatus !== C.USER_STATE.ACTIVE) {
+            API.logout();
+            router.replace("/");
+            toast.error('このユーザーは退会しています')
+        }
+    }, [])
 
     return (
         <Layout

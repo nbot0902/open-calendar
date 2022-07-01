@@ -17,6 +17,7 @@ import events from '../../styles/my_events.module.scss';
 
 import A from "../../actions";
 import U from "../../utile";
+import C from "../../constants";
 
 export const getServerSideProps = async (ctx) => {
     return U.verifyAuthState({ ctx });
@@ -26,7 +27,8 @@ const MyEventsScreen = props => {
     const {
         isSignOut = false,
         group = {},
-        profile = {}
+        profile = {},
+        userStatus = C.USER_STATE.NOT_SET
     } = props;
 
     const dispatch = useDispatch();

@@ -1,5 +1,4 @@
 import { firebaseApp, fireStore, firebaseAuth } from '../firebase/firebase.js'
-import { deleteUser } from 'firebase/auth';
 import { query, doc, collection, getDoc, getDocs, setDoc, orderBy, where, limit } from 'firebase/firestore';
 import { httpsCallableFunc } from '../firebase/firebase.js'
 
@@ -88,6 +87,22 @@ export const putUser = async ({
     const userData = {
         ...data,
         ...baseData,
+    }
+
+    const userRef = doc(fireStore, "users", userId);
+
+    return Promise.all[
+        setDoc(userRef, userData, { merge: true })
+    ];
+}
+
+export const deleteUser = async () => {
+    const userId = await U.getUserId();
+    const updateAt = Date.now();
+
+    const userData = {
+        status: C.USER_STATE.INACTIVE,
+        updateAt: updateAt,
     }
 
     const userRef = doc(fireStore, "users", userId);

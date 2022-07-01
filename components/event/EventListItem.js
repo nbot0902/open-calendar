@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import { useSelector } from 'react-redux'
 import { FiEdit2 } from "react-icons/fi";

@@ -4,6 +4,7 @@ import Layout from "../../components/common/Layout";
 import SignInForm from '../../components/form/SignInForm'
 import IndicatorModal from '../../components/common/IndicatorModal'
 import U from "../../utile";
+import C from "../../constants";
 
 export const getServerSideProps = async (ctx) => {
   return U.verifyAuthState({ ctx });
@@ -13,7 +14,8 @@ const SignInScreen = props => {
   const {
     isSignOut = false,
     group = {},
-    profile = {}
+    profile = {},
+    userStatus = C.USER_STATE.NOT_SET
   } = props;
 
   const [isLoading, setLoading] = React.useState(false)
