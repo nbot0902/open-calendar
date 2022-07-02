@@ -26,9 +26,9 @@ const TopScreen = props => {
       profile={profile}
     >
       <CustomHead
-        pageTitle={"イベコレ | トップページ"}
+        pageTitle={"イベカレ | トップページ"}
         pagePath={"/"}
-        pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+        pageDescription={"イベカレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
       />
       <div className={lp.design}>
       </div>
