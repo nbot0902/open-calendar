@@ -16,7 +16,7 @@ import NewEventModal from '../../components/event/NewEventModal'
 import ScheduleDetailModal from '../../components/schedule/ScheduleDetailModal'
 
 import API from "../../api";
-import A from "../../actions";
+import C from "../../constants";
 import U from "../../utile";
 
 export const getServerSideProps = async (ctx) => {
