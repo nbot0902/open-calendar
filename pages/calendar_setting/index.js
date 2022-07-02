@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
+import CustomHead from '../../components/common/CustomHead'
 import { useRouter } from "next/router";
 import toast from 'react-hot-toast';
 
@@ -45,11 +45,11 @@ const CalendarSettingScreen = props => {
             group={group}
             profile={profile}
         >
-            <Head>
-                <title>イベコレ | カレンダー情報</title>
-                <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <CustomHead
+                pageTitle={"イベコレ | カレンダー情報"}
+                pagePath={"/calendar_setting"}
+                pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+            />
             <div className={profileStyle.profile}>
                 <PageHead title={"カレンダー情報"} />
                 <NewGroupForm isLoading={isLoading} setIsLoading={setIsLoading} profile={profile} group={group} />

@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import CustomHead from '../../components/common/CustomHead'
 import Layout from "../../components/common/Layout";
 import PageHead from '../../components/common/PageHead'
 import s from '../../styles/privacy_policy.module.scss'
@@ -23,11 +24,11 @@ const PrivacyPolicyScreen = props => {
       group={group}
       profile={profile}
     >
-      <Head>
-        <title>イベコレ | プライバシーポリシー</title>
-        <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CustomHead
+        pageTitle={"イベコレ | プライバシーポリシー"}
+        pagePath={"/privacy_policy"}
+        pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+      />
       <div className={s.privacy_policy}>
         <PageHead title={"プライバシーポリシー"} description={`${C.SERVICE_NAME}運営者（以下「当方」といいます）は、当方の運営する${C.SERVICE_NAME}サービス及びこれに付随するサービス（以下「本サービス」といいます）について、ユーザーの個人情報の取扱いに関する事項を定めるとともに、個人情報の保護に関する法律（以下「個人情報保護法」といいます）を遵守するために、以下のとおり、このプライバシーポリシー（以下「本ポリシー」といいます）に従い、適切な取扱い及び保護に努めます。ユーザーは、本サービスを利用するにあたり、本ポリシーをお読みいただき、同意していただく必要があります。`} />
         <div className={s.privacy_policy_row}>

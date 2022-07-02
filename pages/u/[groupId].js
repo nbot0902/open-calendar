@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
+import CustomHead from '../../components/common/CustomHead'
 import Holidays from 'date-holidays'
 
 import { useRouter } from "next/router";
@@ -131,11 +131,11 @@ const CalendarScreen = props => {
             group={group}
             profile={profile}
         >
-            <Head>
-                <title>イベコレ | カレンダー</title>
-                <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <CustomHead
+                pageTitle={"イベコレ | カレンダー"}
+                pagePath={"/"}
+                pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+            />
             <AutherProfile groupId={groupId} />
             <CustomFullCalendar
                 today={today}

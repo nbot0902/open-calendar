@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from 'next/head'
+import CustomHead from '../../components/common/CustomHead'
 import Layout from "../../components/common/Layout";
 import SignInForm from '../../components/form/SignInForm'
 import IndicatorModal from '../../components/common/IndicatorModal'
@@ -27,11 +27,11 @@ const SignInScreen = props => {
       group={group}
       profile={profile}
     >
-      <Head>
-        <title>イベコレ | ログイン</title>
-        <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CustomHead
+        pageTitle={"イベコレ | ログイン"}
+        pagePath={"/signin"}
+        pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+      />
       <SignInForm setLoading={setLoading} />
       <IndicatorModal isLoading={isLoading} />
     </Layout>

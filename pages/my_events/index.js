@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
-import Head from 'next/head'
-
-import { useRouter } from "next/router";
 import { useSelector, useDispatch } from 'react-redux'
+import CustomHead from '../../components/common/CustomHead'
 
 import Layout from "../../components/common/Layout";
 import PageHead from '../../components/common/PageHead';
@@ -78,11 +76,11 @@ const MyEventsScreen = props => {
             group={group}
             profile={profile}
         >
-            <Head>
-                <title>イベコレ | カレンダー</title>
-                <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <CustomHead
+                pageTitle={"イベコレ | カレンダー"}
+                pagePath={"/my_events"}
+                pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+            />
             <div className={events.my_event}>
                 <PageHead
                     title={"登録した予定"}
