@@ -37,9 +37,9 @@ const ProfileScreen = props => {
             profile={profile}
         >
             <CustomHead
-                pageTitle={"イベコレ | ユーザーの設定"}
+                pageTitle={"イベカレ | ユーザーの設定"}
                 pagePath={"/profile"}
-                pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+                pageDescription={"イベカレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
             />
             <div className={profileStyle.profile}>
                 <PageHead title={"ユーザーの設定"} />

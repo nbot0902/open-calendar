@@ -28,9 +28,9 @@ const SignInScreen = props => {
       profile={profile}
     >
       <CustomHead
-        pageTitle={"イベコレ | ログイン"}
+        pageTitle={"イベカレ | ログイン"}
         pagePath={"/signin"}
-        pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+        pageDescription={"イベカレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
       />
       <SignInForm setLoading={setLoading} />
       <IndicatorModal isLoading={isLoading} />

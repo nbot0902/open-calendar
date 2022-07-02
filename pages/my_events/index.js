@@ -77,9 +77,9 @@ const MyEventsScreen = props => {
             profile={profile}
         >
             <CustomHead
-                pageTitle={"イベコレ | カレンダー"}
+                pageTitle={"イベカレ | カレンダー"}
                 pagePath={"/my_events"}
-                pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+                pageDescription={"イベカレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
             />
             <div className={events.my_event}>
                 <PageHead
