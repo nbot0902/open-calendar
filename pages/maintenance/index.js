@@ -27,10 +27,11 @@ const MaintenanceScreen = props => {
       group={group}
       profile={profile}
     >
-      <CustomHead>
-        <title>イベコレ | メンテナンス</title>
-        <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-      </CustomHead>
+      <CustomHead
+        pageTitle={"イベコレ | メンテナンス"}
+        pagePath={"/maintenance"}
+        pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+      />
       <div className={s.support}>
         <PageHead title={"メンテナンス"} description={`${C.SERVICE_NAME}は現在、システムメンテナンスを実施しております。大変ご迷惑をおかけして申し訳ございません。メンテナンス作業が終了次第サービスを再開いたします。今しばらくお待ちください。`} />
         <Link href={C.SUPPORT_URL} target={"_blank"}>

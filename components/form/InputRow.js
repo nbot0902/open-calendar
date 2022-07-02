@@ -15,7 +15,7 @@ const InputRow = ({
     return (
         <div className={form.form_row}>
             <label className={form.label} htmlFor={uniqueId}>{labelName}</label>
-            <input onChange={onChange} defaultValue={defaultValue} className={form.input} placeholder={placeholder} type={type} id={uniqueId} name={uniqueId} required={required} maxLength={100} />
+            <input maxLength={50} onChange={onChange} defaultValue={defaultValue} className={form.input} placeholder={placeholder} type={type} id={uniqueId} name={uniqueId} required={required} maxLength={100} />
             {caption ? <p className={form.input_caption}>{caption}</p> : null}
             {isError ? <p className={form.input_error}>{errorText}</p> : null}
         </div>

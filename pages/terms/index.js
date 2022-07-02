@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import CustomHead from '../../components/common/CustomHead'
 import Layout from "../../components/common/Layout";
 import PageHead from '../../components/common/PageHead'
 import s from '../../styles/terms.module.scss'
@@ -23,11 +23,11 @@ const TermsScreen = props => {
       group={group}
       profile={profile}
     >
-      <Head>
-        <title>イベコレ | オーガナイザー利用規約</title>
-        <meta name="description" content="イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CustomHead
+        pageTitle={"イベコレ | 利用規約"}
+        pagePath={"/terms"}
+        pageDescription={"イベコレはイベントや交流会の予定をカレンダーで簡単に共有できるWebサイトです。URLを友達に送ったりSNSのプロフィールに貼ることで、自分の活動をみんなに簡単に共有することができます。"}
+      />
       <div className={s.terms}>
         <PageHead title={"利用規約"} description={`この利用規約(以下「本規約」といいます)には、${C.SERVICE_NAME}運営者以下「当方」といいます)が「${C.SERVICE_NAME}」という名称(理由の如何を問わずサービスの名称又は内容が変更された場合は、当該変更後のサービスを含みます)で提供するサービス(以下「本サービス」といいます)のご利用にあたり、オーガナイザー(第2条に定義します)の皆様に遵守していただかなければならない事項及び当方とオーガナイザーの皆様との間の権利義務関係が定められております。本サービスをオーガナイザーとしてご利用になる方は、本規約に同意する前に、必ず全文お読み下さいますようお願いいたします。`} />
         <div className={s.terms_row}>
