@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { confirmAlert } from 'react-confirm-alert';
+import toast from 'react-hot-toast';
 
+import { confirmAlert } from 'react-confirm-alert';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux'
 import { FiEdit2 } from "react-icons/fi";
 
@@ -15,6 +17,7 @@ const EventListItem = ({
     isEdit = false,
     onOpenEditModal = () => { }
 }) => {
+    const dispatch = useDispatch();
     const event = useSelector((state) => state.event);
     const eventHash = event.hash ?? {};
     const data = eventHash[eventId] ?? {};
@@ -47,8 +50,8 @@ const EventListItem = ({
                 {
                     label: '中止する',
                     onClick: () => {
-                        return A.deleteEventDispatch({ groupId, data: eventData }).then(() => {
-                            alert("この予定を中止になりました")
+                        return A.deleteEventDispatch({ groupId, data, dispatch }).then(() => {
+                            return toast.success('この予定を中止になりました')
                         });
                     }
                 }
