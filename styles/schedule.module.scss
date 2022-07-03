@@ -130,6 +130,15 @@
                             line-height: 1.5em;
                             font-weight: 400;
                             color: $black_1;
+
+                            a {
+                                color: $deep_green_1;
+
+                                &:hover {
+                                    color: $deep_green_1_hover;
+                                    text-decoration: underline;
+                                }
+                            }
                         }
 
                         // display: -webkit-box;
