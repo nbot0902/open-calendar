@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
+import reactStringReplace from "react-string-replace"
 
 import { confirmAlert } from 'react-confirm-alert';
 import { useDispatch } from 'react-redux';
@@ -78,7 +79,12 @@ const EventListItem = ({
 
                     {description ? (
                         <div className={s.event_description} style={disableStyle}>
-                            <p className={s.event_description_text}>{description}</p>
+                            <p
+                                className={s.event_description_text}
+                                dangerouslySetInnerHTML={{
+                                    __html: U.textToLink({ description })
+                                }}
+                            />
                         </div>
                     ) : null}
                 </div>
