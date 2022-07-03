@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+import { useRouter } from "next/router";
 import { useDispatch } from 'react-redux';
+
 import toast from 'react-hot-toast';
 
 import setHours from "date-fns/setHours";
@@ -15,12 +17,14 @@ import U from '../../utile'
 const EditEventModal = ({
     onCloseModal = () => null,
     setIsLoading = () => null,
+    isLoading = false,
     isActive = false,
     eventId = "",
     groupId = "",
     params = {}
 }) => {
     const dispatch = useDispatch();
+    const router = useRouter()
 
     const {
         startAt = new Date(),
