@@ -60,21 +60,24 @@ const AutherProfile = ({
                                     <li className={s.social_list_item}>
                                         <Link href={twitterUrl ? twitterUrl : "#"}>
                                             <div className={s.social_list_item_icon}>
-                                                <FaTwitter color={twitterUrl ? "#51B8D5" : "#DCDCDC"} size={20} />
+                                                <FaTwitter color={twitterUrl ? "#51B8D5" : "#DCDCDC"} size={24} />
+                                                <p className={s.social_list_item_icon_label} style={{ color: twitterUrl ? "#363636" : "#DCDCDC" }} >Twitter</p>
                                             </div>
                                         </Link>
                                     </li>
                                     <li className={s.social_list_item}>
                                         <Link href={tiktokUrl ? tiktokUrl : "#"}>
                                             <div className={s.social_list_item_icon}>
-                                                <FaTiktok color={tiktokUrl ? "#51B8D5" : "#DCDCDC"} size={20} />
+                                                <FaTiktok color={tiktokUrl ? "#51B8D5" : "#DCDCDC"} size={24} />
+                                                <p className={s.social_list_item_icon_label} style={{ color: tiktokUrl ? "#363636" : "#DCDCDC" }} >TikTok</p>
                                             </div>
                                         </Link>
                                     </li>
                                     <li className={s.social_list_item}>
                                         <Link href={otherUrl ? otherUrl : "#"}  >
                                             <div className={s.social_list_item_icon}>
-                                                <MdWeb color={otherUrl ? "#51B8D5" : "#DCDCDC"} size={20} />
+                                                <MdWeb color={otherUrl ? "#51B8D5" : "#DCDCDC"} size={24} />
+                                                <p className={s.social_list_item_icon_label} style={{ color: otherUrl ? "#363636" : "#DCDCDC" }} >Webサイト</p>
                                             </div>
                                         </Link>
                                     </li>
