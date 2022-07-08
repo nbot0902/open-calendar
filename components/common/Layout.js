@@ -49,7 +49,7 @@ const Layout = ({
             <Toaster
                 toastOptions={toastOptions}
             />
-            <Footer />
+            <Footer group={group} />
         </div>
     )
 }
