@@ -15,6 +15,7 @@ const AutherProfile = ({
     const calendarUrl = window.location.href ?? "";
     const { hash = {}, isLoading = false } = useSelector((state) => state.group)
     const data = hash[groupId] ?? {}
+
     const {
         picture = null,
         groupName = "私のカレンダー",
