@@ -8,6 +8,7 @@ import TextareaRow from "./TextareaRow";
 import form from '../../styles/form.module.scss';
 import profileStyle from '../../styles/profile.module.scss'
 import A from "../../actions";
+import C from "../../constants";
 import U from "../../utile";
 import API from "../../api";
 
@@ -64,6 +65,7 @@ const NewGroupForm = ({
     const dispatch = useDispatch();
 
     const {
+        plan = C.GROUP_PLAN.NORMAL,
         picture = null,
         groupName = "",
         description = "",
@@ -115,7 +117,7 @@ const NewGroupForm = ({
         const _failedCallback = () => {
             return setTimeout(() => {
                 setIsLoading(false);
-                return toast.error('カレンダー情報が保存に失敗しました')
+                return toast.error('カレンダー情報の保存に失敗しました')
             }, 2000)
         }
 
@@ -181,6 +183,27 @@ const NewGroupForm = ({
         }
     }
 
+
+    const _getPlanLabel = () => {
+        if (plan == C.GROUP_PLAN.NORMAL) {
+            return "通常";
+        }
+        if (plan == C.GROUP_PLAN.SILVER) {
+            return "シルバー";
+        }
+        if (plan == C.GROUP_PLAN.GOLD) {
+            return "ゴールド";
+        }
+        if (plan == C.GROUP_PLAN.PREMIUM) {
+            return "プレミアム";
+        }
+        if (plan == C.GROUP_PLAN.INVITE) {
+            return "プレミアム";
+        }
+
+        return "通常";
+    }
+
     return (
         <form onSubmit={_handleSubmit}>
             <div className={profileStyle.profile_detail}>
@@ -188,6 +211,13 @@ const NewGroupForm = ({
                     picture={picture}
                     newPicture={newPicture}
                     onChangePicture={_onChangePicture}
+                />
+                <InputRow
+                    disabled={"disabled"}
+                    defaultValue={_getPlanLabel()}
+                    labelName={"プラン"}
+                    uniqueId={"plan"}
+                    type={"text"}
                 />
                 <InputRow
                     defaultValue={groupName}

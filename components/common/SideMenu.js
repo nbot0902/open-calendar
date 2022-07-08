@@ -19,6 +19,17 @@ const SideMenu = ({
     isActive = false,
     isSignOut = false
 }) => {
+    const {
+        picture = null,
+        name = ""
+    } = profile;
+
+    const {
+        plan = C.GROUP_PLAN.NORMAL
+    } = group;
+
+    const isNormal = plan == C.GROUP_PLAN.NORMAL;
+
     const router = useRouter();
     const dispatch = useDispatch();
 
@@ -117,15 +128,19 @@ const SideMenu = ({
                                     <ul className={s.side_menu_list}>
                                         <li className={`${s.side_menu_list_item} ${page == "/profile" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/profile"}>
-                                                ユーザー情報
+                                                ユーザーの設定
                                             </Link>
                                         </li>
                                         <li className={`${s.side_menu_list_item} ${page == "/calendar_setting" ? s.is_active : ""}`}>
                                             <Link className={s.side_menu_link} href={"/calendar_setting"}>
-                                                カレンダー情報
+                                                カレンダーの設定
                                             </Link>
                                         </li>
-
+                                        {!isNormal ? <li className={`${s.side_menu_list_item} ${page == "/advertisement" ? s.is_active : ""}`}>
+                                            <Link className={s.side_menu_link} href={"/advertisement"}>
+                                                バナーの設定
+                                            </Link>
+                                        </li> : null}
                                     </ul>
                                 </div>
                             ) : null}

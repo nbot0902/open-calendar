@@ -28,6 +28,7 @@ export const verifyAuthState = async ({
 
     const authenticated = [
         '/profile',
+        '/advertisement',
         '/calendar_setting',
         '/my_events'
     ];

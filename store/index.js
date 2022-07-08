@@ -26,6 +26,7 @@ import { scheduleSlice } from '../store/schedule'
 import { eventSlice } from '../store/event'
 import { groupSlice } from '../store/group'
 import { myEventSlice } from '../store/my_event'
+import { advertisementSlice } from '../store/advertisement'
 
 const createNoopStorage = () => {
     return {
@@ -54,6 +55,7 @@ const rootReducer = combineReducers({
     event: eventSlice.reducer,
     myEvent: myEventSlice.reducer,
     group: groupSlice.reducer,
+    advertisement: advertisementSlice.reducer,
 })
 
 const migrationFunction = (state) => {
@@ -70,6 +72,7 @@ const migrations = {
     event: migrationFunction,
     myEvent: migrationFunction,
     group: migrationFunction,
+    advertisement: migrationFunction,
 }
 
 const persistConfig = {

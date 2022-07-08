@@ -8,6 +8,7 @@ import * as calendar from './calendar';
 import * as schedule from './schedule';
 import * as dispatch from './dispatch';
 import * as support from './support';
+import * as advertisement from './advertisement';
 
 export default {
   ...dispatch,
@@ -20,4 +21,5 @@ export default {
   ...calendar,
   ...session,
   ...schedule,
+  ...advertisement
 };

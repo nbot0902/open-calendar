@@ -18,3 +18,21 @@ export const getResizedFile = ({
         )
     })
 }
+export const getResizedBottomBannerFile = ({
+    file
+}) => {
+    return new Promise((resolve) => {
+        return Resizer.imageFileResizer(
+            file,
+            480,
+            96,
+            'JPEG',
+            100,
+            0,
+            (uri) => {
+                resolve(uri)
+            },
+            'file'
+        )
+    })
+}

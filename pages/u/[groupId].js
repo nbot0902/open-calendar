@@ -115,7 +115,11 @@ const CalendarScreen = props => {
 
     React.useLayoutEffect(() => {
         const asyncFunc = async () => {
-            const _calendarData = await API.getCurrentMonthScheduleDispatchs({ dispatch, groupId });
+            await Promise.all([
+                API.getCurrentMonthScheduleDispatchs({ dispatch, groupId }),
+                A.getAdvertisementDispatch({ dispatch, groupId })
+            ])
+
             setIsInitialized(true);
         }
 

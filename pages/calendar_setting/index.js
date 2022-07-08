@@ -4,13 +4,11 @@ import { useRouter } from "next/router";
 import toast from 'react-hot-toast';
 
 import Layout from "../../components/common/Layout"
-import InputRow from '../../components/form/InputRow'
 import IndicatorModal from '../../components/common/IndicatorModal'
 import NewGroupForm from '../../components/form/NewGroupForm'
 
 import PageHead from '../../components/common/PageHead'
 import profileStyle from '../../styles/profile.module.scss'
-import form from '../../styles/form.module.scss'
 import API from "../../api";
 import U from "../../utile";
 import C from "../../constants";

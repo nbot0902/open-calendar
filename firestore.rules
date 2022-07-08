@@ -67,6 +67,14 @@ service cloud.firestore {
       allow delete : if false;
     }
     
+    // advertisements
+    match /advertisements/{groupId} {
+      allow create : if isAuthed(request.auth.uid);
+      allow read : if true;
+      allow update : if isAuthed(request.auth.uid);
+      allow delete : if false;
+    }
+    
     // users
     match /users/{userId} {
       allow create : if isAuthed(request.auth.uid) && isMe(userId);

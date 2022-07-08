@@ -1,0 +1,73 @@
+@import "./foundation/color";
+@import "./foundation/font";
+@import "./foundation/mixin";
+
+.advertisement {
+  padding: 16px 0px;
+  
+  @include mq() {
+      padding: 16px 16px;
+  }
+
+  &_detail {
+      width: 100%;
+      margin-top: 24px;
+      padding: 24px 24px 24px 24px ;
+      // padding: 24px 24px 24px 24px;
+      position: relative;
+      background-color: $white_1;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px 0 rgba(55, 55, 55, .15);
+  }
+}
+
+.bottom_banner {
+  display: block;
+  width: 100%;
+  position: relative;
+
+  &_input {
+    display: none;
+  }
+
+  &_inner {
+    width: 100%;
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-color: $deep_green_3;
+
+    &::after {
+      display: block;
+      width: 100%;
+      content: "";
+      padding-top: 20%;
+    }
+  
+  }
+}
+
+.image_label {
+  width: 100%;  
+  position: absolute;
+  top: 50%;
+  margin-top: -8px;
+  
+  &_inner {
+    width: 100%;
+    height: 16px;
+    position: relative;
+  }
+
+  &_text {
+    width: 100%;
+    font-size: 16px;
+    color: $deep_green_1;
+    text-align: center;
+
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+  }
+}
