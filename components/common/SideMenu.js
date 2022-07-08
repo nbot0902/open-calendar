@@ -141,6 +141,11 @@ const SideMenu = ({
                                                 バナーの設定
                                             </Link>
                                         </li> : null}
+                                        {!isNormal ? <li className={`${s.side_menu_list_item} ${page == "/analytics" ? s.is_active : ""}`}>
+                                            <Link className={s.side_menu_link} href={"/analytics"}>
+                                                広告のアナリティクス
+                                            </Link>
+                                        </li> : null}
                                     </ul>
                                 </div>
                             ) : null}
