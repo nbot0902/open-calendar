@@ -291,6 +291,11 @@
   border: 1px solid $border_1;
   border-radius: 12px;
 
+  &:disabled {
+    color: $gray_1;
+    background-color: $gray_4;
+  }
+
   &_caption {
     width: 100%;
     font-size: 12px;

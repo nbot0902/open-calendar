@@ -3,6 +3,7 @@ import * as user from './user';
 import * as group from './group';
 import * as session from './session';
 import * as service from './service';
+import * as advertisement from './advertisement';
 
 export default {
   ...event,
@@ -10,4 +11,5 @@ export default {
   ...group,
   ...session,
   ...service,
+  ...advertisement
 };

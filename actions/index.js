@@ -5,6 +5,7 @@ import * as myEvent from './my_event';
 import * as user from './user';
 import * as calendar from './calendar';
 import * as schedule from './schedule';
+import * as advertisement from './advertisement';
 
 export default {
   ...app,
@@ -14,4 +15,5 @@ export default {
   ...user,
   ...calendar,
   ...schedule,
+  ...advertisement
 };
