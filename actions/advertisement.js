@@ -17,16 +17,22 @@ export const getAdvertisementDispatch = async ({
 
 export const putAdvertisementDispatch = async ({
     groupId,
-    newBottomBanner,
+    newBottomBannerImage,
+    bottomBannerStatus,
+    bottomBannerUrl,
     dispatch
 }) => {
     try {
         dispatch(advertisementSlice.actions.postLoading());
 
-        return API.putAdvertisement({ groupId, newBottomBanner })
-            .then((_) => {
-                return getAdvertisementDispatch({ dispatch, groupId })
-            })
+        return API.putAdvertisement({
+            groupId,
+            newBottomBannerImage,
+            bottomBannerStatus,
+            bottomBannerUrl
+        }).then((_) => {
+            return getAdvertisementDispatch({ dispatch, groupId })
+        })
 
     } catch (_error) {
         dispatch(advertisementSlice.actions.postFailed());

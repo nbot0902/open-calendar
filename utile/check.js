@@ -24,6 +24,5 @@ export const checkTikTokUrl = ({ url = "" }) => {
 
 export const checkWebUrl = ({ url = "" }) => {
     const isWebUrl = new RegExp('https?://[\w/:%#\$&\?\(\)~\.=\+\-]+');
-    const isTwitter = url.match(/tiktok.com/);
-    return isWebUrl && isTwitter;
+    return isWebUrl;
 }

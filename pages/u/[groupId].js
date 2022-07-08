@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from 'react-redux'
 
 import Layout from "../../components/common/Layout";
+import BottomBanner from "../../components/ad/BottomBanner";
 import AutherProfile from '../../components/calendar/AutherProfile'
 import CustomFullCalendar from '../../components/calendar/CustomFullCalendar'
 import TileContent from '../../components/calendar/TileContent.js'
@@ -16,6 +17,7 @@ import NewEventModal from '../../components/event/NewEventModal'
 import ScheduleDetailModal from '../../components/schedule/ScheduleDetailModal'
 
 import API from "../../api";
+import A from "../../actions";
 import C from "../../constants";
 import U from "../../utile";
 
@@ -149,6 +151,7 @@ const CalendarScreen = props => {
                 onActiveStartDateChange={_onActiveStartDateChange}
             />
             {!isSignOut ? <Fab
+                groupId={groupId}
                 onClick={_handleEventModal}
             /> : null}
             <NewEventModal
@@ -166,6 +169,9 @@ const CalendarScreen = props => {
             />
             <IndicatorModal
                 isLoading={isLoading}
+            />
+            <BottomBanner
+                groupId={groupId}
             />
         </Layout>
     )
