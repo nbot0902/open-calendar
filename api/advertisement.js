@@ -17,7 +17,9 @@ export const getAdvertisement = async ({
 
 export const putAdvertisement = async ({
     groupId,
-    newBottomBanner = null
+    newBottomBannerImage = null,
+    bottomBannerStatus = C.AD_STATE.ACTIVE,
+    bottomBannerUrl = ""
 }) => {
 
     const baseData = {
@@ -29,12 +31,15 @@ export const putAdvertisement = async ({
         ...baseData,
     }
 
-    if (newBottomBanner) {
-        const _resizedFile = await U.getResizedBottomBannerFile({ file: newBottomBanner });
+    if (newBottomBannerImage) {
+        const _resizedFile = await U.getResizedBottomBannerFile({ file: newBottomBannerImage });
         const _bottomBannerRef = ref(firebaseStorage, `advertisements/${groupId}/bottomBanner`);
         const _snapshot = await uploadBytesResumable(_bottomBannerRef, _resizedFile);
-        _advertisementData.bottomBanner = await getDownloadURL(_snapshot.ref)
+        _advertisementData.bottomBannerImage = await getDownloadURL(_snapshot.ref)
     }
+
+    _advertisementData.bottomBannerStatus = bottomBannerStatus
+    _advertisementData.bottomBannerUrl = bottomBannerUrl
 
     const adRef = doc(fireStore, "advertisements", groupId);
 

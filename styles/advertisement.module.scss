@@ -21,6 +21,48 @@
   }
 }
 
+.ad {
+  &_bottom_banner {
+    width: 100%;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    z-index: 100;
+    background-color: $white_1;
+  
+    &_img{
+      width: 100%;
+      max-width: 480px;
+      margin: 0px auto;
+  
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      cursor: pointer;
+
+      &::after {
+        display: block;
+        width: 100%;
+        content: "";
+        padding-top: 20%;
+      }
+      
+    }
+   
+    &_emprty {
+      width: 100%;
+     
+      &::after {
+        display: block;
+        width: 100%;
+        content: "";
+        padding-top: 20%;
+      }
+    }
+  }
+}
+
+
 .bottom_banner {
   display: block;
   width: 100%;
