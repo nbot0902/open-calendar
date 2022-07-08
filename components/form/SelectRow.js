@@ -30,7 +30,7 @@ const SelectRow = ({
                 {
                     options.map((item, index) => {
                         return (
-                            <option value={item.value}>{item.label}</option>
+                            <option key={`${uniqueId}-fo-select-option-${index}`} value={item.value}>{item.label}</option>
                         )
                     })
                 }
