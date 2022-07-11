@@ -20,7 +20,17 @@ const ScheduleDetailModal = ({
 
     const calendar = useSelector((state) => state.calendar)
     const calendarHash = calendar.hash && calendar.hash[groupId] ? calendar.hash[groupId].hash : null;
+
     const scheduleEvents = calendarHash != null && calendarHash[scheduleId] != null ? calendarHash[scheduleId].list : [];
+    const dateNow = Date.now();
+
+    const _newList = scheduleEvents.map((item, index) => item)
+
+    const _scheduleEvents = _newList.sort(function (_a, _b) {
+        const _aStartAt = _a.startAt ?? dateNow;
+        const _bStartAt = _b.startAt ?? dateNow;
+        return _aStartAt - _bStartAt
+    });
 
     React.useEffect(() => {
         if (!initialized) {
@@ -32,7 +42,7 @@ const ScheduleDetailModal = ({
     const ListCompornent = React.useMemo(() => {
         return (
             <ul className={s.schedule_list}>
-                {scheduleEvents.map((_event, _) => {
+                {_scheduleEvents.map((_event, _) => {
                     const { eventId } = _event;
 
                     return (
