@@ -24,7 +24,6 @@ export const postEvent = async ({
         calendarId: calendarId,
         createdAt: createdAt,
     }
-
     const eventData = {
         ...data,
         ...baseData,
@@ -38,6 +37,7 @@ export const postEvent = async ({
     const schedulesEventData = {
         ...baseData,
         eventId: eventId,
+        startAt: startAt.getTime(),
         status: C.EVENT_STATE.ACTIVE
     }
     const groupScheduleData = {
@@ -86,6 +86,7 @@ export const putEvent = async ({
     }
     const schedulesEventData = {
         ...baseData,
+        startAt: _startAt.getTime()
     }
     const calendarScheduleData = {
         ...baseData,

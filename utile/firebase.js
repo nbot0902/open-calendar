@@ -107,6 +107,7 @@ export const verifyAuthState = async ({
             // サインアウト状態 + ログイン後のページの場合
             return redirectSignin;
         } else if (_isCalendar) {
+
             if (!_isSignOut) {
                 // サインイン状態 + カレンダー
                 const _data = await _getinitialUserData({ verifiedUser: _verifiedUser })
@@ -125,6 +126,7 @@ export const verifyAuthState = async ({
                 return empty;
             }
         } else if (_isSignOut) {
+
             // サインアウト状態
             return empty;
         } else {
